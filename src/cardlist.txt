@@ -1,0 +1,87 @@
+{ "era": [    
+    {
+      "id": 37,
+      "title": "Mars Paleo-Ocean",
+      "landform": [
+        {
+          "cosmic": true,
+          "oceanic": true,
+          "coastal": false,
+          "continental": false
+        }
+      ],
+      "event": ["heaven", "heaven", "cooling"],
+      "order": ["red", "yellow", "blue"]
+    },
+    {
+      "id": 38,
+      "title": "Meteoritic Accretion",
+      "landform": [
+        {
+          "cosmic": true,
+          "oceanic": true,
+          "coastal": false,
+          "continental": false
+        }
+      ],
+      "event": ["smite", "heaven", "heaven", "warming"],
+      "order": ["green", "red", "yellow"]
+    },
+    {
+      "id": 39,
+      "title": "Bolide Water Delivery",
+      "landform": [
+        {
+          "cosmic": false,
+          "oceanic": true,
+          "coastal": false,
+          "continental": false
+        }
+      ],
+      "event": ["heaven", "heaven", "extremophile crisis", "cooling"],
+      "order": ["yellow", "red", "green"]
+    },
+    {
+      "id": 40,
+      "title": "Bolide Water Delivery",
+      "landform": [
+        {
+          "cosmic": false,
+          "oceanic": true,
+          "coastal": false,
+          "continental": false
+        }
+      ],
+      "event": ["heaven", "heaven", "extremophile crisis", "cooling"],
+      "order": ["blue", "green", "red"]
+    },
+    {
+      "id": 41,
+      "title": "Theia Big Whack",
+      "landform": [
+        {
+          "cosmic": false,
+          "oceanic": false,
+          "coastal": false,
+          "continental": false
+        }
+      ],
+      "event": ["aaftershock", "smite", "smite", "smite", "extremophile crisis", "extremophile crisis"],
+      "immune": "cosmic"
+    },
+    {
+      "id": 42,
+      "title": "T Tauri Early Sun",
+      "landform": [
+        {
+          "cosmic": false,
+          "oceanic": true,
+          "coastal": false,
+          "continental": false
+        }
+      ],
+      "event": ["smite", "heaven", "extremophile crisis", "UV radiation(0)", "warming"],
+      "order": ["red", "green", "yellow"]
+    }
+  ]
+}
