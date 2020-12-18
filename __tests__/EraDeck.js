@@ -10,6 +10,6 @@ afterEach(() => {
   jest.spyOn(global.Math, 'random').mockRestore();
 });
 
-// it('draws a random event', () => {
-//   expect(eraDeck.draw('hadean')).toEq('Mars Paleo-Ocean')
-// })
+it('draws a random event', () => {
+  expect(eraDeck.draw('hadean')).toBe(37)
+})
