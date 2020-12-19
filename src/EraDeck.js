@@ -9,14 +9,14 @@ class EraDeck {
   }
 
   draw(era) {
-    if (era == 'hadean') {
-      eventCard =  this.hadean[Math.floor(Math.random() * this.hadean.length)]
-    } else if (era == 'archean') {
-      eventCard =  this.archean[Math.floor(Math.random() * this.archean.length)]
-    } else if (era =='proterozoic') {
-      eventCard =  this.proterozoic[Math.floor(Math.random() * this.proterozoic.length)]
+    switch(era) {
+    case'hadean' :
+      return this.hadean[Math.floor(Math.random() * this.hadean.length)]
+    case 'archean':
+      return this.archean[Math.floor(Math.random() * this.archean.length)]
+    case 'proterozoic':
+      return this.proterozoic[Math.floor(Math.random() * this.proterozoic.length)]
     }
-    return eventCard
   }
 }
 
