@@ -12,7 +12,7 @@ export default function App() {
 const styles = StyleSheet.create({
   header: {
     height: 60,
-    backgroundColor: 'black',
+    backgroundColor: '#151040',
     padding: 15,
     alignSelf: 'stretch',
   },

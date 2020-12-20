@@ -17,11 +17,13 @@ export default function App() {
   return (
     <View style={styles.container}>
       <ImageBackground source={require('./src/hadean.jpg')} style={styles.image}>
-        <TouchableOpacity style={styles.drawEventButton}
-          onPress ={() => drawEvent()}
-          >
-            <Text style={styles.buttonText}>Draw Event</Text>
-        </TouchableOpacity>
+        <View style={styles.button}>
+          <TouchableOpacity style={styles.drawEventButton}
+            onPress ={() => drawEvent()}
+            >
+              <Text style={styles.buttonText}>Draw Event</Text>
+          </TouchableOpacity>
+        </View>
         <Modal
           transparent={true}
           visible={showEvent}
@@ -53,17 +55,17 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: "cover",
   },
+  button: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   drawEventButton: {
     backgroundColor: '#301263',
-    padding: 10,
-    marginTop: 15,
     width: 150,
     height: 60,
     borderRadius: 20,
     justifyContent: 'center',
-    shadowColor: 'black',
-    shadowOpacity: 0.8,
-    elevation: 10,
   },
   buttonText: {
     color: 'white',

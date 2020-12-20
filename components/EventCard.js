@@ -42,7 +42,7 @@ export default function App() {
           />
           <Image
             style={styles.activeIcon}
-            source={require('../src/cooling.png')}
+            source={require('../src/cooling.jpg')}
           />
         </View>
       </View>
@@ -98,6 +98,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignContent: 'flex-start',
+    justifyContent: 'center',
     margin: 20
   },
 });
