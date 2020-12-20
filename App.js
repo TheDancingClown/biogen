@@ -1,13 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { ImageBackground, StyleSheet, Text, TouchableOpacity, View, Modal } from 'react-native';
+import React, { useState } from 'react';
+import { ImageBackground, StyleSheet, Text, TouchableOpacity, View, Modal, Image } from 'react-native';
 import EventCard from './components/EventCard'
 
 export default function App() {
+  const [showEvent, setShowEvent] = useState(false);
+
+  const drawEvent = () => {
+    setShowEvent(true)
+  }
+
+  const performEvent = () => {
+    setShowEvent(false)
+  }
+
   return (
     <View style={styles.container}>
       <ImageBackground source={require('./src/hadean.jpg')} style={styles.image}>
-        <Text>Bios Genesis</Text>
         <TouchableOpacity style={styles.drawEventButton}
           onPress ={() => drawEvent()}
           >
@@ -15,12 +24,19 @@ export default function App() {
         </TouchableOpacity>
         <Modal
           transparent={true}
-          visible={true}
+          visible={showEvent}
           >
           <View style={styles.eventCard}>
             <EventCard />
+            <TouchableOpacity style={styles.closeEvent}
+              onPress ={() => performEvent()}
+              >
+                <Text style={styles.buttonText}>X</Text>
+            </TouchableOpacity>
           </View>
+          
         </Modal>
+        
         
       </ImageBackground>
     </View>
@@ -31,6 +47,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
+    
   },
   image: {
     flex: 1,
@@ -59,5 +76,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  closeEvent: {
+    backgroundColor: 'darkred',
+    margin: 5,
+    padding: 2,
+    borderRadius: 5
   }
 });
