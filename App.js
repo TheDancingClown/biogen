@@ -14,6 +14,21 @@ export default function App() {
     setShowEvent(false)
   }
 
+  const card = {
+    "title": "Mars Paleo-Ocean",
+    "information": "If early Mars had a denser atmosphere and warmer climate, nearly a third of its surface could have been covered by liquid water. It would have filled the Vastitas Borealis basin in the northern hemisphere, which mysteriously lies 4-5 km below the mean planetary elevation. Today enough methane lingers in the thin Martian air to indicate possible methanogen life dwelling under the surface, safe from cosmic radiation.",
+    "landform": [
+      {
+        "cosmic": true,
+        "oceanic": true,
+        "coastal": false,
+        "continental": false
+      }
+    ],
+    "event": ["heaven", "heaven", "cooling"],
+    "order": ["red", "yellow", "blue"]
+  }
+
   return (
     <View style={styles.container}>
       <ImageBackground source={require('./src/hadean.jpg')} style={styles.image}>
@@ -29,7 +44,9 @@ export default function App() {
           visible={showEvent}
           >
           <View style={styles.eventCard}>
-            <EventCard />
+            <EventCard 
+              title={card.title}
+              information={card.information}/>
             <TouchableOpacity style={styles.closeEvent}
               onPress ={() => performEvent()}
               >

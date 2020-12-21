@@ -1,7 +1,9 @@
 { "era": [    
-    {
-      "id": 37,
+    37: {
       "title": "Mars Paleo-Ocean",
+      "information": "If early Mars had a denser atmosphere and warmer climate, nearly a third of its surface could have been covered by liquid water. 
+          It would have filled the Vastitas Borealis basin in the northern hemisphere, which mysteriously lies 4-5 km below the mean planetary elevation. 
+          Today enough methane lingers in the thin Martian air to indicate possible methanogen life dwelling under the surface, safe from cosmic radiation.",
       "landform": [
         {
           "cosmic": true,
@@ -13,8 +15,7 @@
       "event": ["heaven", "heaven", "cooling"],
       "order": ["red", "yellow", "blue"]
     },
-    {
-      "id": 38,
+    38: {
       "title": "Meteoritic Accretion",
       "landform": [
         {
@@ -27,8 +28,7 @@
       "event": ["smite", "heaven", "heaven", "warming"],
       "order": ["green", "red", "yellow"]
     },
-    {
-      "id": 39,
+    39: {
       "title": "Bolide Water Delivery",
       "landform": [
         {
@@ -41,8 +41,7 @@
       "event": ["heaven", "heaven", "extremophile crisis", "cooling"],
       "order": ["yellow", "red", "green"]
     },
-    {
-      "id": 40,
+    40: {
       "title": "Bolide Water Delivery",
       "landform": [
         {
@@ -55,8 +54,7 @@
       "event": ["heaven", "heaven", "extremophile crisis", "cooling"],
       "order": ["blue", "green", "red"]
     },
-    {
-      "id": 41,
+    41: {
       "title": "Theia Big Whack",
       "landform": [
         {
@@ -69,8 +67,7 @@
       "event": ["aaftershock", "smite", "smite", "smite", "extremophile crisis", "extremophile crisis"],
       "immune": "cosmic"
     },
-    {
-      "id": 42,
+    42: {
       "title": "T Tauri Early Sun",
       "landform": [
         {

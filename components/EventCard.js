@@ -1,11 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
-import Header from './Header';
 
-export default function App() {
+const EventCard = (props) => {
   return (
     <View style={styles.container}>
-      <Header>Mars Paleo-Ocean</Header>
+      <View style={styles.header}>
+        <Text style={styles.text}>{props.title}</Text>
+      </View>
+
       <View style={styles.detail}>
         <View style={styles.iconsView}>
           <Image
@@ -25,12 +27,12 @@ export default function App() {
             source={require('../src/continental.jpg')}
           />
         </View>
+
         <View style={styles.information}>
-          <Text>If early Mars had a denser atmosphere and warmer climate, nearly a third of its surface could have been covered by liquid water. 
-            It would have filled the Vastitas Borealis basin in the northern hemisphere, which mysteriously lies 4-5 km below the mean planetary elevation. 
-            Today enough methane lingers in the thin Martian air to indicate possible methanogen life dwelling under the surface, safe from cosmic radiation.
-            </Text>
+          <Text>{props.information}
+          </Text>
         </View>
+        
         <View style={styles.eventIcons}>
           <Image
             style={styles.activeIcon}
@@ -38,11 +40,15 @@ export default function App() {
           />
           <Image
             style={styles.activeIcon}
-            source={require('../src/heaven.png')}
+            source={require('../src/earth.jpg')}
           />
           <Image
             style={styles.activeIcon}
             source={require('../src/cooling.jpg')}
+          />
+          <Image
+            style={styles.activeIcon}
+            source={require('../src/warming.jpg')}
           />
         </View>
       </View>
@@ -75,6 +81,7 @@ const styles = StyleSheet.create({
   iconsView: {
     flexWrap: 'wrap',
     alignItems: 'center',
+    paddingLeft: 20
   },
   information: {
     width: 250,
@@ -87,11 +94,10 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   inactiveIcon: {
-    height: 35,
-    width: 35,
+    height: 40,
+    width: 40,
     margin: 5,
     opacity: 0.2,
-    marginLeft: 40
   },
   eventIcons: {
     flex: 3,
@@ -101,4 +107,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     margin: 20
   },
+  header: {
+    height: 60,
+    backgroundColor: '#151040',
+    padding: 15,
+    alignSelf: 'stretch',
+  }
+
 });
+
+export default EventCard
