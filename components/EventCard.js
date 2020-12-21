@@ -4,9 +4,7 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 const EventCard = (props) => {
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.text}>{props.title}</Text>
-      </View>
+      <Header title={props.title}/>
 
       <View style={styles.detail}>
         <View style={styles.iconsView}>
@@ -28,11 +26,8 @@ const EventCard = (props) => {
           />
         </View>
 
-        <View style={styles.information}>
-          <Text>{props.information}
-          </Text>
-        </View>
-        
+        <InformationText information={props.information}/>
+
         <View style={styles.eventIcons}>
           <Image
             style={styles.activeIcon}
@@ -54,6 +49,22 @@ const EventCard = (props) => {
       </View>
     </View>
   );
+}
+
+const Header = (props) => {
+  return (
+    <View style={styles.header}>
+      <Text style={styles.text}>{props.title}</Text>
+    </View>
+  ) 
+}
+
+const InformationText = (props) => {
+  return (
+    <View style={styles.information}>
+      <Text>{props.information}</Text>
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
