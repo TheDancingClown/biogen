@@ -7,24 +7,12 @@ const EventCard = (props) => {
       <Header title={props.title}/>
 
       <View style={styles.detail}>
-        <View style={styles.iconsView}>
-          <Image
-            style={styles.activeIcon}
-            source={require('../src/cosmic.jpg')}
-          />
-          <Image
-            style={styles.activeIcon}
-            source={require('../src/oceanic.jpg')}
-          />
-          <Image
-            style={styles.inactiveIcon}
-            source={require('../src/coastal.jpg')}
-          />
-          <Image
-            style={styles.inactiveIcon}
-            source={require('../src/continental.jpg')}
-          />
-        </View>
+        <LandformIcons 
+          cosmic={props.cosmic}
+          oceanic={props.oceanic}
+          coastal={props.coastal}
+          continental={props.continental}
+        />
 
         <InformationText information={props.information}/>
 
@@ -67,6 +55,29 @@ const InformationText = (props) => {
   )
 }
 
+const LandformIcons = (props) => {
+  return (
+    <View style={styles.iconsView}>
+      <Image
+        style={props.cosmic ? styles.activeIcon : styles.inactiveIcon}
+        source={require('../src/cosmic.jpg')}
+      />
+      <Image
+        style={props.oceanic ? styles.activeIcon : styles.inactiveIcon}
+        source={require('../src/oceanic.jpg')}
+      />
+      <Image
+        style={props.coastal ? styles.activeIcon : styles.inactiveIcon}
+        source={require('../src/coastal.jpg')}
+      />
+      <Image
+        style={props.continental ? styles.activeIcon : styles.inactiveIcon}
+        source={require('../src/continental.jpg')}
+      />
+    </View>
+  )
+}
+
 const styles = StyleSheet.create({
   container: {
     paddingTop: 10,
@@ -74,6 +85,14 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     width: 500,
     height: 270
+  },
+  header: {
+    height: 60,
+    backgroundColor: '#151040',
+    padding: 15,
+    alignSelf: 'stretch',
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
   text: {
     color: '#fff',
@@ -118,12 +137,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     margin: 20
   },
-  header: {
-    height: 60,
-    backgroundColor: '#151040',
-    padding: 15,
-    alignSelf: 'stretch',
-  }
+  
 
 });
 
