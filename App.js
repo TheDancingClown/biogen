@@ -27,7 +27,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <ImageBackground source={require('./src/hadean.jpg')} style={styles.image}>
+      <ImageBackground source={require('./assets/hadean.jpg')} style={styles.image}>
         <View style={styles.button}>
           <TouchableOpacity style={styles.drawEventButton}
             onPress ={() => drawEvent()}

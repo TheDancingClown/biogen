@@ -19,19 +19,19 @@ const EventCard = (props) => {
         <View style={styles.eventIcons}>
           <Image
             style={styles.activeIcon}
-            source={require('../src/heaven.png')}
+            source={require('../assets/heaven.jpg')}
           />
           <Image
             style={styles.activeIcon}
-            source={require('../src/earth.jpg')}
+            source={require('../assets/earth.jpg')}
           />
           <Image
             style={styles.activeIcon}
-            source={require('../src/cooling.jpg')}
+            source={require('../assets/cooling.jpg')}
           />
           <Image
             style={styles.activeIcon}
-            source={require('../src/warming.jpg')}
+            source={require('../assets/warming.jpg')}
           />
         </View>
       </View>
@@ -60,19 +60,19 @@ const LandformIcons = (props) => {
     <View style={styles.iconsView}>
       <Image
         style={props.cosmic ? styles.activeIcon : styles.inactiveIcon}
-        source={require('../src/cosmic.jpg')}
+        source={require('../assets/cosmic.jpg')}
       />
       <Image
         style={props.oceanic ? styles.activeIcon : styles.inactiveIcon}
-        source={require('../src/oceanic.jpg')}
+        source={require('../assets/oceanic.jpg')}
       />
       <Image
         style={props.coastal ? styles.activeIcon : styles.inactiveIcon}
-        source={require('../src/coastal.jpg')}
+        source={require('../assets/coastal.jpg')}
       />
       <Image
         style={props.continental ? styles.activeIcon : styles.inactiveIcon}
-        source={require('../src/continental.jpg')}
+        source={require('../assets/continental.jpg')}
       />
     </View>
   )
