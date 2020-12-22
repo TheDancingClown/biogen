@@ -4,7 +4,10 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 const EventCard = (props) => {
   return (
     <View style={styles.container}>
-      <Header title={props.card.title}/>
+      <Header 
+      title={props.card.title}
+      id={props.card.id}
+      />
 
       <View style={styles.detail}>
         <LandformIcons 
@@ -22,8 +25,15 @@ const EventCard = (props) => {
 }
 
 const Header = (props) => {
+  var headerColour
+  if (37 <= props.id && props.id <= 42) {
+    headerColour = '#151040'
+  } else if (43 <= props.id && props.id <= 49) {
+    headerColour = '#8f1111'
+  }
   return (
-    <View style={styles.header}>
+    <View 
+      style={[styles.header,{ backgroundColor: `${headerColour}`}]}>
       <Text style={styles.text}>{props.title}</Text>
     </View>
   ) 
@@ -64,30 +74,40 @@ const EventIcons = (props) => {
   var eventIcon
   var eventList = []
     
-  props.events.map((event) => {
+  props.events.map((event,index) => {
     if (event == "smite") {
       eventList.push(<Image
-        style={styles.activeIcon} source={require('../assets/smite.jpg')}
+        key={index} style={styles.activeIcon} source={require('../assets/smite.jpg')}
         />
       )
     } else if (event == "earth") {
       eventList.push(<Image
-        style={styles.activeIcon} source={require('../assets/earth.jpg')}
+        key={index} style={styles.activeIcon} source={require('../assets/earth.jpg')}
         />
       )
     } else if (event == "heaven") {
       eventList.push(<Image
-        style={styles.activeIcon} source={require('../assets/heaven.jpg')}
+        key={index} style={styles.activeIcon} source={require('../assets/heaven.jpg')}
+        />
+      )
+    } else if (event == "extremophile crisis") {
+      eventList.push(<Image
+        key={index} style={styles.activeIcon} source={require('../assets/extremophileCrisis.jpg')}
+        />
+      )
+    } else if (event == "ultraviolet radiation") {
+      eventList.push(<Image
+        key={index} style={styles.activeIcon} source={require('../assets/ultravioletRadiation.jpg')}
         />
       )
     } else if (event == "cooling") {
       eventList.push(<Image
-        style={styles.activeIcon} source={require('../assets/cooling.jpg')}
+        key={index} style={styles.activeIcon} source={require('../assets/cooling.jpg')}
         />
       )
     } else if (event == "warming") {
       eventList.push(<Image
-        style={styles.activeIcon} source={require('../assets/warming.jpg')}
+        key={index} style={styles.activeIcon} source={require('../assets/warming.jpg')}
         />
       )
     }
@@ -105,7 +125,6 @@ const styles = StyleSheet.create({
   },
   header: {
     height: 60,
-    backgroundColor: '#151040',
     padding: 15,
     alignSelf: 'stretch',
     flexDirection: 'row',

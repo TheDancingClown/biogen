@@ -2,58 +2,32 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { ImageBackground, StyleSheet, Text, TouchableOpacity, View, Modal, Image } from 'react-native';
 import EventCard from './components/EventCard'
+import HadeanEra from './src/HadeanCardList'
+import ArcheanEra from './src/ArcheanCardList'
 
 export default function App() {
   const [showEvent, setShowEvent] = useState(false);
   const [showEventCard, setEventCard] = useState({});
+  const [showRound, incrementRound] = useState(0);
+  var discardPile = []
 
   const drawEvent = () => {
-    setEventCard(hadean[Math.floor(Math.random() * hadean.length)])
+    var card = {}
+    if (showRound < 3) {
+      card = HadeanEra[Math.floor(Math.random() * HadeanEra.length)]
+    } else if (showRound < 10) {
+      card = ArcheanEra[Math.floor(Math.random() * ArcheanEra.length)]
+    }
+    
+    setEventCard(card);
+    discardPile.push(card);
     setShowEvent(true)
+    incrementRound(showRound + 1)
   }
 
   const performEvent = () => {
     setShowEvent(false)
   }
-
-  const hadean = [{
-    "title": "Mars Paleo-Ocean",
-    "information": "If early Mars had a denser atmosphere and warmer climate, nearly a third of its surface could have been covered by liquid water. It would have filled the Vastitas Borealis basin in the northern hemisphere, which mysteriously lies 4-5 km below the mean planetary elevation. Today enough methane lingers in the thin Martian air to indicate possible methanogen life dwelling under the surface, safe from cosmic radiation.",
-    "landform": 
-      {"cosmic": true,
-      "oceanic": true,
-      "coastal": false,
-      "continental": false},
-    "event": ["heaven", "heaven", "cooling"],
-    "order": ["red", "yellow", "blue"]
-  },
-  {
-    "title": "Meteoritic Accretion",
-    "information": "Earth grew for 100 million years by the accretion of planetesimals before the Big Whack. Although the biggest impacts buried most of the crust with melt, zircon data indicates Earth had liquid water and an atmosphere only 130 million years after formation. Despite the hellish conditions, life could have gotten an early start. -- Simone-Marchi, 2014",
-    "landform":
-      {
-        "cosmic": true,
-        "oceanic": true,
-        "coastal": false,
-        "continental": false
-      },
-    "event": ["smite", "heaven", "heaven", "warming"],
-    "order": ["green", "red", "yellow"]
-  },
-  {
-    "title": "Bolide Water Delivery",
-    "information": "Carbonaceous meteorites from the main belt are organic rich, including amino acids, and relatively wet, with deuterium to hydrogen ratios similar to Earth's oceans. Therefore, impacts with a few dozen could have delivered Earth's water and set up a Urey-Miller reducing atmosphere.",
-    "landform":
-      {
-        "cosmic": false,
-        "oceanic": true,
-        "coastal": false,
-        "continental": false
-      },
-    "event": ["heaven", "heaven", "extremophile crisis", "cooling"],
-    "order": ["yellow", "red", "green"]
-  }
-]
 
   return (
     <View style={styles.container}>
