@@ -5,17 +5,17 @@ import cooling from '../assets/index';
 const EventCard = (props) => {
   return (
     <View style={styles.container}>
-      <Header title={props.title}/>
+      <Header title={props.card.title}/>
 
       <View style={styles.detail}>
         <LandformIcons 
-          landforms={props.landforms}
+          landforms={props.card.landform}
         />
 
-        <InformationText information={props.information}/>
+        <InformationText information={props.card.information}/>
 
         <View style={styles.eventIcons}>
-          <EventIcons events={props.events} />
+          <EventIcons events={props.card.event} />
         </View>
       </View>
     </View>
