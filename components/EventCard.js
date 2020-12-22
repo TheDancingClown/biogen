@@ -30,6 +30,8 @@ const Header = (props) => {
     headerColour = '#151040'
   } else if (43 <= props.id && props.id <= 49) {
     headerColour = '#8f1111'
+  } else if (50 <= props.id && props.id <= 60) {
+    headerColour = '#0c4696'
   }
   return (
     <View 

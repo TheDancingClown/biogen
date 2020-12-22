@@ -4,25 +4,32 @@ import { ImageBackground, StyleSheet, Text, TouchableOpacity, View, Modal, Image
 import EventCard from './components/EventCard'
 import HadeanEra from './src/HadeanCardList'
 import ArcheanEra from './src/ArcheanCardList'
+import ProterozoicEra from './src/ProterozoicCardList'
 
 export default function App() {
   const [showEvent, setShowEvent] = useState(false);
-  const [showEventCard, setEventCard] = useState({});
-  const [showRound, incrementRound] = useState(0);
-  var discardPile = []
+  const [currentEvent, setCurrentEvent] = useState(HadeanEra[0]);
+  const [round, increment] = useState(0);
+  const [discardPile, discardCard] = useState([]);
 
   const drawEvent = () => {
     var card = {}
-    if (showRound < 3) {
+    
+    if (round < 3) {
       card = HadeanEra[Math.floor(Math.random() * HadeanEra.length)]
-    } else if (showRound < 10) {
+    } else if (round < 10) {
       card = ArcheanEra[Math.floor(Math.random() * ArcheanEra.length)]
+    } else if (round < 20) {
+      card = ProterozoicEra[Math.floor(Math.random() * ProterozoicEra.length)]
+    } else {
+
     }
     
-    setEventCard(card);
-    discardPile.push(card);
+    setCurrentEvent(card);
+    // discardCard(discardPile.push(card))
     setShowEvent(true)
-    incrementRound(showRound + 1)
+    increment(round + 1)
+    
   }
 
   const performEvent = () => {
@@ -32,6 +39,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <ImageBackground source={require('./assets/hadean.jpg')} style={styles.image}>
+        <Text>0 years</Text>
         <View style={styles.button}>
           <TouchableOpacity style={styles.drawEventButton}
             onPress ={() => drawEvent()}
@@ -45,7 +53,7 @@ export default function App() {
           >
           <View style={styles.eventCard}>
             <EventCard 
-              card = {showEventCard}
+              card = {currentEvent}
               />
             <TouchableOpacity style={styles.closeEvent}
               onPress ={() => performEvent()}
@@ -63,7 +71,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
-    
   },
   image: {
     flex: 1,

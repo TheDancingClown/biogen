@@ -1,4 +1,4 @@
-export default HadeanEra = [
+const HadeanEra = [
   {
     "id": 37,
     "title": "Mars Paleo-Ocean",
@@ -78,5 +78,7 @@ export default HadeanEra = [
     "order": ["red", "green", "yellow"]
   }
 ]
+
+export default HadeanEra
 
 
