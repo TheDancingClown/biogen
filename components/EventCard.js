@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
-import cooling from '../assets/index';
 
 const EventCard = (props) => {
   return (
@@ -65,15 +64,34 @@ const EventIcons = (props) => {
   var eventIcon
   var eventList = []
     
-    props.events.map((event) => {
-      switch(event) {
-      case "cooling":
-        eventList.push(<Text>{event}.</Text>)
-      case "heaven":
-        eventList.push(<Text>{event}!</Text>)
-      }
-    })
-    
+  props.events.map((event) => {
+    if (event == "smite") {
+      eventList.push(<Image
+        style={styles.activeIcon} source={require('../assets/smite.jpg')}
+        />
+      )
+    } else if (event == "earth") {
+      eventList.push(<Image
+        style={styles.activeIcon} source={require('../assets/earth.jpg')}
+        />
+      )
+    } else if (event == "heaven") {
+      eventList.push(<Image
+        style={styles.activeIcon} source={require('../assets/heaven.jpg')}
+        />
+      )
+    } else if (event == "cooling") {
+      eventList.push(<Image
+        style={styles.activeIcon} source={require('../assets/cooling.jpg')}
+        />
+      )
+    } else if (event == "warming") {
+      eventList.push(<Image
+        style={styles.activeIcon} source={require('../assets/warming.jpg')}
+        />
+      )
+    }
+  })
   return (eventList)
 }
 

@@ -39,7 +39,21 @@ export default function App() {
       },
     "event": ["smite", "heaven", "heaven", "warming"],
     "order": ["green", "red", "yellow"]
-  }]
+  },
+  {
+    "title": "Bolide Water Delivery",
+    "information": "Carbonaceous meteorites from the main belt are organic rich, including amino acids, and relatively wet, with deuterium to hydrogen ratios similar to Earth's oceans. Therefore, impacts with a few dozen could have delivered Earth's water and set up a Urey-Miller reducing atmosphere.",
+    "landform":
+      {
+        "cosmic": false,
+        "oceanic": true,
+        "coastal": false,
+        "continental": false
+      },
+    "event": ["heaven", "heaven", "extremophile crisis", "cooling"],
+    "order": ["yellow", "red", "green"]
+  }
+]
 
   return (
     <View style={styles.container}>
@@ -65,10 +79,7 @@ export default function App() {
                 <Text style={styles.buttonText}>X</Text>
             </TouchableOpacity>
           </View>
-          
         </Modal>
-        
-        
       </ImageBackground>
     </View>
   );

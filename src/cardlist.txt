@@ -1,82 +1,70 @@
 { "era": [    
     37: {
       "title": "Mars Paleo-Ocean",
-      "information": "If early Mars had a denser atmosphere and warmer climate, nearly a third of its surface could have been covered by liquid water. 
-          It would have filled the Vastitas Borealis basin in the northern hemisphere, which mysteriously lies 4-5 km below the mean planetary elevation. 
-          Today enough methane lingers in the thin Martian air to indicate possible methanogen life dwelling under the surface, safe from cosmic radiation.",
-      "landform": [
-        {
+      "information": "If early Mars had a denser atmosphere and warmer climate, nearly a third of its surface could have been covered by liquid water. It would have filled the Vastitas Borealis basin in the northern hemisphere, which mysteriously lies 4-5 km below the mean planetary elevation. Today enough methane lingers in the thin Martian air to indicate possible methanogen life dwelling under the surface, safe from cosmic radiation.",
+      "landform": {
           "cosmic": true,
           "oceanic": true,
           "coastal": false,
           "continental": false
-        }
-      ],
+        },
       "event": ["heaven", "heaven", "cooling"],
       "order": ["red", "yellow", "blue"]
     },
     38: {
       "title": "Meteoritic Accretion",
-      "landform": [
-        {
+      "information": "Earth grew for 100 million years by the accretion of planetesimals before the Big Whack. Although the biggest impacts buried most of the crust with melt, zircon data indicates Earth had liquid water and an atmosphere only 130 million years after formation. Despite the hellish conditions, life could have gotten an early start. -- Simone-Marchi, 2014",
+      "landform": {
           "cosmic": true,
           "oceanic": true,
           "coastal": false,
           "continental": false
-        }
-      ],
+        },
       "event": ["smite", "heaven", "heaven", "warming"],
       "order": ["green", "red", "yellow"]
     },
     39: {
       "title": "Bolide Water Delivery",
-      "landform": [
-        {
+      "information": "Carbonaceous meteorites from the main belt are organic rich, including amino acids, and relatively wet, with deuterium to hydrogen ratios similar to Earth's oceans. Therefore, impacts with a few dozen could have delivered Earth's water and set up a Urey-Miller reducing atmosphere.",
+      "landform": {
           "cosmic": false,
           "oceanic": true,
           "coastal": false,
           "continental": false
-        }
-      ],
+        },
       "event": ["heaven", "heaven", "extremophile crisis", "cooling"],
       "order": ["yellow", "red", "green"]
     },
     40: {
       "title": "Bolide Water Delivery",
-      "landform": [
-        {
+      "landform": {
           "cosmic": false,
           "oceanic": true,
           "coastal": false,
           "continental": false
-        }
-      ],
+        },
       "event": ["heaven", "heaven", "extremophile crisis", "cooling"],
       "order": ["blue", "green", "red"]
     },
     41: {
       "title": "Theia Big Whack",
-      "landform": [
-        {
+      "landform": {
           "cosmic": false,
           "oceanic": false,
           "coastal": false,
           "continental": false
-        }
-      ],
+        },
       "event": ["aaftershock", "smite", "smite", "smite", "extremophile crisis", "extremophile crisis"],
       "immune": "cosmic"
     },
     42: {
       "title": "T Tauri Early Sun",
-      "landform": [
-        {
+      "landform": {
           "cosmic": false,
           "oceanic": true,
           "coastal": false,
           "continental": false
-        }
-      ],
+        },
       "event": ["smite", "heaven", "extremophile crisis", "UV radiation(0)", "warming"],
       "order": ["red", "green", "yellow"]
     }
