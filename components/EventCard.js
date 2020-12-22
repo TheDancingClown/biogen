@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
+import cooling from '../assets/index';
 
 const EventCard = (props) => {
   return (
@@ -8,31 +9,13 @@ const EventCard = (props) => {
 
       <View style={styles.detail}>
         <LandformIcons 
-          cosmic={props.cosmic}
-          oceanic={props.oceanic}
-          coastal={props.coastal}
-          continental={props.continental}
+          landforms={props.landforms}
         />
 
         <InformationText information={props.information}/>
 
         <View style={styles.eventIcons}>
-          <Image
-            style={styles.activeIcon}
-            source={require('../assets/heaven.jpg')}
-          />
-          <Image
-            style={styles.activeIcon}
-            source={require('../assets/earth.jpg')}
-          />
-          <Image
-            style={styles.activeIcon}
-            source={require('../assets/cooling.jpg')}
-          />
-          <Image
-            style={styles.activeIcon}
-            source={require('../assets/warming.jpg')}
-          />
+          <EventIcons events={props.events} />
         </View>
       </View>
     </View>
@@ -59,23 +42,39 @@ const LandformIcons = (props) => {
   return (
     <View style={styles.iconsView}>
       <Image
-        style={props.cosmic ? styles.activeIcon : styles.inactiveIcon}
+        style={props.landforms.cosmic ? styles.activeIcon : styles.inactiveIcon}
         source={require('../assets/cosmic.jpg')}
       />
       <Image
-        style={props.oceanic ? styles.activeIcon : styles.inactiveIcon}
+        style={props.landforms.oceanic ? styles.activeIcon : styles.inactiveIcon}
         source={require('../assets/oceanic.jpg')}
       />
       <Image
-        style={props.coastal ? styles.activeIcon : styles.inactiveIcon}
+        style={props.landforms.coastal ? styles.activeIcon : styles.inactiveIcon}
         source={require('../assets/coastal.jpg')}
       />
       <Image
-        style={props.continental ? styles.activeIcon : styles.inactiveIcon}
+        style={props.landforms.continental ? styles.activeIcon : styles.inactiveIcon}
         source={require('../assets/continental.jpg')}
       />
     </View>
   )
+}
+
+const EventIcons = (props) => {
+  var eventIcon
+  var eventList = []
+    
+    props.events.map((event) => {
+      switch(event) {
+      case "cooling":
+        eventList.push(<Text>{event}.</Text>)
+      case "heaven":
+        eventList.push(<Text>{event}!</Text>)
+      }
+    })
+    
+  return (eventList)
 }
 
 const styles = StyleSheet.create({
