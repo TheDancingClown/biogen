@@ -5,20 +5,14 @@ const EventCard = (props) => {
   return (
     <View style={styles.container}>
       <Header 
-      title={props.card.title}
-      id={props.card.id}
+        title={props.card.title}
+        id={props.card.id}
       />
 
       <View style={styles.detail}>
-        <LandformIcons 
-          landforms={props.card.landform}
-        />
-
-        <InformationText information={props.card.information}/>
-
-        <View style={styles.eventIcons}>
-          <EventIcons events={props.card.event} />
-        </View>
+        <LandformIcons landforms={props.card.landform} />
+        <InformationText information={props.card.information} />
+        <EventIcons events={props.card.event} />
       </View>
     </View>
   );
@@ -36,7 +30,7 @@ const Header = (props) => {
   return (
     <View 
       style={[styles.header,{ backgroundColor: `${headerColour}`}]}>
-      <Text style={styles.text}>{props.title}</Text>
+      <Text style={styles.text}>{props.title.toUpperCase()}</Text>
     </View>
   ) 
 }
@@ -114,7 +108,9 @@ const EventIcons = (props) => {
       )
     }
   })
-  return (eventList)
+  return (
+    <View style={styles.eventIcons}>{eventList}</View>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -136,6 +132,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 23,
     textAlign: "center",
+    fontFamily: "Cochin"
   },
   detail: {
     flexDirection: 'row',
