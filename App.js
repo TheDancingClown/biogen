@@ -11,14 +11,14 @@ export default function App() {
   const [currentEvent, setCurrentEvent] = useState(HadeanEra[0]);
   const [round, increment] = useState(0);
   const [discardPile, discardCard] = useState([]);
-  const [time, progressTime] = useState(4)
+  const [timeClock, progressTime] = useState(4)
 
   const drawEvent = () => {
     var card = selectEvent(round)
     setCurrentEvent(card);
     setShowEvent(true);
     increment(round + 1);
-    progressTime(Math.round(((time - 0.2)+Number.EPSILON) * 100) / 100)
+    progressTime(Math.round(((timeClock - 0.2)+Number.EPSILON) * 100) / 100)
   }
 
   const performEvent = () => {
@@ -38,11 +38,15 @@ export default function App() {
   }
 
   return (
+    
     <View style={styles.container}>
+      <StatusBar style = "auto" />
+      
+      
       <ImageBackground source={require('./assets/hadean.jpg')} style={styles.image}>
 
-        <Text style={styles.buttonText}>{(time > 0) ? `${time} billion years ago` : 'Modern Day Earth'}</Text>
-        
+    
+        <Text style={styles.statusText}>{(timeClock > 0) ? `${timeClock} billion years ago` : 'Modern Day Earth'}</Text>
         <View style={styles.button}>
           <TouchableOpacity 
             style={styles.drawEventButton}
@@ -51,6 +55,8 @@ export default function App() {
             <Text style={styles.buttonText}>Draw Event</Text>
           </TouchableOpacity>
         </View>
+     
+        
         <Modal
           transparent={true}
           visible={showEvent}
@@ -76,6 +82,14 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
   },
+  statusBox: {
+    backgroundColor: 'yellow',
+    alignItems: 'flex-start'
+  },
+  statusText: {
+    color: 'white',
+    textAlign: 'center'
+  },
   image: {
     flex: 1,
     resizeMode: "cover",
@@ -83,7 +97,7 @@ const styles = StyleSheet.create({
   button: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
   },
   drawEventButton: {
     backgroundColor: '#301263',

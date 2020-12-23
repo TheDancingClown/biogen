@@ -86,6 +86,11 @@ const EventIcons = (props) => {
         key={index} style={styles.activeIcon} source={require('../assets/heaven.jpg')}
         />
       )
+    } else if (event == "drought") {
+      eventList.push(<Image
+        key={index} style={styles.activeIcon} source={require('../assets/drought.jpg')}
+        />
+      )
     } else if (event == "extremophile crisis") {
       eventList.push(<Image
         key={index} style={styles.activeIcon} source={require('../assets/extremophileCrisis.jpg')}
@@ -94,6 +99,16 @@ const EventIcons = (props) => {
     } else if (event == "ultraviolet radiation") {
       eventList.push(<Image
         key={index} style={styles.activeIcon} source={require('../assets/ultravioletRadiation.jpg')}
+        />
+      )
+    } else if (event == "cancer") {
+      eventList.push(<Image
+        key={index} style={styles.activeIcon} source={require('../assets/cancer.jpg')}
+        />
+      )
+    } else if (event == "oxygen spike") {
+      eventList.push(<Image
+        key={index} style={styles.activeIcon} source={require('../assets/oxygenSpike.jpg')}
         />
       )
     } else if (event == "cooling") {
