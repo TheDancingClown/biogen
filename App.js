@@ -11,40 +11,44 @@ export default function App() {
   const [currentEvent, setCurrentEvent] = useState(HadeanEra[0]);
   const [round, increment] = useState(0);
   const [discardPile, discardCard] = useState([]);
+  const [time, progressTime] = useState(4)
 
   const drawEvent = () => {
-    var card = {}
-    
-    if (round < 3) {
-      card = HadeanEra[Math.floor(Math.random() * HadeanEra.length)]
-    } else if (round < 10) {
-      card = ArcheanEra[Math.floor(Math.random() * ArcheanEra.length)]
-    } else if (round < 20) {
-      card = ProterozoicEra[Math.floor(Math.random() * ProterozoicEra.length)]
-    } else {
-
-    }
-    
+    var card = selectEvent(round)
     setCurrentEvent(card);
-    // discardCard(discardPile.push(card))
-    setShowEvent(true)
-    increment(round + 1)
-    
+    setShowEvent(true);
+    increment(round + 1);
+    progressTime(Math.round(((time - 0.2)+Number.EPSILON) * 100) / 100)
   }
 
   const performEvent = () => {
     setShowEvent(false)
   }
 
+  const selectEvent = (round) => {
+    if (round < 3) {
+      return HadeanEra[Math.floor(Math.random() * HadeanEra.length)]
+    } else if (round < 10) {
+      return ArcheanEra[Math.floor(Math.random() * ArcheanEra.length)]
+    } else if (round < 20) {
+      return ProterozoicEra[Math.floor(Math.random() * ProterozoicEra.length)]
+    } else {
+      return
+    }
+  }
+
   return (
     <View style={styles.container}>
       <ImageBackground source={require('./assets/hadean.jpg')} style={styles.image}>
-        <Text>0 years</Text>
+
+        <Text style={styles.buttonText}>{(time > 0) ? `${time} billion years ago` : 'Modern Day Earth'}</Text>
+        
         <View style={styles.button}>
-          <TouchableOpacity style={styles.drawEventButton}
-            onPress ={() => drawEvent()}
-            >
-              <Text style={styles.buttonText}>Draw Event</Text>
+          <TouchableOpacity 
+            style={styles.drawEventButton}
+            onPress ={() => drawEvent()} 
+          >
+            <Text style={styles.buttonText}>Draw Event</Text>
           </TouchableOpacity>
         </View>
         <Modal
