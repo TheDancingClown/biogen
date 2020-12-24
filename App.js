@@ -10,7 +10,7 @@ export default function App() {
   const [round, increment] = useState(0);
   const [discardPile, discardCard] = useState([]);
   const [timeClock, progressTime] = useState(4.6);
-  const [eonImage, setEonImage] = useState(require('./assets/hadean.jpg'));
+  const [backgroundImage, setBackgroundImage] = useState(require('./assets/hadean.jpg'));
 
   const drawEvent = () => {
     if (timeClock > 0.6) {
@@ -30,10 +30,10 @@ export default function App() {
     if (round < 3) {
       return HadeanEon[Math.floor(Math.random() * HadeanEon.length)]
     } else if (round < 10) {
-      setEonImage(require('./assets/archean.jpg'))
+      setBackgroundImage(require('./assets/archean.jpg'))
       return ArcheanEon[Math.floor(Math.random() * ArcheanEon.length)]
     } else if (round < 20) {
-      setEonImage(require('./assets/proterozoic.jpg'))
+      setBackgroundImage(require('./assets/proterozoic.jpg'))
       return ProterozoicEon[Math.floor(Math.random() * ProterozoicEon.length)]
     } else {
       return
@@ -47,7 +47,7 @@ export default function App() {
       
       
       <ImageBackground 
-        source = {eonImage}
+        source = {backgroundImage}
         style={styles.image}>
 
         <View style={styles.gameStatus}>

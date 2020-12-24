@@ -12,7 +12,10 @@ const EventCard = (props) => {
       <View style={styles.detail}>
         <LandformIcons landforms={props.card.landform} />
         <InformationText information={props.card.information} />
-        <EventIcons events={props.card.event} />
+        <View style={styles.events}>
+          <EventIcons events={props.card.event} />
+          <EventIcons events={props.card.globalTemperature} />
+        </View>
       </View>
     </View>
   );
@@ -71,57 +74,10 @@ const EventIcons = (props) => {
   var eventList = []
     
   props.events.map((event,index) => {
-    if (event == "smite") {
       eventList.push(<Image
-        key={index} style={styles.activeIcon} source={require('../assets/smite.jpg')}
+        key={index} style={styles.activeIcon} source={event}
         />
       )
-    } else if (event == "earth") {
-      eventList.push(<Image
-        key={index} style={styles.activeIcon} source={require('../assets/earth.jpg')}
-        />
-      )
-    } else if (event == "heaven") {
-      eventList.push(<Image
-        key={index} style={styles.activeIcon} source={require('../assets/heaven.jpg')}
-        />
-      )
-    } else if (event == "drought") {
-      eventList.push(<Image
-        key={index} style={styles.activeIcon} source={require('../assets/drought.jpg')}
-        />
-      )
-    } else if (event == "extremophile crisis") {
-      eventList.push(<Image
-        key={index} style={styles.activeIcon} source={require('../assets/extremophileCrisis.jpg')}
-        />
-      )
-    } else if (event == "ultraviolet radiation") {
-      eventList.push(<Image
-        key={index} style={styles.activeIcon} source={require('../assets/ultravioletRadiation.jpg')}
-        />
-      )
-    } else if (event == "cancer") {
-      eventList.push(<Image
-        key={index} style={styles.activeIcon} source={require('../assets/cancer.jpg')}
-        />
-      )
-    } else if (event == "oxygen spike") {
-      eventList.push(<Image
-        key={index} style={styles.activeIcon} source={require('../assets/oxygenSpike.jpg')}
-        />
-      )
-    } else if (event == "cooling") {
-      eventList.push(<Image
-        key={index} style={styles.activeIcon} source={require('../assets/cooling.jpg')}
-        />
-      )
-    } else if (event == "warming") {
-      eventList.push(<Image
-        key={index} style={styles.activeIcon} source={require('../assets/warming.jpg')}
-        />
-      )
-    }
   })
   return (
     <View style={styles.eventIcons}>{eventList}</View>
@@ -180,13 +136,17 @@ const styles = StyleSheet.create({
     opacity: 0.2,
   },
   eventIcons: {
-    flex: 3,
+    flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignContent: 'flex-start',
     justifyContent: 'center',
-    margin: 20
+    margin: 10
   },
+  events: {
+    flex: 1,
+    flexDirection: 'column'
+  }
   
 
 });

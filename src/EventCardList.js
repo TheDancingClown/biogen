@@ -1,3 +1,20 @@
+const aftershock = require('../assets/aftershock.jpg');
+const smite = require('../assets/smite.jpg');
+const earth = require('../assets/earth.jpg');
+const heaven = require('../assets/heaven.jpg');
+const drought = require('../assets/drought.jpg');
+const extremophileCrisis = require('../assets/extremophileCrisis.jpg');
+const ultravioletRadiation = require('../assets/ultravioletRadiation.jpg');
+const ultravioletRadiation1 = require('../assets/ultravioletRadiation1.jpg');
+const ultravioletRadiation2 = require('../assets/ultravioletRadiation2.jpg');
+const ultravioletRadiation3 = require('../assets/ultravioletRadiation3.jpg');
+const ultravioletRadiation4 = require('../assets/ultravioletRadiation4.jpg');
+const ozoneLayer = require('../assets/ozoneLayer.jpg');
+const cancer = require('../assets/cancer.jpg');
+const oxygenSpike = require('../assets/oxygenSpike.jpg');
+const cooling = require('../assets/cooling.jpg');
+const warming = require('../assets/warming.jpg');
+
 const Template =
   {
     "id": 999,
@@ -10,101 +27,9 @@ const Template =
         "continental": false
       },
     "event": [],
+    "globalTemperature": [],
     "order": []
   }
-
-const ArcheanEon = [
-  {
-    "id": 43,
-    "title": "Late Heavy Bombardment",
-    "information": "According to the Nice model, the orbital migration of the gas giants reached a catastrophic instability after 700 million years, causing the solar system to reconfigure. The Eart and Luna would have suffered a major impact every century, sterilizing their surfaces. Microbes could only have survived in hydrothermal vents or the deep hot biosphere. -- University of Colorado, 2009",
-    "landform": {
-      "cosmic": false,
-      "oceanic": false,
-      "coastal": false,
-      "continental": false
-    },
-    "event": ["aftershock", "extremophile crisis", "extremophile crisis", "ultraviolet radiation", "warming"]
-  },
-  {
-    "id": 44,
-    "title": "Hydrocarbon Fog",
-    "information": "By the end of the Archean, blooms of methanogens created a see-saw atmosphere periodically flipped from a CO2-rich haze-free state to a CH4-rich foggy state such as seen on the moon Titan. These aerosols would effectively block the UV radiation which would otherwise breakdown some of the very strong greenhouse gases such as ammonia. -- Aubrey Zerkle, 2012",
-    "landform": {
-      "cosmic": false,
-      "oceanic": true,
-      "coastal": false,
-      "continental": true
-    },
-    "event": ["heaven", "extremophile crisis", "ultraviolet radiation", "cooling"],
-    "order": ["yellow", "blue", "red"]
-  },
-  {
-    "id": 45,
-    "title": "Supercontinent Ur",
-    "information": "The higher accretional heat and undecayed radionuclides of Archean Earth had twice the heat flow of today. This organised the crust into small plates bounded by basaltic eruption hot spots. A buildup of felsic materials perhaps initiated the first subduction. After 1.5 billion years, the first continents of Ur and possibly Vaalbara arose. -- Jonathan Lunine, 2013",
-    "landform": {
-      "cosmic": false,
-      "oceanic": true,
-      "coastal": true,
-      "continental": true
-    },
-    "event": ["earth", "earth", "ultraviolet radiation"],
-    "order": ["green", "yellow", "blue"]
-  },
-  {
-    "id": 46,
-    "title": "Vaalbara Breakup",
-    "information": "By 3.1 billion years ago, Vaalbara was possibly the Earth's first supercontinent. But because a supercontinent blocks heat flow, it eventually fragments as the asthenosphere below it overheats and buckles up. The fragmented archipelago experiences more rain and thus more weathering than a monolithic continent, and weathering downdraws greenhouse gases.",
-    "landform": {
-      "cosmic": true,
-      "oceanic": false,
-      "coastal": true,
-      "continental": false
-    },
-    "event": ["earth", "heaven", "ultraviolet radiation", "cooling"],
-    "order": ["green", "blue", "red"]
-  },
-  {
-    "id": 47,
-    "title": "Huronian Snowball",
-    "information": "The rise of free oxygen oxidised the atmosphere's methane into carbon dioxide. Replacing a powerful greenhouse gas (CH4) with a weak one (CO2) plunged the Earth into perhaps its coldest ice age. The oceans froze over, destroying almost all photosynthesis.",
-    "landform": {
-      "cosmic": true,
-      "oceanic": false,
-      "coastal": false,
-      "continental": true
-    },
-    "event": ["earth", "earth", "oxygen spike", "cooling"],
-    "order": ["yellow", "red", "green"]
-  },
-  {
-    "id": 48,
-    "title": "Tropical Waterworld",
-    "information": "Continents began as small crustal blocks 'floating' on dense ocean crust. These amalgamated to form the first cratons, driving the eruptions to the edges. The hottest known lavas known as komatiite were emitted. If the crust is rendered warm and soft enough, then it can't accumulate damage for subduction zones. Plate tectonics shuts down, and Earth turns into a tropical waterworld. -- DR Mole, 2015",
-    "landform": {
-      "cosmic": false,
-      "oceanic": true,
-      "coastal": true,
-      "continental": false
-    },
-    "event": ["warming", "warming", "warming"],
-    "order": ["blue", "green", "yellow"]
-  },
-  {
-    "id": 49,
-    "title": "The Clathrate Gun",
-    "information": "Increases in sea temperatures and a falling sea level can trigger the sudden release of methane from methane clathrate compounds buried in seabeds and permafrost. Methane, a powerful greenhouse gas, causes global heating, stratospheric ozone depletion, and acidification and stratification in the oceans.",
-    "landform": {
-      "cosmic": false,
-      "oceanic": true,
-      "coastal": true,
-      "continental": true
-    },
-    "event": ["smite", "earth", "oxygen spike", "warming"],
-    "order": ["red", "blue", "green"]
-  }
-]
 
 const HadeanEon = [
   {
@@ -117,7 +42,8 @@ const HadeanEon = [
         "coastal": false,
         "continental": false
       },
-    "event": ["heaven", "heaven", "cooling"],
+    "event": [heaven, heaven],
+    "globalTemperature": [cooling],
     "order": ["red", "yellow", "blue"]
   },
   {
@@ -130,7 +56,8 @@ const HadeanEon = [
         "coastal": false,
         "continental": false
       },
-    "event": ["smite", "heaven", "heaven", "warming"],
+    "event": [smite, heaven, heaven],
+    "globalTemperature": [warming],
     "order": ["green", "red", "yellow"]
   },
   {
@@ -143,7 +70,8 @@ const HadeanEon = [
         "coastal": false,
         "continental": false
       },
-    "event": ["heaven", "heaven", "extremophile crisis", "cooling"],
+    "event": [heaven, heaven, extremophileCrisis],
+    "globalTemperature": [cooling],
     "order": ["yellow", "red", "green"]
   },
   {
@@ -156,7 +84,8 @@ const HadeanEon = [
         "coastal": false,
         "continental": false
       },
-    "event": ["heaven", "heaven", "extremophile crisis", "cooling"],
+    "event": [heaven, heaven, extremophileCrisis],
+    "globalTemperature": [cooling],
     "order": ["blue", "green", "red"]
   },
   {
@@ -169,7 +98,8 @@ const HadeanEon = [
         "coastal": false,
         "continental": false
       },
-    "event": ["aftershock", "smite", "smite", "smite", "extremophile crisis", "extremophile crisis"],
+    "event": [aftershock, smite, smite, smite, extremophileCrisis, extremophileCrisis],
+    "globalTemperature": [],
     "immune": "cosmic"
   },
   {
@@ -182,8 +112,110 @@ const HadeanEon = [
         "coastal": false,
         "continental": false
       },
-    "event": ["smite", "heaven", "extremophile crisis", "ultraviolet radiation", "warming"],
+    "event": [smite, heaven, extremophileCrisis, ultravioletRadiation],
+    "globalTemperature": [warming],
     "order": ["red", "green", "yellow"]
+  }
+]
+
+const ArcheanEon = [
+  {
+    "id": 43,
+    "title": "Late Heavy Bombardment",
+    "information": "According to the Nice model, the orbital migration of the gas giants reached a catastrophic instability after 700 million years, causing the solar system to reconfigure. The Eart and Luna would have suffered a major impact every century, sterilizing their surfaces. Microbes could only have survived in hydrothermal vents or the deep hot biosphere. -- University of Colorado, 2009",
+    "landform": {
+      "cosmic": false,
+      "oceanic": false,
+      "coastal": false,
+      "continental": false
+    },
+    "event": [aftershock, extremophileCrisis, extremophileCrisis, ultravioletRadiation1],
+    "globalTemperature": [warming],
+  },
+  {
+    "id": 44,
+    "title": "Hydrocarbon Fog",
+    "information": "By the end of the Archean, blooms of methanogens created a see-saw atmosphere periodically flipped from a CO2-rich haze-free state to a CH4-rich foggy state such as seen on the moon Titan. These aerosols would effectively block the UV radiation which would otherwise breakdown some of the very strong greenhouse gases such as ammonia. -- Aubrey Zerkle, 2012",
+    "landform": {
+      "cosmic": false,
+      "oceanic": true,
+      "coastal": false,
+      "continental": true
+    },
+    "event": [heaven, extremophileCrisis, ultravioletRadiation2],
+    "globalTemperature": [cooling],
+    "order": ["yellow", "blue", "red"]
+  },
+  {
+    "id": 45,
+    "title": "Supercontinent Ur",
+    "information": "The higher accretional heat and undecayed radionuclides of Archean Earth had twice the heat flow of today. This organised the crust into small plates bounded by basaltic eruption hot spots. A buildup of felsic materials perhaps initiated the first subduction. After 1.5 billion years, the first continents of Ur and possibly Vaalbara arose. -- Jonathan Lunine, 2013",
+    "landform": {
+      "cosmic": false,
+      "oceanic": true,
+      "coastal": true,
+      "continental": true
+    },
+    "event": [earth, earth, ultravioletRadiation3],
+    "globalTemperature": [],
+    "order": ["green", "yellow", "blue"]
+  },
+  {
+    "id": 46,
+    "title": "Vaalbara Breakup",
+    "information": "By 3.1 billion years ago, Vaalbara was possibly the Earth's first supercontinent. But because a supercontinent blocks heat flow, it eventually fragments as the asthenosphere below it overheats and buckles up. The fragmented archipelago experiences more rain and thus more weathering than a monolithic continent, and weathering downdraws greenhouse gases.",
+    "landform": {
+      "cosmic": true,
+      "oceanic": false,
+      "coastal": true,
+      "continental": false
+    },
+    "event": [earth, heaven, ultravioletRadiation4],
+    "globalTemperature": [cooling],
+    "order": ["green", "blue", "red"]
+  },
+  {
+    "id": 47,
+    "title": "Huronian Snowball",
+    "information": "The rise of free oxygen oxidised the atmosphere's methane into carbon dioxide. Replacing a powerful greenhouse gas (CH4) with a weak one (CO2) plunged the Earth into perhaps its coldest ice age. The oceans froze over, destroying almost all photosynthesis.",
+    "landform": {
+      "cosmic": true,
+      "oceanic": false,
+      "coastal": false,
+      "continental": true
+    },
+    "event": [earth, earth, oxygenSpike],
+    "globalTemperature": [cooling],
+    "order": ["yellow", "red", "green"]
+  },
+  {
+    "id": 48,
+    "title": "Tropical Waterworld",
+    "information": "Continents began as small crustal blocks 'floating' on dense ocean crust. These amalgamated to form the first cratons, driving the eruptions to the edges. The hottest known lavas known as komatiite were emitted. If the crust is rendered warm and soft enough, then it can't accumulate damage for subduction zones. Plate tectonics shuts down, and Earth turns into a tropical waterworld. -- DR Mole, 2015",
+    "landform": {
+      "cosmic": false,
+      "oceanic": true,
+      "coastal": true,
+      "continental": false
+    },
+    "event": [],
+    "globalTemperature": [],
+    "order": ["blue", "green", "yellow"],
+    "special": "continental landforms inactive until next aftershock"
+  },
+  {
+    "id": 49,
+    "title": "The Clathrate Gun",
+    "information": "Increases in sea temperatures and a falling sea level can trigger the sudden release of methane from methane clathrate compounds buried in seabeds and permafrost. Methane, a powerful greenhouse gas, causes global heating, stratospheric ozone depletion, and acidification and stratification in the oceans.",
+    "landform": {
+      "cosmic": false,
+      "oceanic": true,
+      "coastal": true,
+      "continental": true
+    },
+    "event": [smite, earth, oxygenSpike],
+    "globalTemperature": [warming],
+    "order": ["red", "blue", "green"]
   }
 ]
 
@@ -198,7 +230,8 @@ const ProterozoicEon = [
       "coastal": false,
       "continental": false
     },
-    "event": ["drought", "oxygen spike", "oxygen spike", "cooling"],
+    "event": [drought, oxygenSpike, oxygenSpike],
+    "globalTemperature": [cooling],
     "order": ["green", "yellow", "blue"]
   },
   {
@@ -211,7 +244,8 @@ const ProterozoicEon = [
       "coastal": false,
       "continental": false
     },
-    "event": ["aftershock", "smite", "smite", "extremophile crisis", "extremophile crisis", "ultraviolet radiation", "warming"],
+    "event": [aftershock, smite, smite, extremophileCrisis, extremophileCrisis, ultravioletRadiation3],
+    "globalTemperature": [warming],
     "special": "ignore ozone layer"
   },
   {
@@ -224,7 +258,8 @@ const ProterozoicEon = [
       "coastal": false,
       "continental": true
     },
-    "event": ["earth", "heaven", "ultraviolet radiation", "cooling"],
+    "event": [earth, heaven, ultravioletRadiation4],
+    "globalTemperature": [cooling],
     "order": ["blue", "red", "green"]
   },
   {
@@ -237,7 +272,8 @@ const ProterozoicEon = [
       "coastal": true,
       "continental": false
     },
-    "event": ["smite", "drought", "ultraviolet radiation", "cancer", "earth"],
+    "event": [smite, drought, ultravioletRadiation1, cancer, earth],
+    "globalTemperature": [],
     "order": ["red", "green", "blue"]
   },
   {
@@ -250,7 +286,8 @@ const ProterozoicEon = [
       "coastal": true,
       "continental": false
     },
-    "event": ["smite", "smite", "smite", "extremophile crisis", "oxygen spike"],
+    "event": [smite, smite, smite, extremophileCrisis, oxygenSpike],
+    "globalTemperature": [],
     "order": ["green", "blue", "yellow"]
   },
   {
@@ -263,7 +300,8 @@ const ProterozoicEon = [
       "coastal": true,
       "continental": false
     },
-    "event": ["smite", "extremophile crisis", "extremophile crisis", "cancer", "ultraviolet radiation"],
+    "event": [smite, extremophileCrisis, extremophileCrisis, cancer, ultravioletRadiation2],
+    "globalTemperature": [],
     "order": ["yellow", "red", "green"]
   },
   {
@@ -276,7 +314,8 @@ const ProterozoicEon = [
       "coastal": false,
       "continental": true
     },
-    "event": ["smite", "earth", "extremophile crisis", "ultraviolet radiation", "warming", "warming"],
+    "event": [smite, earth, extremophileCrisis, ultravioletRadiation3],
+    "globalTemperature": [warming, warming],
     "order": ["blue", "yellow", "red"]
   },
   {
@@ -289,7 +328,8 @@ const ProterozoicEon = [
       "coastal": false,
       "continental": true
     },
-    "event": ["smite", "extremophile crisis", "cancer", "ultraviolet radiation", "cooling"],
+    "event": [smite, extremophileCrisis, cancer, ultravioletRadiation],
+    "globalTemperature": [cooling],
     "order": ["red", "green", "yellow"]
   },
   {
@@ -302,7 +342,8 @@ const ProterozoicEon = [
       "coastal": false,
       "continental": false
     },
-    "event": ["aftershock", "drought", "heaven", "oxygen spike", "oxygen spike"]
+    "event": [aftershock, drought, heaven, oxygenSpike, oxygenSpike],
+    "globalTemperature": []
   },
   {
     "id": 59,
@@ -314,7 +355,8 @@ const ProterozoicEon = [
       "coastal": true,
       "continental": true
     },
-    "event": ["oxygen spike", "ozone layer"],
+    "event": [oxygenSpike, ozoneLayer],
+    "globalTemperature": [],
     "order": ["yellow", "blue", "red"],
     "special": "ozone layer formation"
   },
@@ -328,7 +370,8 @@ const ProterozoicEon = [
       "coastal": true,
       "continental": true
     },
-    "event": ["smite", "drought", "cancer", "oxygen spike", "warming"],
+    "event": [smite, drought, cancer, oxygenSpike],
+    "globalTemperature": [warming],
     "order": ["blue", "yellow", "green"]
   }
 ]
