@@ -2,7 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { ImageBackground, StyleSheet, Text, TouchableOpacity, View, Modal, Image } from 'react-native';
 import EventCard from './components/EventCard';
-import { Template, HadeanEon, ArcheanEon, ProterozoicEon } from './src/EventCardList';
+import GameStatus from './components/GameStatus';
+import { Template, HadeanEon, ArcheanEon, ProterozoicEon } from './src/CardList';
 
 export default function App() {
   const [showEvent, setShowEvent] = useState(false);
@@ -50,10 +51,10 @@ export default function App() {
         source = {backgroundImage}
         style={styles.image}>
 
-        <View style={styles.gameStatus}>
-          <Text style={styles.statusText}>{(timeClock > 0.6) ? `${timeClock} billion years ago` : 'Phanerozoic Eon'}</Text>
-          <Text style={styles.statusText}>{currentEvent.title}</Text>
-        </View>
+        <GameStatus 
+          timeClock = {timeClock}
+          currentEvent = {currentEvent}
+          />
 
         <View style={styles.button}>
           <TouchableOpacity 
@@ -89,15 +90,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
-  },
-  gameStatus: {
-    flexDirection: 'row',
-    justifyContent: 'center'
-  },
-  statusText: {
-    color: 'white',
-    textAlign: 'center',
-    margin: 10
   },
   image: {
     flex: 1,

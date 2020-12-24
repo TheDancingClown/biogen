@@ -12,8 +12,8 @@ const ultravioletRadiation4 = require('../assets/ultravioletRadiation4.jpg');
 const ozoneLayer = require('../assets/ozoneLayer.jpg');
 const cancer = require('../assets/cancer.jpg');
 const oxygenSpike = require('../assets/oxygenSpike.jpg');
-const cooling = require('../assets/cooling.jpg');
-const warming = require('../assets/warming.jpg');
+const cooling = require('../assets/cooling.png');
+const warming = require('../assets/warming.png');
 
 const Template =
   {
