@@ -2,23 +2,27 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { ImageBackground, StyleSheet, Text, TouchableOpacity, View, Modal, Image } from 'react-native';
 import EventCard from './components/EventCard'
-import HadeanEra from './src/HadeanCardList'
-import ArcheanEra from './src/ArcheanCardList'
-import ProterozoicEra from './src/ProterozoicCardList'
+import Template from './src/EventTemplate'
+import HadeanEon from './src/HadeanCardList'
+import ArcheanEon from './src/ArcheanCardList'
+import ProterozoicEon from './src/ProterozoicCardList'
 
 export default function App() {
   const [showEvent, setShowEvent] = useState(false);
-  const [currentEvent, setCurrentEvent] = useState(HadeanEra[0]);
+  const [currentEvent, setCurrentEvent] = useState(Template);
   const [round, increment] = useState(0);
   const [discardPile, discardCard] = useState([]);
-  const [timeClock, progressTime] = useState(4)
+  const [timeClock, progressTime] = useState(4.6);
+  const [eonImage, setEonImage] = useState(require('./assets/hadean.jpg'));
 
   const drawEvent = () => {
+    if (timeClock > 0.6) {
     var card = selectEvent(round)
     setCurrentEvent(card);
     setShowEvent(true);
     increment(round + 1);
     progressTime(Math.round(((timeClock - 0.2)+Number.EPSILON) * 100) / 100)
+    }
   }
 
   const performEvent = () => {
@@ -27,11 +31,13 @@ export default function App() {
 
   const selectEvent = (round) => {
     if (round < 3) {
-      return HadeanEra[Math.floor(Math.random() * HadeanEra.length)]
+      return HadeanEon[Math.floor(Math.random() * HadeanEon.length)]
     } else if (round < 10) {
-      return ArcheanEra[Math.floor(Math.random() * ArcheanEra.length)]
+      setEonImage(require('./assets/archean.jpg'))
+      return ArcheanEon[Math.floor(Math.random() * ArcheanEon.length)]
     } else if (round < 20) {
-      return ProterozoicEra[Math.floor(Math.random() * ProterozoicEra.length)]
+      setEonImage(require('./assets/proterozoic.jpg'))
+      return ProterozoicEon[Math.floor(Math.random() * ProterozoicEon.length)]
     } else {
       return
     }
@@ -40,13 +46,18 @@ export default function App() {
   return (
     
     <View style={styles.container}>
-      <StatusBar style = "auto" />
+      <StatusBar style = "auto" hidden = {true} />
       
       
-      <ImageBackground source={require('./assets/hadean.jpg')} style={styles.image}>
+      <ImageBackground 
+        source = {eonImage}
+        style={styles.image}>
 
-    
-        <Text style={styles.statusText}>{(timeClock > 0) ? `${timeClock} billion years ago` : 'Modern Day Earth'}</Text>
+        <View style={styles.gameStatus}>
+          <Text style={styles.statusText}>{(timeClock > 0.6) ? `${timeClock} billion years ago` : 'Phanerozoic Eon'}</Text>
+          <Text style={styles.statusText}>{currentEvent.title}</Text>
+        </View>
+
         <View style={styles.button}>
           <TouchableOpacity 
             style={styles.drawEventButton}
@@ -82,13 +93,14 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
   },
-  statusBox: {
-    backgroundColor: 'yellow',
-    alignItems: 'flex-start'
+  gameStatus: {
+    flexDirection: 'row',
+    justifyContent: 'center'
   },
   statusText: {
     color: 'white',
-    textAlign: 'center'
+    textAlign: 'center',
+    margin: 10
   },
   image: {
     flex: 1,

@@ -1,4 +1,4 @@
-const HadeanEra = [
+const HadeanEon = [
   {
     "id": 37,
     "title": "Mars Paleo-Ocean",
@@ -79,6 +79,6 @@ const HadeanEra = [
   }
 ]
 
-export default HadeanEra
+export default HadeanEon
 
 

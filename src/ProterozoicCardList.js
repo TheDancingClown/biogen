@@ -1,4 +1,4 @@
-const ProterozoicEra = [
+const ProterozoicEon = [
   {
     "id": 50,
     "title": "Cryogenian Snowball",
@@ -144,4 +144,4 @@ const ProterozoicEra = [
   }
 ]
 
-export default ProterozoicEra
+export default ProterozoicEon

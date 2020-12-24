@@ -1,4 +1,4 @@
-const ArcheanEra = [
+const ArcheanEon = [
   {
     "id": 43,
     "title": "Late Heavy Bombardment",
@@ -91,4 +91,4 @@ const ArcheanEra = [
   }
 ]
 
-export default ArcheanEra
+export default ArcheanEon
