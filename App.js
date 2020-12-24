@@ -1,11 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { ImageBackground, StyleSheet, Text, TouchableOpacity, View, Modal, Image } from 'react-native';
-import EventCard from './components/EventCard'
-import Template from './src/EventTemplate'
-import HadeanEon from './src/HadeanCardList'
-import ArcheanEon from './src/ArcheanCardList'
-import ProterozoicEon from './src/ProterozoicCardList'
+import EventCard from './components/EventCard';
+import { Template, HadeanEon, ArcheanEon, ProterozoicEon } from './src/EventCardList';
 
 export default function App() {
   const [showEvent, setShowEvent] = useState(false);
