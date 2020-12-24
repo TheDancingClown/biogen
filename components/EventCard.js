@@ -70,7 +70,6 @@ const LandformIcons = (props) => {
 }
 
 const EventIcons = (props) => {
-  var eventIcon
   var eventList = []
     
   props.events.map((event,index) => {

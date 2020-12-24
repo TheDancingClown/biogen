@@ -9,18 +9,36 @@ export default function App() {
   const [showEvent, setShowEvent] = useState(false);
   const [currentEvent, setCurrentEvent] = useState(Template);
   const [round, increment] = useState(0);
-  const [discardPile, discardCard] = useState([]);
+  const [discardPile, discardCard] = useState([999]);
   const [timeClock, progressTime] = useState(4.6);
   const [backgroundImage, setBackgroundImage] = useState(require('./assets/hadean.jpg'));
+  const [temperatureSequence, addTemperatureSequence] = useState([]);
 
   const drawEvent = () => {
     if (timeClock > 0.6) {
-    var card = selectEvent(round)
-    setCurrentEvent(card);
-    setShowEvent(true);
-    increment(round + 1);
-    progressTime(Math.round(((timeClock - 0.2)+Number.EPSILON) * 100) / 100)
+      var card = currentEvent
+      while (discardPile.includes(card.id)) {
+        card = selectEvent(round)
+      }
+      setCurrentEvent(card);
+      setShowEvent(true);
+      increment(round + 1);
+      addToDiscardPile(card.id);
+      addToTemperatureSequence(card.globalTemperature);
+      progressTime(Math.round(((timeClock - 0.2)+Number.EPSILON) * 100) / 100)
     }
+  }
+
+  const addToDiscardPile = (id) => {
+    discardCard(discardPile.concat(id));
+  }
+
+  const addToTemperatureSequence = (temp) => {
+    var sequence = temperatureSequence.concat(temp)
+    while(sequence.length>4) {
+      sequence.shift();
+    }
+    addTemperatureSequence(sequence);
   }
 
   const performEvent = () => {
@@ -54,8 +72,9 @@ export default function App() {
         <GameStatus 
           timeClock = {timeClock}
           currentEvent = {currentEvent}
+          temperatureSequence = {temperatureSequence}
           />
-
+        
         <View style={styles.button}>
           <TouchableOpacity 
             style={styles.drawEventButton}
