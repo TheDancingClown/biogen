@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
   statusText: {
     color: 'white',
     textAlign: 'center',
+    fontSize: 20,
     margin: 10
   },
   iconDisplay: {

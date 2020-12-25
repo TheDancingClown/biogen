@@ -5,7 +5,7 @@ const RefugiaCard = (props) => {
   const circle = require('../assets/circle.jpg')
   return (
     <View style={styles.refugium}>
-      <Manna manna={['']}/>
+      <Manna manna={[]}/>
       <Text style={[styles.refugiaText,{ color: `${props.refugium.colour}`}]}>{props.refugium.title}</Text>
       <LifeDice dice={props.refugium.lifeDice} />
       <Enzymes enzymes={props.refugium.enzymes}/> 
@@ -24,7 +24,7 @@ const Manna = (props) => {
     )
   });
   return (
-    <View style={{justifyContent: 'center', flexDirection: 'row'}}>
+    <View style={styles.iconRow}>
       {mannaCubes}
     </View>
   )
@@ -39,7 +39,7 @@ const LifeDice = (props) => {
     )
   });
   return (
-    <View style={{justifyContent: 'center', flexDirection: 'row'}}>
+    <View style={styles.iconRow}>
       {diceIcons}
     </View>
   )
@@ -54,7 +54,7 @@ const Enzymes = (props) => {
     )
   });
   return (
-    <View style={{justifyContent: 'center', flexDirection: 'row'}}>
+    <View style={styles.iconRow}>
       {enzymeList}
     </View>
   )
@@ -65,12 +65,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 10,
     width: 125,
-    margin: 5
+    margin: 3,
+    borderColor: 'black',
+    borderWidth: 1
   },
   refugiaText: {
     backgroundColor: 'black',
     textAlign: 'center',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    marginBottom: 2
   },
   lifeDice: {
     height: 11,
@@ -85,7 +88,14 @@ const styles = StyleSheet.create({
   mannaCube: {
     width: 10,
     height: 10,
-    margin: 4
+    margin: 4,
+    borderColor: 'black',
+    borderWidth: 1
+  },
+  iconRow: {
+    justifyContent: 'center', 
+    flexDirection: 'row', 
+    height: 17
   }
 });
 
