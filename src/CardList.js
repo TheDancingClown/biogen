@@ -14,6 +14,10 @@ const cancer = require('../assets/cancer.jpg');
 const oxygenSpike = require('../assets/oxygenSpike.jpg');
 const cooling = require('../assets/cooling.png');
 const warming = require('../assets/warming.png');
+const blue = '#2d92bd';
+const red = '#f05443';
+const yellow = '#e3e01b';
+const green = '#44ab60';
 
 const Template =
   {
@@ -376,10 +380,106 @@ const ProterozoicEon = [
   }
 ]
 
+const CosmicRefugia = [
+  {
+    "id": 7,
+    "title": "Mars Paleo-Ocean",
+    "manna": [blue, green, yellow, red]
+  },
+  {
+    "id": 16,
+    "title": "Deep Hot Biosphere",
+    "manna": [green, blue, red, red]
+  },
+  {
+    "id": 15,
+    "title": "Interplanetary Dust",
+    "manna": [yellow, yellow, green]
+  }
+]
+
+const OceanicRefugia = [
+  {
+    "id": 13,
+    "title": "Hydrothermal Vent",
+    "manna": [yellow, red, blue, green, green]
+  },
+  {
+    "id": 9,
+    "title": "Green Rust Fumarole",
+    "manna": [green, blue, yellow]
+  },
+  {
+    "id": 12,
+    "title": "Clay Mound",
+    "manna": [red, yellow, blue, blue]
+  }
+]
+
+const CoastalRefugia = [
+  {
+    "id": 4,
+    "title": "Radioactive Beach",
+    "manna": [blue, green, yellow, yellow]
+  },
+  {
+    "id": 11,
+    "title": "Alkaline Seep",
+    "manna": [blue, green, red, green]
+  },
+  {
+    "id": 14,
+    "title": "Pumice Raft",
+    "manna": [red, green, yellow, yellow]
+  },
+  {
+    "id": 2,
+    "title": "UV Irradiated Ocean",
+    "manna": [green, blue, blue]
+  },
+  {
+    "id": 10,
+    "title": "Zeolite Lagoon",
+    "manna": [yellow, yellow, red, red]
+  }
+]
+
+const ContinentalRefugia = [
+  {
+    "id": 1,
+    "title": "Tholin Storm Clouds",
+    "manna": [yellow, yellow, green, green]
+  },
+  {
+    "id": 5,
+    "title": "Geothermal Zinc",
+    "manna": [red, blue, green, blue]
+  },
+  {
+    "id": 8,
+    "title": "Hydrogen Volcano",
+    "manna": [green, red, blue, red]
+  },
+  {
+    "id": 6,
+    "title": "Eutectic Brine",
+    "manna": [blue, red, yellow, red]
+  },
+  {
+    "id": 3,
+    "title": "Warm Pond",
+    "manna": [blue, green, red]
+  }
+]
+
 export {
   Template,
   HadeanEon,
   ArcheanEon,
   ProterozoicEon,
+  CosmicRefugia,
+  OceanicRefugia,
+  CoastalRefugia,
+  ContinentalRefugia
 }
 

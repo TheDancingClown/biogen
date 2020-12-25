@@ -27,7 +27,7 @@ const TempIcons = (props) => {
   })
   
   return (  
-    <View style={styles.iconDisplay} >{tempList}</View>
+    <View style={styles.iconDisplay} >{tempList.reverse()}</View>
   )
 }
 
@@ -42,7 +42,9 @@ const styles = StyleSheet.create({
     margin: 10
   },
   iconDisplay: {
-    flexDirection: 'row'
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-end'
   },
   tempIcon: {
     height: 20,

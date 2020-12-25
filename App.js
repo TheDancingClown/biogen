@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import { ImageBackground, StyleSheet, Text, TouchableOpacity, View, Modal, Image } from 'react-native';
 import EventCard from './components/EventCard';
 import GameStatus from './components/GameStatus';
-import { Template, HadeanEon, ArcheanEon, ProterozoicEon } from './src/CardList';
+import RefugiaCard from './components/RefugiaCard';
+import { Template, HadeanEon, ArcheanEon, ProterozoicEon, CosmicRefugia, OceanicRefugia, CoastalRefugia, ContinentalRefugia } from './src/CardList';
 
 export default function App() {
   const [showEvent, setShowEvent] = useState(false);
@@ -83,6 +84,31 @@ export default function App() {
             <Text style={styles.buttonText}>Draw Event</Text>
           </TouchableOpacity>
         </View>
+
+        <View style={styles.refugia}>
+          <View style={styles.landformRow}>
+            <RefugiaCard
+              refugium = {CosmicRefugia[0]}
+              />
+          </View>
+          <View style={styles.landformRow}>
+            <RefugiaCard
+              refugium = {OceanicRefugia[0]}
+              />
+          </View>
+          <View style={styles.landformRow}>
+            <RefugiaCard
+              refugium = {CoastalRefugia[0]}
+              />
+          </View>
+          <View style={styles.landformRow}>
+            <RefugiaCard
+              refugium = {ContinentalRefugia[0]}
+              />
+          </View>
+        </View>
+        
+       
      
         
         <Modal
@@ -116,13 +142,13 @@ const styles = StyleSheet.create({
   },
   button: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+    justifyContent: 'flex-start',
   },
   drawEventButton: {
     backgroundColor: '#301263',
     width: 150,
-    height: 60,
+    height: 30,
     borderRadius: 20,
     justifyContent: 'center',
   },
@@ -143,5 +169,15 @@ const styles = StyleSheet.create({
     margin: 5,
     padding: 2,
     borderRadius: 5
+  },
+  refugia: {
+    flex: 200,
+    flexDirection: 'column',
+    alignSelf: 'flex-start'
+  },
+  landformRow: {
+    flexDirection: 'row',
+    
   }
+  
 });
