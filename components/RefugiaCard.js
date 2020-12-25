@@ -5,36 +5,20 @@ const RefugiaCard = (props) => {
   const circle = require('../assets/circle.jpg')
   return (
     <View style={styles.refugium}>
-      <UnorganisedManna manna={['']}/>
+      <Manna manna={['']}/>
       <Text style={[styles.refugiaText,{ color: `${props.refugium.colour}`}]}>{props.refugium.title}</Text>
       <LifeDice dice={props.refugium.lifeDice} />
       <Enzymes enzymes={props.refugium.enzymes}/> 
-      <UnorganisedManna manna={props.refugium.manna}/> 
+      <Manna manna={props.refugium.manna}/> 
     </View>
   )
 };
 
-const UnorganisedManna = (props) => {
+const Manna = (props) => {
   var mannaCubes = [];
   props.manna.map((cubeColour,index) => {
     mannaCubes.push(<View
-      key={index} style={{backgroundColor: cubeColour, width: 10, height: 10, margin: 4}}>
-        <Text style={{color: cubeColour, fontSize: 1}}>X</Text>
-      </View>
-    )
-  });
-  return (
-    <View style={{justifyContent: 'center', flexDirection: 'row'}}>
-      {mannaCubes}
-    </View>
-  )
-};
-
-const OrganisedManna = (props) => {
-  var mannaCubes = [];
-  props.manna.map((cubeColour,index) => {
-    mannaCubes.push(<View
-      key={index} style={{backgroundColor: cubeColour, width: 10, height: 10, margin: 2}}>
+      key={index} style={[styles.mannaCube, {backgroundColor: cubeColour}]}>
         <Text style={{color: cubeColour, fontSize: 1}}>X</Text>
       </View>
     )
@@ -97,6 +81,11 @@ const styles = StyleSheet.create({
     height: 15,
     width: 15,
     margin: 1
+  },
+  mannaCube: {
+    width: 10,
+    height: 10,
+    margin: 4
   }
 });
 
