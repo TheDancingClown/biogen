@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 
 const RefugiaCard = (props) => {
+  const circle = require('../assets/circle.jpg')
   return (
     <View style={styles.refugium}>
       <UnorganisedManna manna={['']}/>
+      <Text style={[styles.refugiaText,{ color: `${props.refugium.colour}`}]}>{props.refugium.title}</Text>
       <LifeDice dice={props.refugium.lifeDice} />
-      <Text style={styles.refugiaText}>{props.refugium.title}</Text>
-      <Text style={styles.refugiaText}>Catalysts</Text>
+      <Enzymes enzymes={props.refugium.enzymes}/> 
       <UnorganisedManna manna={props.refugium.manna}/> 
     </View>
   )
@@ -60,6 +61,21 @@ const LifeDice = (props) => {
   )
 };
 
+const Enzymes = (props) => {
+  var enzymeList = [];
+  props.enzymes.map((enzymeSlot, index) => {
+    enzymeList.push(<Image
+      key={index} style={styles.enzymeSlot} source={enzymeSlot}
+      />
+    )
+  });
+  return (
+    <View style={{justifyContent: 'center', flexDirection: 'row'}}>
+      {enzymeList}
+    </View>
+  )
+}
+
 const styles = StyleSheet.create({
   refugium: {
     backgroundColor: 'white',
@@ -68,12 +84,18 @@ const styles = StyleSheet.create({
     margin: 5
   },
   refugiaText: {
+    backgroundColor: 'black',
     textAlign: 'center',
     fontWeight: 'bold'
   },
   lifeDice: {
-    height: 10,
-    width: 10,
+    height: 11,
+    width: 11,
+    margin: 1
+  },
+  enzymeSlot: {
+    height: 15,
+    width: 15,
     margin: 1
   }
 });

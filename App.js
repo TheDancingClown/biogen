@@ -90,20 +90,56 @@ export default function App() {
             <RefugiaCard
               refugium = {CosmicRefugia[0]}
               />
+            <RefugiaCard
+              refugium = {CosmicRefugia[1]}
+              />
+            <RefugiaCard
+              refugium = {CosmicRefugia[2]}
+              />
           </View>
           <View style={styles.landformRow}>
             <RefugiaCard
               refugium = {OceanicRefugia[0]}
+              />
+            <RefugiaCard
+              refugium = {OceanicRefugia[1]}
+              />
+            <RefugiaCard
+              refugium = {OceanicRefugia[2]}
               />
           </View>
           <View style={styles.landformRow}>
             <RefugiaCard
               refugium = {CoastalRefugia[0]}
               />
+            <RefugiaCard
+              refugium = {CoastalRefugia[1]}
+              />
+            <RefugiaCard
+              refugium = {CoastalRefugia[2]}
+              />
+            <RefugiaCard
+              refugium = {CoastalRefugia[3]}
+              />
+            <RefugiaCard
+              refugium = {CoastalRefugia[4]}
+              />
           </View>
           <View style={styles.landformRow}>
             <RefugiaCard
               refugium = {ContinentalRefugia[0]}
+              />
+            <RefugiaCard
+              refugium = {ContinentalRefugia[1]}
+              />
+            <RefugiaCard
+              refugium = {ContinentalRefugia[2]}
+              />
+            <RefugiaCard
+              refugium = {ContinentalRefugia[3]}
+              />
+            <RefugiaCard
+              refugium = {ContinentalRefugia[4]}
               />
           </View>
         </View>

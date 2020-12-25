@@ -24,6 +24,7 @@ const three = require('../assets/three.jpg');
 const four = require('../assets/four.jpg');
 const five = require('../assets/five.jpg');
 const six = require('../assets/six.jpg');
+const circle = require('../assets/circle.jpg');
 
 const Template =
   {
@@ -389,20 +390,26 @@ const ProterozoicEon = [
 const CosmicRefugia = [
   {
     "id": 7,
+    "colour": red,
     "title": "Mars Paleo-Ocean",
     "lifeDice": [warming, one, two, three, four, cooling, one, two],
+    "enzymes": [circle, circle, circle, circle, circle, circle],
     "manna": [blue, green, yellow, red]
   },
   {
     "id": 16,
+    "colour": red,
     "title": "Deep Hot Biosphere",
     "lifeDice": [warming, one, two, cooling, one, two],
+    "enzymes": [circle, circle, circle, circle, circle, circle],
     "manna": [green, blue, red, red]
   },
   {
     "id": 15,
+    "colour": green,
     "title": "Interplanetary Dust",
     "lifeDice": [warming, one, two, three, cooling, one, two, three, four],
+    "enzymes": [circle, circle, circle, circle, circle, circle, circle],
     "manna": [yellow, yellow, green]
   }
 ]
@@ -410,20 +417,26 @@ const CosmicRefugia = [
 const OceanicRefugia = [
   {
     "id": 13,
+    "colour": green,
     "title": "Hydrothermal Vent",
     "lifeDice": [warming, one, cooling, one],
+    "enzymes": [circle, circle],
     "manna": [yellow, red, blue, green, green]
   },
   {
     "id": 9,
+    "colour": yellow,
     "title": "Green Rust Fumarole",
     "lifeDice": [warming, one, two, three, cooling, one, two],
+    "enzymes": [circle, circle, circle, circle, circle, circle],
     "manna": [green, blue, yellow]
   },
   {
     "id": 12,
+    "colour": blue,
     "title": "Clay Mound",
     "lifeDice": [warming, one, two, three, cooling, one, two],
+    "enzymes": [circle, circle, circle, circle, circle, circle],
     "manna": [red, yellow, blue, blue]
   }
 ]
@@ -431,32 +444,42 @@ const OceanicRefugia = [
 const CoastalRefugia = [
   {
     "id": 4,
+    "colour": yellow,
     "title": "Radioactive Beach",
     "lifeDice": [warming, one, two, three, cooling, one],
+    "enzymes": [circle, circle, circle, circle],
     "manna": [blue, green, yellow, yellow]
   },
   {
     "id": 11,
+    "colour": green,
     "title": "Alkaline Seep",
     "lifeDice": [warming, one, two, cooling, one, two],
+    "enzymes": [circle, circle, circle, circle, circle, circle],
     "manna": [blue, green, red, green]
   },
   {
     "id": 14,
+    "colour": yellow,
     "title": "Pumice Raft",
     "lifeDice": [warming, one, two, cooling, one],
+    "enzymes": [circle, circle, circle],
     "manna": [red, green, yellow, yellow]
   },
   {
     "id": 2,
+    "colour": blue,
     "title": "UV Irradiated Ocean",
     "lifeDice": [warming, one, two, three, four, cooling, one, two],
+    "enzymes": [circle, circle, circle, circle, circle, circle],
     "manna": [green, blue, blue]
   },
   {
     "id": 10,
+    "colour": red,
     "title": "Zeolite Lagoon",
     "lifeDice": [warming, one, two, three, cooling, one, two],
+    "enzymes": [circle, circle, circle, circle, circle, circle, circle],
     "manna": [yellow, yellow, red, red]
   }
 ]
@@ -464,32 +487,42 @@ const CoastalRefugia = [
 const ContinentalRefugia = [
   {
     "id": 1,
+    "colour": blue,
     "title": "Tholin Storm Clouds",
     "lifeDice": [warming, one, two, cooling, one, two],
+    "enzymes": [circle, circle, circle, circle],
     "manna": [yellow, yellow, green, green]
   },
   {
     "id": 5,
+    "colour": blue,
     "title": "Geothermal Zinc",
     "lifeDice": [warming, one, two, three, cooling, one, two],
+    "enzymes": [circle, circle, circle, circle, circle, circle, circle],
     "manna": [red, blue, green, blue]
   },
   {
     "id": 8,
+    "colour": red,
     "title": "Hydrogen Volcano",
     "lifeDice": [warming, one, two, three, four, cooling, one, two],
+    "enzymes": [circle, circle, circle, circle, circle, circle, circle],
     "manna": [green, red, blue, red]
   },
   {
     "id": 6,
+    "colour": yellow,
     "title": "Eutectic Brine",
     "lifeDice": [warming, one, two, three, cooling, one, two],
+    "enzymes": [circle, circle, circle, circle, circle],
     "manna": [blue, red, yellow, red]
   },
   {
     "id": 3,
+    "colour": green,
     "title": "Warm Pond",
     "lifeDice": [warming, one, two, three, four, cooling, one, two],
+    "enzymes": [circle, circle, circle, circle, circle, circle],
     "manna": [blue, green, red]
   }
 ]
