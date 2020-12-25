@@ -18,6 +18,12 @@ const blue = '#2d92bd';
 const red = '#f05443';
 const yellow = '#e3e01b';
 const green = '#44ab60';
+const one = require('../assets/one.jpg');
+const two = require('../assets/two.jpg');
+const three = require('../assets/three.jpg');
+const four = require('../assets/four.jpg');
+const five = require('../assets/five.jpg');
+const six = require('../assets/six.jpg');
 
 const Template =
   {
@@ -384,16 +390,19 @@ const CosmicRefugia = [
   {
     "id": 7,
     "title": "Mars Paleo-Ocean",
+    "lifeDice": [warming, one, two, three, four, cooling, one, two],
     "manna": [blue, green, yellow, red]
   },
   {
     "id": 16,
     "title": "Deep Hot Biosphere",
+    "lifeDice": [warming, one, two, cooling, one, two],
     "manna": [green, blue, red, red]
   },
   {
     "id": 15,
     "title": "Interplanetary Dust",
+    "lifeDice": [warming, one, two, three, cooling, one, two, three, four],
     "manna": [yellow, yellow, green]
   }
 ]
@@ -402,16 +411,19 @@ const OceanicRefugia = [
   {
     "id": 13,
     "title": "Hydrothermal Vent",
+    "lifeDice": [warming, one, cooling, one],
     "manna": [yellow, red, blue, green, green]
   },
   {
     "id": 9,
     "title": "Green Rust Fumarole",
+    "lifeDice": [warming, one, two, three, cooling, one, two],
     "manna": [green, blue, yellow]
   },
   {
     "id": 12,
     "title": "Clay Mound",
+    "lifeDice": [warming, one, two, three, cooling, one, two],
     "manna": [red, yellow, blue, blue]
   }
 ]
@@ -420,26 +432,31 @@ const CoastalRefugia = [
   {
     "id": 4,
     "title": "Radioactive Beach",
+    "lifeDice": [warming, one, two, three, cooling, one],
     "manna": [blue, green, yellow, yellow]
   },
   {
     "id": 11,
     "title": "Alkaline Seep",
+    "lifeDice": [warming, one, two, cooling, one, two],
     "manna": [blue, green, red, green]
   },
   {
     "id": 14,
     "title": "Pumice Raft",
+    "lifeDice": [warming, one, two, cooling, one],
     "manna": [red, green, yellow, yellow]
   },
   {
     "id": 2,
     "title": "UV Irradiated Ocean",
+    "lifeDice": [warming, one, two, three, four, cooling, one, two],
     "manna": [green, blue, blue]
   },
   {
     "id": 10,
     "title": "Zeolite Lagoon",
+    "lifeDice": [warming, one, two, three, cooling, one, two],
     "manna": [yellow, yellow, red, red]
   }
 ]
@@ -448,26 +465,31 @@ const ContinentalRefugia = [
   {
     "id": 1,
     "title": "Tholin Storm Clouds",
+    "lifeDice": [warming, one, two, cooling, one, two],
     "manna": [yellow, yellow, green, green]
   },
   {
     "id": 5,
     "title": "Geothermal Zinc",
+    "lifeDice": [warming, one, two, three, cooling, one, two],
     "manna": [red, blue, green, blue]
   },
   {
     "id": 8,
     "title": "Hydrogen Volcano",
+    "lifeDice": [warming, one, two, three, four, cooling, one, two],
     "manna": [green, red, blue, red]
   },
   {
     "id": 6,
     "title": "Eutectic Brine",
+    "lifeDice": [warming, one, two, three, cooling, one, two],
     "manna": [blue, red, yellow, red]
   },
   {
     "id": 3,
     "title": "Warm Pond",
+    "lifeDice": [warming, one, two, three, four, cooling, one, two],
     "manna": [blue, green, red]
   }
 ]
