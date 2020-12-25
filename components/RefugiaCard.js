@@ -67,13 +67,17 @@ const styles = StyleSheet.create({
     width: 125,
     margin: 3,
     borderColor: 'black',
-    borderWidth: 1
+    borderWidth: 1,
+    shadowColor: 'black',
+    shadowOpacity: 1,
+    elevation: 10,
   },
   refugiaText: {
     backgroundColor: 'black',
     textAlign: 'center',
     fontWeight: 'bold',
-    marginBottom: 2
+    marginBottom: 2,
+    fontSize: 11
   },
   lifeDice: {
     height: 11,

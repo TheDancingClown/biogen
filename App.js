@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { ImageBackground, StyleSheet, Text, TouchableOpacity, View, Modal, Image } from 'react-native';
+import { ImageBackground, StyleSheet, Text, TouchableOpacity, View, Modal, Image, SafeAreaView } from 'react-native';
 import EventCard from './components/EventCard';
 import GameStatus from './components/GameStatus';
 import RefugiaCard from './components/RefugiaCard';
@@ -61,7 +61,7 @@ export default function App() {
   }
 
   return (
-    
+    <SafeAreaView style={{flex: 1, backgroundColor: 'black'}}>
     <View style={styles.container}>
       <StatusBar style = "auto" hidden = {true} />
       
@@ -150,6 +150,7 @@ export default function App() {
         <Modal
           transparent={true}
           visible={showEvent}
+          supportedOrientations={['landscape']}
           >
           <View style={styles.eventCard}>
             <EventCard 
@@ -164,13 +165,14 @@ export default function App() {
         </Modal>
       </ImageBackground>
     </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "column",
+    flexDirection: "column"
   },
   image: {
     flex: 1,

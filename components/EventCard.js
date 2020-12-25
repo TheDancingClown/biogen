@@ -41,7 +41,7 @@ const Header = (props) => {
 const InformationText = (props) => {
   return (
     <View style={styles.information}>
-      <Text>{props.information}</Text>
+      <Text style={styles.informationText}>{props.information}</Text>
     </View>
   )
 }
@@ -91,7 +91,10 @@ const styles = StyleSheet.create({
     width: 500,
     height: 270,
     borderColor: 'black',
-    borderWidth: 1
+    borderWidth: 1,
+    shadowColor: 'black',
+    shadowOpacity: 1,
+    elevation: 10
   },
   header: {
     height: 60,
@@ -124,6 +127,9 @@ const styles = StyleSheet.create({
     width: 250,
     padding: 10,
     marginLeft: 5
+  },
+  informationText: {
+    fontFamily: "Cochin"
   },
   activeIcon: {
     height: 40,

@@ -40,7 +40,8 @@ const styles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
     fontSize: 20,
-    margin: 10
+    margin: 10,
+    fontFamily: "Cochin"
   },
   iconDisplay: {
     flex: 1,
