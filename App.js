@@ -14,6 +14,10 @@ export default function App() {
   const [timeClock, progressTime] = useState(4.6);
   const [backgroundImage, setBackgroundImage] = useState(require('./assets/hadean.jpg'));
   const [temperatureSequence, addTemperatureSequence] = useState([]);
+  const [cosmicRefugia, newCosmicLandform] = useState([]);
+  const [oceanicRefugia, newOceanicLandform] = useState([]);
+  const [coastalRefugia, newCoastalLandform] = useState([]);
+  const [continentalRefugia, newContinentalLandform] = useState([]);
 
   const drawEvent = () => {
     if (timeClock > 0.6) {
@@ -23,6 +27,11 @@ export default function App() {
       }
       setCurrentEvent(card);
       setShowEvent(true);
+      card.event.map((event) => {
+        if(event=="require('../assets/heaven.jpg')" && card.landform.cosmic == true) {
+          const refugium = selectRefugium('cosmic')
+        }
+      });
       increment(round + 1);
       addToDiscardPile(card.id);
       addToTemperatureSequence(card.globalTemperature);
@@ -30,9 +39,22 @@ export default function App() {
     }
   }
 
+  const addNewLandform = (landform, refugium) => {
+    switch(landform) {
+      case 'cosmic':
+        newCosmicLandform(cosmicRefugia.concat(refugium))
+      case 'oceanic':
+        newOceanicLandform(oceanicRefugia.concat(refugium))
+      case 'coastal':
+        newCoastalLandform(coastalRefugia.concat(refugium))
+      case 'oceanic':
+        newContinetalLandform(continentalRefugia.concat(refugium))
+    }
+  };
+
   const addToDiscardPile = (id) => {
     discardCard(discardPile.concat(id));
-  }
+  };
 
   const addToTemperatureSequence = (temp) => {
     var sequence = temperatureSequence.concat(temp)
@@ -44,6 +66,19 @@ export default function App() {
 
   const performEvent = () => {
     setShowEvent(false)
+  }
+
+  const selectRefugium = (landform) =>{
+    switch (landform) {
+      case 'cosmic':
+        return CosmicRefugia[Math.floor(Math.random() * CosmicRefugia.length)]
+      case 'oceanic':
+        return OceanicRefugia[Math.floor(Math.random() * OceanicRefugia.length)]
+      case 'coastal':
+        return CoastalRefugia[Math.floor(Math.random() * CoastalRefugia.length)]
+      case 'continental':
+        return ContinentalRefugia[Math.floor(Math.random() * ContinentalRefugia.length)]
+    }
   }
 
   const selectEvent = (round) => {
@@ -88,58 +123,22 @@ export default function App() {
         <View style={styles.refugia}>
           <View style={styles.landformRow}>
             <RefugiaCard
-              refugium = {CosmicRefugia[0]}
-              />
-            <RefugiaCard
-              refugium = {CosmicRefugia[1]}
-              />
-            <RefugiaCard
-              refugium = {CosmicRefugia[2]}
+              refugium = {CosmicRefugia}
               />
           </View>
           <View style={styles.landformRow}>
             <RefugiaCard
-              refugium = {OceanicRefugia[0]}
-              />
-            <RefugiaCard
-              refugium = {OceanicRefugia[1]}
-              />
-            <RefugiaCard
-              refugium = {OceanicRefugia[2]}
+              refugium = {OceanicRefugia}
               />
           </View>
           <View style={styles.landformRow}>
             <RefugiaCard
-              refugium = {CoastalRefugia[0]}
-              />
-            <RefugiaCard
-              refugium = {CoastalRefugia[1]}
-              />
-            <RefugiaCard
-              refugium = {CoastalRefugia[2]}
-              />
-            <RefugiaCard
-              refugium = {CoastalRefugia[3]}
-              />
-            <RefugiaCard
-              refugium = {CoastalRefugia[4]}
+              refugium = {CoastalRefugia}
               />
           </View>
           <View style={styles.landformRow}>
             <RefugiaCard
-              refugium = {ContinentalRefugia[0]}
-              />
-            <RefugiaCard
-              refugium = {ContinentalRefugia[1]}
-              />
-            <RefugiaCard
-              refugium = {ContinentalRefugia[2]}
-              />
-            <RefugiaCard
-              refugium = {ContinentalRefugia[3]}
-              />
-            <RefugiaCard
-              refugium = {ContinentalRefugia[4]}
+              refugium = {ContinentalRefugia}
               />
           </View>
         </View>

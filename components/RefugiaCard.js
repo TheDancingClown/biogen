@@ -2,14 +2,22 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 
 const RefugiaCard = (props) => {
-  const circle = require('../assets/circle.jpg')
-  return (
-    <View style={styles.refugium}>
+  const circle = require('../assets/circle.jpg');
+  var refugiaRow = []
+  props.refugium.map((refugium, index) => {
+    refugiaRow.push(
+    <View style={styles.refugium} >
       <Manna manna={[]}/>
-      <Text style={[styles.refugiaText,{ color: `${props.refugium.colour}`}]}>{props.refugium.title}</Text>
-      <LifeDice dice={props.refugium.lifeDice} />
-      <Enzymes enzymes={props.refugium.enzymes}/> 
-      <Manna manna={props.refugium.manna}/> 
+      <Text style={[styles.refugiaText,{ color: `${refugium.colour}`}]}>{refugium.title}</Text>
+      <LifeDice dice={refugium.lifeDice} />
+      <Enzymes enzymes={refugium.enzymes}/> 
+      <Manna manna={refugium.manna}/> 
+    </View>
+    )
+  })
+  return (
+    <View style={{flexDirection: 'row'}}>
+      {refugiaRow}
     </View>
   )
 };
@@ -71,6 +79,7 @@ const styles = StyleSheet.create({
     shadowColor: 'black',
     shadowOpacity: 1,
     elevation: 10,
+    
   },
   refugiaText: {
     backgroundColor: 'black',
