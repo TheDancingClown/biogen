@@ -6,7 +6,7 @@ const RefugiaCard = (props) => {
   var refugiaRow = []
   props.refugium.map((refugium, index) => {
     refugiaRow.push(
-    <View style={styles.refugium} >
+    <View key={index} style={styles.refugium} >
       <Manna manna={[]}/>
       <Text style={[styles.refugiaText,{ color: `${refugium.colour}`}]}>{refugium.title}</Text>
       <LifeDice dice={refugium.lifeDice} />

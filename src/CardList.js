@@ -1,34 +1,35 @@
-const aftershock = require('../assets/aftershock.jpg');
-const smite = require('../assets/smite.jpg');
-const earth = require('../assets/earth.jpg');
-const heaven = require('../assets/heaven.jpg');
-const drought = require('../assets/drought.jpg');
-const extremophileCrisis = require('../assets/extremophileCrisis.jpg');
-const ultravioletRadiation = require('../assets/ultravioletRadiation.jpg');
-const ultravioletRadiation1 = require('../assets/ultravioletRadiation1.jpg');
-const ultravioletRadiation2 = require('../assets/ultravioletRadiation2.jpg');
-const ultravioletRadiation3 = require('../assets/ultravioletRadiation3.jpg');
-const ultravioletRadiation4 = require('../assets/ultravioletRadiation4.jpg');
+const [aftershock, smite, earth, heaven, drought, extremophileCrisis, cancer, oxygenSpike] = [
+  require('../assets/aftershock.jpg'),
+  require('../assets/smite.jpg'),
+  require('../assets/earth.jpg'),
+  require('../assets/heaven.jpg'),
+  require('../assets/drought.jpg'),
+  require('../assets/extremophileCrisis.jpg'),
+  require('../assets/cancer.jpg'),
+  require('../assets/oxygenSpike.jpg')]
+const [uV0, uV1, uV2, uV3, uV4] = [
+  require('../assets/ultravioletRadiation.jpg'),
+  require('../assets/ultravioletRadiation1.jpg'),
+  require('../assets/ultravioletRadiation2.jpg'),
+  require('../assets/ultravioletRadiation3.jpg'),
+  require('../assets/ultravioletRadiation4.jpg')]
 const ozoneLayer = require('../assets/ozoneLayer.jpg');
-const cancer = require('../assets/cancer.jpg');
-const oxygenSpike = require('../assets/oxygenSpike.jpg');
-const cooling = require('../assets/cooling.png');
-const warming = require('../assets/warming.png');
-const blue = '#2d92bd';
-const red = '#f05443';
-const yellow = '#e3e01b';
-const green = '#44ab60';
-const one = require('../assets/one.jpg');
-const two = require('../assets/two.jpg');
-const three = require('../assets/three.jpg');
-const four = require('../assets/four.jpg');
-const five = require('../assets/five.jpg');
-const six = require('../assets/six.jpg');
+const [cooling, warming] = [
+  require('../assets/cooling.png'),
+  require('../assets/warming.png')]
+const [blue, red, yellow, green] = ['#2d92bd', '#f05443', '#e3e01b', '#44ab60'];
+const [one, two, three, four, five, six] = [
+  require('../assets/one.jpg'),
+  require('../assets/two.jpg'),
+  require('../assets/three.jpg'),
+  require('../assets/four.jpg'),
+  require('../assets/five.jpg'),
+  require('../assets/six.jpg')]
 const circle = require('../assets/circle.jpg');
 
 const Template =
   {
-    "id": 999,
+    "id": 0,
     "title": "Earth begins to form",
     "information": "",
     "landform": {
@@ -123,7 +124,7 @@ const HadeanEon = [
         "coastal": false,
         "continental": false
       },
-    "event": [smite, heaven, extremophileCrisis, ultravioletRadiation],
+    "event": [smite, heaven, extremophileCrisis, uV0],
     "globalTemperature": [warming],
     "order": ["red", "green", "yellow"]
   }
@@ -140,7 +141,7 @@ const ArcheanEon = [
       "coastal": false,
       "continental": false
     },
-    "event": [aftershock, extremophileCrisis, extremophileCrisis, ultravioletRadiation1],
+    "event": [aftershock, extremophileCrisis, extremophileCrisis, uV1],
     "globalTemperature": [warming],
   },
   {
@@ -153,7 +154,7 @@ const ArcheanEon = [
       "coastal": false,
       "continental": true
     },
-    "event": [heaven, extremophileCrisis, ultravioletRadiation2],
+    "event": [heaven, extremophileCrisis, uV2],
     "globalTemperature": [cooling],
     "order": ["yellow", "blue", "red"]
   },
@@ -167,7 +168,7 @@ const ArcheanEon = [
       "coastal": true,
       "continental": true
     },
-    "event": [earth, earth, ultravioletRadiation3],
+    "event": [earth, earth, uV3],
     "globalTemperature": [],
     "order": ["green", "yellow", "blue"]
   },
@@ -181,7 +182,7 @@ const ArcheanEon = [
       "coastal": true,
       "continental": false
     },
-    "event": [earth, heaven, ultravioletRadiation4],
+    "event": [earth, heaven, uV4],
     "globalTemperature": [cooling],
     "order": ["green", "blue", "red"]
   },
@@ -255,7 +256,7 @@ const ProterozoicEon = [
       "coastal": false,
       "continental": false
     },
-    "event": [aftershock, smite, smite, extremophileCrisis, extremophileCrisis, ultravioletRadiation3],
+    "event": [aftershock, smite, smite, extremophileCrisis, extremophileCrisis, uV3],
     "globalTemperature": [warming],
     "special": "ignore ozone layer"
   },
@@ -269,7 +270,7 @@ const ProterozoicEon = [
       "coastal": false,
       "continental": true
     },
-    "event": [earth, heaven, ultravioletRadiation4],
+    "event": [earth, heaven, uV4],
     "globalTemperature": [cooling],
     "order": ["blue", "red", "green"]
   },
@@ -283,7 +284,7 @@ const ProterozoicEon = [
       "coastal": true,
       "continental": false
     },
-    "event": [smite, drought, ultravioletRadiation1, cancer, earth],
+    "event": [smite, drought, uV1, cancer, earth],
     "globalTemperature": [],
     "order": ["red", "green", "blue"]
   },
@@ -311,7 +312,7 @@ const ProterozoicEon = [
       "coastal": true,
       "continental": false
     },
-    "event": [smite, extremophileCrisis, extremophileCrisis, cancer, ultravioletRadiation2],
+    "event": [smite, extremophileCrisis, extremophileCrisis, cancer, uV2],
     "globalTemperature": [],
     "order": ["yellow", "red", "green"]
   },
@@ -325,7 +326,7 @@ const ProterozoicEon = [
       "coastal": false,
       "continental": true
     },
-    "event": [smite, earth, extremophileCrisis, ultravioletRadiation3],
+    "event": [smite, earth, extremophileCrisis, uV3],
     "globalTemperature": [warming, warming],
     "order": ["blue", "yellow", "red"]
   },
@@ -339,7 +340,7 @@ const ProterozoicEon = [
       "coastal": false,
       "continental": true
     },
-    "event": [smite, extremophileCrisis, cancer, ultravioletRadiation],
+    "event": [smite, extremophileCrisis, cancer, uV0],
     "globalTemperature": [cooling],
     "order": ["red", "green", "yellow"]
   },
@@ -384,6 +385,17 @@ const ProterozoicEon = [
     "event": [smite, drought, cancer, oxygenSpike],
     "globalTemperature": [warming],
     "order": ["blue", "yellow", "green"]
+  }
+]
+
+const RefugiumTemplate = [
+  {
+    "id": 999,
+    "colour": red,
+    "title": "",
+    "lifeDice": [],
+    "enzymes": [],
+    "manna": []
   }
 ]
 
@@ -535,6 +547,7 @@ export {
   CosmicRefugia,
   OceanicRefugia,
   CoastalRefugia,
-  ContinentalRefugia
+  ContinentalRefugia,
+  RefugiumTemplate
 }
 

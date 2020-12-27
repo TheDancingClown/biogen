@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   statusText: {
     color: 'white',
     textAlign: 'center',
-    fontSize: 20,
+    fontSize: 18,
     margin: 10,
     fontFamily: "Cochin"
   },

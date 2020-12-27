@@ -4,13 +4,14 @@ import { ImageBackground, StyleSheet, Text, TouchableOpacity, View, Modal, Image
 import EventCard from './components/EventCard';
 import GameStatus from './components/GameStatus';
 import RefugiaCard from './components/RefugiaCard';
-import { Template, HadeanEon, ArcheanEon, ProterozoicEon, CosmicRefugia, OceanicRefugia, CoastalRefugia, ContinentalRefugia } from './src/CardList';
+import { Template, HadeanEon, ArcheanEon, ProterozoicEon, CosmicRefugia, OceanicRefugia, CoastalRefugia, ContinentalRefugia, RefugiumTemplate } from './src/CardList';
 
 export default function App() {
   const [showEvent, setShowEvent] = useState(false);
   const [currentEvent, setCurrentEvent] = useState(Template);
   const [round, increment] = useState(0);
-  const [discardPile, discardCard] = useState([999]);
+  const [discardPile, discardCard] = useState([0]);
+  const [refugiaDiscards, discardRefugium] = useState([0]);
   const [timeClock, progressTime] = useState(4.6);
   const [backgroundImage, setBackgroundImage] = useState(require('./assets/hadean.jpg'));
   const [temperatureSequence, addTemperatureSequence] = useState([]);
@@ -27,34 +28,106 @@ export default function App() {
       }
       setCurrentEvent(card);
       setShowEvent(true);
-      card.event.map((event) => {
-        if(event=="require('../assets/heaven.jpg')" && card.landform.cosmic == true) {
-          const refugium = selectRefugium('cosmic')
-        }
-      });
-      increment(round + 1);
-      addToDiscardPile(card.id);
-      addToTemperatureSequence(card.globalTemperature);
-      progressTime(Math.round(((timeClock - 0.2)+Number.EPSILON) * 100) / 100)
     }
   }
-
-  const addNewLandform = (landform, refugium) => {
-    switch(landform) {
-      case 'cosmic':
-        newCosmicLandform(cosmicRefugia.concat(refugium))
-      case 'oceanic':
-        newOceanicLandform(oceanicRefugia.concat(refugium))
-      case 'coastal':
-        newCoastalLandform(coastalRefugia.concat(refugium))
-      case 'oceanic':
-        newContinetalLandform(continentalRefugia.concat(refugium))
-    }
-  };
 
   const addToDiscardPile = (id) => {
     discardCard(discardPile.concat(id));
   };
+
+  const performEvent = (card) => {
+    increment(round + 1);
+    changeBackground(round);
+    setShowEvent(false);
+    checkEvents(card)
+    addToDiscardPile(card.id);
+    addToTemperatureSequence(card.globalTemperature);
+    progressTime(Math.round(((timeClock - 0.2)+Number.EPSILON) * 100) / 100)
+  }
+
+  const selectEvent = (round) => {
+    if (round < 3) {
+      return selectCard(HadeanEon)
+    } else if (round < 10) {
+      return selectCard(ArcheanEon)
+    } else if (round < 20) {
+      return selectCard(ProterozoicEon)
+    } else {
+      return
+    }
+  }
+
+  const checkEvents = (card) => {
+    var refugium = {'id': 0}
+    card.event.map((event, index) => {
+      if (event == 3) {
+        refugium = earth(card)
+      } else if (event == 4) {
+        refugium = heaven(card)
+      }
+    })
+  }
+
+  const earth = (card) => {
+    var refugium = {'id': 0}
+    if (card.landform.continental == true && continentalRefugia.length < 5) {
+      refugium = selectCard(ContinentalRefugia)
+      addNewLandform('continental', refugium)
+    } else if (card.landform.coastal == true && coastalRefugia.length < 5) {
+      refugium = selectCard(CoastalRefugia)
+      addNewLandform('coastal', refugium)
+    } else if (card.landform.oceanic == true && oceanicRefugia.length < 3) {
+      addNewLandform('oceanic', refugium)
+    } else if(card.landform.cosmic == true && cosmicRefugia.length < 3) {
+      refugium = selectCard(CosmicRefugia)
+      addNewLandform('cosmic', refugium)
+    }
+    discardRefugium(refugiaDiscards.concat(refugium.id));
+  }
+
+  const heaven = (card) => { 
+    var refugium = {'id': 0}
+    if(card.landform.cosmic == true && cosmicRefugia.length < 3) {
+      refugium = selectCard(CosmicRefugia)
+      addNewLandform('cosmic', refugium)
+    } else if (card.landform.oceanic == true && oceanicRefugia.length < 3) {
+      refugium = selectCard(OceanicRefugia)
+      addNewLandform('oceanic', refugium)
+    } else if (card.landform.coastal == true && coastalRefugia.length < 5) {
+      refugium = selectCard(CoastalRefugia)
+      addNewLandform('coastal', refugium)
+    } else if (card.landform.continental == true && continentalRefugia.length < 5) {
+      refugium = selectCard(ContinentalRefugia)
+      addNewLandform('continental', refugium)
+    }
+    discardRefugium(refugiaDiscards.concat(refugium.id));
+  }
+
+  const addNewLandform = (landform, refugium) => {
+    if (landform == 'cosmic') {
+      newCosmicLandform(cosmicRefugia.concat(refugium))
+    } else if (landform == 'oceanic') {
+      newOceanicLandform(oceanicRefugia.concat(refugium))
+    } else if (landform == 'coastal') {
+      newCoastalLandform(coastalRefugia.concat(refugium))
+    } else if (landform == 'continental') {
+      newContinentalLandform(continentalRefugia.concat(refugium))
+    }
+  };
+
+  const selectCard = (deck) => {
+    return deck[Math.floor(Math.random() * deck.length)]
+  }
+
+  const changeBackground = (round) => {
+    if (round < 3) {
+      setBackgroundImage(require('./assets/hadean.jpg'))
+    } else if (round < 10) {
+      setBackgroundImage(require('./assets/archean.jpg'))
+    } else if (round >= 10) {
+      setBackgroundImage(require('./assets/proterozoic.jpg'))
+    }
+  }
 
   const addToTemperatureSequence = (temp) => {
     var sequence = temperatureSequence.concat(temp)
@@ -64,116 +137,84 @@ export default function App() {
     addTemperatureSequence(sequence);
   }
 
-  const performEvent = () => {
-    setShowEvent(false)
-  }
-
-  const selectRefugium = (landform) =>{
-    switch (landform) {
-      case 'cosmic':
-        return CosmicRefugia[Math.floor(Math.random() * CosmicRefugia.length)]
-      case 'oceanic':
-        return OceanicRefugia[Math.floor(Math.random() * OceanicRefugia.length)]
-      case 'coastal':
-        return CoastalRefugia[Math.floor(Math.random() * CoastalRefugia.length)]
-      case 'continental':
-        return ContinentalRefugia[Math.floor(Math.random() * ContinentalRefugia.length)]
-    }
-  }
-
-  const selectEvent = (round) => {
-    if (round < 3) {
-      return HadeanEon[Math.floor(Math.random() * HadeanEon.length)]
-    } else if (round < 10) {
-      setBackgroundImage(require('./assets/archean.jpg'))
-      return ArcheanEon[Math.floor(Math.random() * ArcheanEon.length)]
-    } else if (round < 20) {
-      setBackgroundImage(require('./assets/proterozoic.jpg'))
-      return ProterozoicEon[Math.floor(Math.random() * ProterozoicEon.length)]
-    } else {
-      return
-    }
-  }
-
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: 'black'}}>
-    <View style={styles.container}>
-      <StatusBar style = "auto" hidden = {true} />
+      <View style={styles.container}>
+        <StatusBar style = "auto" hidden = {true} />
       
       
-      <ImageBackground 
-        source = {backgroundImage}
-        style={styles.image}>
+        <ImageBackground 
+          source = {backgroundImage}
+          style={styles.backgroundImage}>
 
-        <GameStatus 
-          timeClock = {timeClock}
-          currentEvent = {currentEvent}
-          temperatureSequence = {temperatureSequence}
-          />
-        
-        <View style={styles.button}>
-          <TouchableOpacity 
-            style={styles.drawEventButton}
-            onPress ={() => drawEvent()} 
-          >
-            <Text style={styles.buttonText}>Draw Event</Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.refugia}>
-          <View style={styles.landformRow}>
-            <RefugiaCard
-              refugium = {CosmicRefugia}
-              />
-          </View>
-          <View style={styles.landformRow}>
-            <RefugiaCard
-              refugium = {OceanicRefugia}
-              />
-          </View>
-          <View style={styles.landformRow}>
-            <RefugiaCard
-              refugium = {CoastalRefugia}
-              />
-          </View>
-          <View style={styles.landformRow}>
-            <RefugiaCard
-              refugium = {ContinentalRefugia}
-              />
-          </View>
-        </View>
-        
-       
-     
-        
-        <Modal
-          transparent={true}
-          visible={showEvent}
-          supportedOrientations={['landscape']}
-          >
-          <View style={styles.eventCard}>
-            <EventCard 
-              card = {currentEvent}
-              />
-            <TouchableOpacity style={styles.closeEvent}
-              onPress ={() => performEvent()}
-              >
-                <Text style={styles.buttonText}>X</Text>
+          <GameStatus 
+            timeClock = {timeClock}
+            currentEvent = {currentEvent}
+            temperatureSequence = {temperatureSequence}
+            />
+          
+          <View style={styles.button}>
+            <TouchableOpacity 
+              style={styles.drawEventButton}
+              onPress ={() => drawEvent()} >
+              <Text style={styles.buttonText}>Draw Event</Text>
             </TouchableOpacity>
           </View>
-        </Modal>
-      </ImageBackground>
-    </View>
-    </SafeAreaView>
+
+          <View style={styles.refugia}>
+            <View style={styles.landformRow}>
+              <RefugiaCard
+                refugium = {cosmicRefugia}
+                />
+            </View>
+            <View style={styles.landformRow}>
+              <RefugiaCard
+                refugium = {oceanicRefugia}
+                />
+            </View>
+            <View style={styles.landformRow}>
+              <RefugiaCard
+                refugium = {coastalRefugia}
+                />
+            </View>
+            <View style={styles.landformRow}>
+              <RefugiaCard
+                refugium = {continentalRefugia}
+                />
+            </View>
+          </View>
+          
+        
+      
+          
+          <Modal
+            transparent={true}
+            visible={showEvent}
+            supportedOrientations={['landscape']}
+            >
+            <View style={styles.eventCard}>
+              <EventCard 
+                card = {currentEvent}
+                />
+              <TouchableOpacity style={styles.closeEvent}
+                onPress ={() => performEvent(currentEvent)}
+                >
+                  <Text style={styles.buttonText}>X</Text>
+              </TouchableOpacity>
+            </View>
+          </Modal>
+        </ImageBackground>
+      </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "column"
+    flexDirection: "column",
+    padding: 10,
+    backgroundColor: 'black'
   },
-  image: {
+  backgroundImage: {
     flex: 1,
     resizeMode: "cover",
   },
@@ -214,7 +255,7 @@ const styles = StyleSheet.create({
   },
   landformRow: {
     flexDirection: 'row',
-    
+    height: 90
   }
   
 });
