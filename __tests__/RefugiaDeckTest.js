@@ -186,6 +186,18 @@ describe('smite event', () => {
     expect(refugium2.manna).toEqual([5, 6]);
   });
 
+  it('does not destory manna from refugia with id 2,3 or 4', () => {
+    refugium = {"id": 2, "manna": [1, 2, 3]};
+    let refugium2 = {"id": 3, "manna": [4, 5, 6]};
+    let refugium3 = {"id": 4, "manna": [7, 8, 9]};
+    deck.cosmicRefugia = [refugium, refugium2];
+    deck.oceanicRefugia = [refugium3]
+    deck.smite();
+    expect(refugium.manna).toEqual([1, 2, 3]);
+    expect(refugium2.manna).toEqual([4, 5, 6]);
+    expect(refugium3.manna).toEqual([7, 8, 9]);
+  })
+
   it('destroys disorganised manna of each refugium in each landform', () => {
     refugium = {"manna": [1, 2, 3]};
     let refugium2 = {"manna": [4, 5, 6]};
