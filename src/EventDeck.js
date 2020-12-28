@@ -1,20 +1,25 @@
-import { Template, HadeanEon, ArcheanEon, ProterozoicEon } from './CardList';
+import Deck from './Deck';
+import { HadeanEon, ArcheanEon, ProterozoicEon } from './CardList';
 
-class EventDeck {
+class EventDeck extends Deck {
+
+  constructor() {
+    super();
+    this.discardPile = [];
+  };
 
   drawCard(round) {
+    var card
     if (round < 3) {
-      return this._selectCard(HadeanEon)
+      card = super._selectCard(HadeanEon)
     } else if (round < 10) {
-      return this._selectCard(ArcheanEon)
+      card = super._selectCard(ArcheanEon)
     } else if (round < 20) {
-      return this._selectCard(ProterozoicEon)
+      card = super._selectCard(ProterozoicEon)
     }
+    return card
   }
 
-  _selectCard(deck) {
-    return deck[Math.floor(Math.random() * deck.length)]
-  }
 }
 
 export default EventDeck;

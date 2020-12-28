@@ -4,7 +4,7 @@ import { ImageBackground, StyleSheet, Text, TouchableOpacity, View, Modal, Image
 import EventCard from './components/EventCard';
 import GameStatus from './components/GameStatus';
 import RefugiaCard from './components/RefugiaCard';
-import { Template, HadeanEon, ArcheanEon, ProterozoicEon, CosmicRefugia, OceanicRefugia, CoastalRefugia, ContinentalRefugia, RefugiumTemplate } from './src/CardList';
+import { Template, CosmicRefugia, OceanicRefugia, CoastalRefugia, ContinentalRefugia, RefugiumTemplate } from './src/CardList';
 import EventDeck from './src/EventDeck';
 
 export default function App() {
