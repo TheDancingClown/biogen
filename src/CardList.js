@@ -407,6 +407,7 @@ const CosmicRefugia = [
     "lifeDice": [warming, one, two, three, four, cooling, one, two],
     "enzymes": [circle, circle, circle, circle, circle, circle],
     "manna": [blue, green, yellow, red],
+    "resiliency": false,
     "organisedManna": []
   },
   {
@@ -416,6 +417,7 @@ const CosmicRefugia = [
     "lifeDice": [warming, one, two, cooling, one, two],
     "enzymes": [circle, circle, circle, circle, circle, circle],
     "manna": [green, blue, red, red],
+    "resiliency": true,
     "organisedManna": []
   },
   {
@@ -425,6 +427,7 @@ const CosmicRefugia = [
     "lifeDice": [warming, one, two, three, cooling, one, two, three, four],
     "enzymes": [circle, circle, circle, circle, circle, circle, circle],
     "manna": [yellow, yellow, green],
+    "resiliency": true,
     "organisedManna": []
   }
 ]
@@ -437,6 +440,7 @@ const OceanicRefugia = [
     "lifeDice": [warming, one, cooling, one],
     "enzymes": [circle, circle],
     "manna": [yellow, red, blue, green, green],
+    "resiliency": true,
     "organisedManna": []
   },
   {
@@ -446,6 +450,7 @@ const OceanicRefugia = [
     "lifeDice": [warming, one, two, three, cooling, one, two],
     "enzymes": [circle, circle, circle, circle, circle, circle],
     "manna": [green, blue, yellow],
+    "resiliency": false,
     "organisedManna": []
   },
   {
@@ -455,6 +460,7 @@ const OceanicRefugia = [
     "lifeDice": [warming, one, two, three, cooling, one, two],
     "enzymes": [circle, circle, circle, circle, circle, circle],
     "manna": [red, yellow, blue, blue],
+    "resiliency": false,
     "organisedManna": []
   }
 ]
@@ -467,6 +473,7 @@ const CoastalRefugia = [
     "lifeDice": [warming, one, two, three, cooling, one],
     "enzymes": [circle, circle, circle, circle],
     "manna": [blue, green, yellow, yellow],
+    "resiliency": false,
     "organisedManna": []
   },
   {
@@ -476,6 +483,7 @@ const CoastalRefugia = [
     "lifeDice": [warming, one, two, cooling, one, two],
     "enzymes": [circle, circle, circle, circle, circle, circle],
     "manna": [blue, green, red, green],
+    "resiliency": false,
     "organisedManna": []
   },
   {
@@ -485,6 +493,7 @@ const CoastalRefugia = [
     "lifeDice": [warming, one, two, cooling, one],
     "enzymes": [circle, circle, circle],
     "manna": [red, green, yellow, yellow],
+    "resiliency": false,
     "organisedManna": []
   },
   {
@@ -494,6 +503,7 @@ const CoastalRefugia = [
     "lifeDice": [warming, one, two, three, four, cooling, one, two],
     "enzymes": [circle, circle, circle, circle, circle, circle],
     "manna": [green, blue, blue],
+    "resiliency": false,
     "organisedManna": []
   },
   {
@@ -503,6 +513,7 @@ const CoastalRefugia = [
     "lifeDice": [warming, one, two, three, cooling, one, two],
     "enzymes": [circle, circle, circle, circle, circle, circle, circle],
     "manna": [yellow, yellow, red, red],
+    "resiliency": false,
     "organisedManna": []
   }
 ]
@@ -515,6 +526,7 @@ const ContinentalRefugia = [
     "lifeDice": [warming, one, two, cooling, one, two],
     "enzymes": [circle, circle, circle, circle],
     "manna": [yellow, yellow, green, green],
+    "resiliency": false,
     "organisedManna": []
   },
   {
@@ -524,6 +536,7 @@ const ContinentalRefugia = [
     "lifeDice": [warming, one, two, three, cooling, one, two],
     "enzymes": [circle, circle, circle, circle, circle, circle, circle],
     "manna": [red, blue, green, blue],
+    "resiliency": false,
     "organisedManna": []
   },
   {
@@ -533,6 +546,7 @@ const ContinentalRefugia = [
     "lifeDice": [warming, one, two, three, four, cooling, one, two],
     "enzymes": [circle, circle, circle, circle, circle, circle, circle],
     "manna": [green, red, blue, red],
+    "resiliency": false,
     "organisedManna": []
   },
   {
@@ -542,6 +556,7 @@ const ContinentalRefugia = [
     "lifeDice": [warming, one, two, three, cooling, one, two],
     "enzymes": [circle, circle, circle, circle, circle],
     "manna": [blue, red, yellow, red],
+    "resiliency": false,
     "organisedManna": []
   },
   {
@@ -551,6 +566,7 @@ const ContinentalRefugia = [
     "lifeDice": [warming, one, two, three, four, cooling, one, two],
     "enzymes": [circle, circle, circle, circle, circle, circle],
     "manna": [blue, green, red],
+    "resiliency": false,
     "organisedManna": []
   }
 ]

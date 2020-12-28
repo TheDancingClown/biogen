@@ -64,7 +64,7 @@ class RefugiaDeck extends Deck {
   }
 
   _destroyManna(card, index, landform) {
-    if(![2,3,4].includes(card.id)) {
+    if(card.resiliency == false) {
       if(card.manna.length != 0) {
         card.manna.shift();
       } else if (card.organisedManna.length != 0) {

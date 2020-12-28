@@ -171,38 +171,35 @@ describe('earth event', () => {
 
 describe('smite event', () => {
   it('with no enzymes and no organised manna, it destroys disorganised manna', () => {
-    refugium = {"manna": [1, 2, 3]};
+    refugium = {"resiliency": false, "manna": [1, 2, 3]};
     deck.cosmicRefugia = [refugium];
     deck.smite();
     expect(refugium.manna).toEqual([2, 3])
   });
 
   it('destroys disorganised manna of each refugium', () => {
-    refugium = {"manna": [1, 2, 3]};
-    let refugium2 = {"manna": [4, 5, 6]};
+    refugium = {"resiliency": false, "manna": [1, 2, 3]};
+    let refugium2 = {"resiliency": false, "manna": [4, 5, 6]};
     deck.cosmicRefugia = [refugium, refugium2];
     deck.smite();
     expect(refugium.manna).toEqual([2, 3]);
     expect(refugium2.manna).toEqual([5, 6]);
   });
 
-  it('does not destory manna from refugia with id 2,3 or 4', () => {
-    refugium = {"id": 2, "manna": [1, 2, 3]};
-    let refugium2 = {"id": 3, "manna": [4, 5, 6]};
-    let refugium3 = {"id": 4, "manna": [7, 8, 9]};
+  it('does not destory manna from resilient refugia', () => {
+    refugium = {"resiliency": true, "manna": [1, 2, 3]};
+    refugium2 = {"resiliency": false, "manna": [4, 5, 6]};
     deck.cosmicRefugia = [refugium, refugium2];
-    deck.oceanicRefugia = [refugium3]
     deck.smite();
     expect(refugium.manna).toEqual([1, 2, 3]);
-    expect(refugium2.manna).toEqual([4, 5, 6]);
-    expect(refugium3.manna).toEqual([7, 8, 9]);
+    expect(refugium2.manna).toEqual([5, 6]);
   })
 
   it('destroys disorganised manna of each refugium in each landform', () => {
-    refugium = {"manna": [1, 2, 3]};
-    let refugium2 = {"manna": [4, 5, 6]};
-    let refugium3 = {"manna": [7, 8, 9]};
-    let refugium4 = {"manna": [10, 11, 12]};
+    refugium = {"resiliency": false, "manna": [1, 2, 3]};
+    let refugium2 = {"resiliency": false, "manna": [4, 5, 6]};
+    let refugium3 = {"resiliency": false, "manna": [7, 8, 9]};
+    let refugium4 = {"resiliency": false, "manna": [10, 11, 12]};
     deck.cosmicRefugia = [refugium];
     deck.oceanicRefugia = [refugium2];
     deck.coastalRefugia = [refugium3];
@@ -215,7 +212,7 @@ describe('smite event', () => {
   });
 
   it('destroys the refugia when all manna is destroyed', () => {
-    refugium = {"manna": [1], "organisedManna": []};
+    refugium = {"resiliency": false, "manna": [1], "organisedManna": []};
     deck.cosmicRefugia = [refugium];
     deck.smite();
     expect(deck.cosmicRefugia.length).toBe(0);
