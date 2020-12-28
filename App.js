@@ -5,6 +5,7 @@ import EventCard from './components/EventCard';
 import GameStatus from './components/GameStatus';
 import RefugiaCard from './components/RefugiaCard';
 import { Template, HadeanEon, ArcheanEon, ProterozoicEon, CosmicRefugia, OceanicRefugia, CoastalRefugia, ContinentalRefugia, RefugiumTemplate } from './src/CardList';
+import EventDeck from './src/EventDeck';
 
 export default function App() {
   const [showEvent, setShowEvent] = useState(false);
@@ -19,12 +20,13 @@ export default function App() {
   const [oceanicRefugia, newOceanicLandform] = useState([]);
   const [coastalRefugia, newCoastalLandform] = useState([]);
   const [continentalRefugia, newContinentalLandform] = useState([]);
+  const eventDeck = new EventDeck();
 
   const drawEvent = () => {
     if (timeClock > 0.6) {
       var card = currentEvent
       while (discardPile.includes(card.id)) {
-        card = selectEvent(round)
+        card = eventDeck.drawCard(round)
       }
       setCurrentEvent(card);
       setShowEvent(true);
@@ -58,12 +60,11 @@ export default function App() {
   }
 
   const checkEvents = (card) => {
-    var refugium = {'id': 0}
-    card.event.map((event, index) => {
+    card.event.map((event) => {
       if (event == 3) {
-        refugium = earth(card)
+        earth(card);
       } else if (event == 4) {
-        refugium = heaven(card)
+        heaven(card);
       }
     })
   }
@@ -72,15 +73,16 @@ export default function App() {
     var refugium = {'id': 0}
     if (card.landform.continental == true && continentalRefugia.length < 5) {
       refugium = selectCard(ContinentalRefugia)
-      addNewLandform('continental', refugium)
+      newContinentalLandform(continentalRefugia.concat(refugium))
     } else if (card.landform.coastal == true && coastalRefugia.length < 5) {
       refugium = selectCard(CoastalRefugia)
-      addNewLandform('coastal', refugium)
+      newCoastalLandform(coastalRefugia.concat(refugium))
     } else if (card.landform.oceanic == true && oceanicRefugia.length < 3) {
-      addNewLandform('oceanic', refugium)
+      refugium = selectCard(OceanicRefugia)
+      newOceanicLandform(oceanicRefugia.concat(refugium))
     } else if(card.landform.cosmic == true && cosmicRefugia.length < 3) {
       refugium = selectCard(CosmicRefugia)
-      addNewLandform('cosmic', refugium)
+      newCosmicLandform(cosmicRefugia.concat(refugium))
     }
     discardRefugium(refugiaDiscards.concat(refugium.id));
   }
@@ -89,31 +91,19 @@ export default function App() {
     var refugium = {'id': 0}
     if(card.landform.cosmic == true && cosmicRefugia.length < 3) {
       refugium = selectCard(CosmicRefugia)
-      addNewLandform('cosmic', refugium)
+      newCosmicLandform(cosmicRefugia.concat(refugium))
     } else if (card.landform.oceanic == true && oceanicRefugia.length < 3) {
       refugium = selectCard(OceanicRefugia)
-      addNewLandform('oceanic', refugium)
+      newOceanicLandform(oceanicRefugia.concat(refugium))
     } else if (card.landform.coastal == true && coastalRefugia.length < 5) {
       refugium = selectCard(CoastalRefugia)
-      addNewLandform('coastal', refugium)
+      newCoastalLandform(coastalRefugia.concat(refugium))
     } else if (card.landform.continental == true && continentalRefugia.length < 5) {
       refugium = selectCard(ContinentalRefugia)
-      addNewLandform('continental', refugium)
+      newContinentalLandform(continentalRefugia.concat(refugium))
     }
     discardRefugium(refugiaDiscards.concat(refugium.id));
   }
-
-  const addNewLandform = (landform, refugium) => {
-    if (landform == 'cosmic') {
-      newCosmicLandform(cosmicRefugia.concat(refugium))
-    } else if (landform == 'oceanic') {
-      newOceanicLandform(oceanicRefugia.concat(refugium))
-    } else if (landform == 'coastal') {
-      newCoastalLandform(coastalRefugia.concat(refugium))
-    } else if (landform == 'continental') {
-      newContinentalLandform(continentalRefugia.concat(refugium))
-    }
-  };
 
   const selectCard = (deck) => {
     return deck[Math.floor(Math.random() * deck.length)]
@@ -141,7 +131,6 @@ export default function App() {
       <View style={styles.container}>
         <StatusBar style = "auto" hidden = {true} />
       
-      
         <ImageBackground 
           source = {backgroundImage}
           style={styles.backgroundImage}>
@@ -157,6 +146,7 @@ export default function App() {
               style={styles.drawEventButton}
               onPress ={() => drawEvent()} >
               <Text style={styles.buttonText}>Draw Event</Text>
+              <Text style={styles.buttonText}>{refugiaDiscards}</Text>
             </TouchableOpacity>
           </View>
 
@@ -182,9 +172,6 @@ export default function App() {
                 />
             </View>
           </View>
-          
-        
-      
           
           <Modal
             transparent={true}
