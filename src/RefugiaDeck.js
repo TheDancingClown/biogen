@@ -14,13 +14,13 @@ class RefugiaDeck extends Deck {
 
   heaven(card) {
     let refugium
-    if(card.landform.cosmic == true && this.cosmicRefugia.length < 3 && !this._cardsDrawn(CosmicRefugia)) {
+    if(card.landform.cosmic == true && !this._cardsDrawn(CosmicRefugia)) {
       refugium = super._selectCard(CosmicRefugia);
-    } else if (card.landform.oceanic == true && this.oceanicRefugia.length < 3 && !this._cardsDrawn(OceanicRefugia)) {
+    } else if (card.landform.oceanic == true && !this._cardsDrawn(OceanicRefugia)) {
       refugium = super._selectCard(OceanicRefugia);
-    } else if (card.landform.coastal == true && this.coastalRefugia.length < 5 && !this._cardsDrawn(CoastalRefugia)) {
+    } else if (card.landform.coastal == true && !this._cardsDrawn(CoastalRefugia)) {
       refugium = super._selectCard(CoastalRefugia);
-    } else if (card.landform.continental == true && this.continentalRefugia.length < 5 && !this._cardsDrawn(ContinentalRefugia)) {
+    } else if (card.landform.continental == true && !this._cardsDrawn(ContinentalRefugia)) {
       refugium = super._selectCard(ContinentalRefugia);
     } else {
       refugium = null;
@@ -32,13 +32,13 @@ class RefugiaDeck extends Deck {
   
   earth(card) {
     let refugium
-    if(card.landform.continental == true && this.continentalRefugia.length < 5 && !this._cardsDrawn(ContinentalRefugia)) {
+    if(card.landform.continental == true  && !this._cardsDrawn(ContinentalRefugia)) {
       refugium = super._selectCard(ContinentalRefugia);
-    } else if (card.landform.coastal == true && this.coastalRefugia.length < 5 && !this._cardsDrawn(CoastalRefugia)) {
+    } else if (card.landform.coastal == true && !this._cardsDrawn(CoastalRefugia)) {
       refugium = super._selectCard(CoastalRefugia);
-    } else if (card.landform.oceanic == true && this.oceanicRefugia.length < 3 && !this._cardsDrawn(OceanicRefugia)) {
+    } else if (card.landform.oceanic == true  && !this._cardsDrawn(OceanicRefugia)) {
       refugium = super._selectCard(OceanicRefugia);
-    } else if (card.landform.cosmic == true && this.cosmicRefugia.length < 3 && !this._cardsDrawn(CosmicRefugia)) {
+    } else if (card.landform.cosmic == true  && !this._cardsDrawn(CosmicRefugia)) {
       refugium = super._selectCard(CosmicRefugia);
     } else {
       return null
