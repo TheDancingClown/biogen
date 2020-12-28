@@ -103,7 +103,6 @@ export default function App() {
               style={styles.drawEventButton}
               onPress ={() => drawEvent()} >
               <Text style={styles.buttonText}>Draw Event</Text>
-              <Text style={styles.buttonText}>{eventDiscardPile}</Text>
             </TouchableOpacity>
           </View>
 

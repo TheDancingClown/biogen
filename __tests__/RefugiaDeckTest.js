@@ -46,14 +46,21 @@ describe('heaven event', () => {
       expect(deck.continentalRefugia.length).toBe(1);
     });
 
-    it('does not draw a card when all decks are empty', () => {
+    it('does not draw a card when landform is full', () => {
       deck.cosmicRefugia = [1,2,3];
       deck.oceanicRefugia = [1,2,3];
       deck.coastalRefugia = [1,2,3,4,5];
       deck.continentalRefugia = [1,2,3,4,5];
       refugium = deck.heaven(card);
-      expect(refugium).toBe(null)
+      expect(refugium).toBeNull();
     });
+
+    it('does not draw a card if the deck is empty', () => {
+      deck.discardPile = [0,1,2,3];
+      refugium = deck.heaven(card);
+      expect(refugium.id).toBeGreaterThan(3);
+      expect(refugium.id).toBeLessThan(7);
+    })
 
     it('will not draw a duplicate', () => {
       deck.discardPile = [0,1,2]
@@ -90,7 +97,7 @@ describe('heaven event', () => {
     it('does not draw a card when all landforms are inactive', () => {
       card = {"landform": {"cosmic": false, "oceanic": false, "coastal": false, "continental": false}};
       refugium = deck.heaven(card);
-      expect(refugium).toBe(null)
+      expect(refugium).toBeNull();
     });
   });
 });
@@ -107,14 +114,14 @@ describe('earth event', () => {
       expect(refugium.id).toBeLessThan(17);
       expect(deck.continentalRefugia.length).toBe(1);
     });
-    it('draws a coastal card when continental deck is empty', () =>{
+    it('draws a coastal card when continental landform is full', () =>{
       deck.continentalRefugia = [1,2,3,4,5];
       refugium = deck.earth(card);
       expect(refugium.id).toBeGreaterThan(6);
       expect(refugium.id).toBeLessThan(12);
       expect(deck.coastalRefugia.length).toBe(1);
     });
-    it('draws an oceanic card when coastal deck is empty', () =>{
+    it('draws an oceanic card when coastal landform is full', () =>{
       deck.continentalRefugia = [1,2,3,4,5];
       deck.coastalRefugia = [1,2,3,4,5];
       refugium = deck.earth(card);
@@ -122,7 +129,7 @@ describe('earth event', () => {
       expect(refugium.id).toBeLessThan(7);
       expect(deck.oceanicRefugia.length).toBe(1);
     });
-    it('draws a cosmic card when oceanic deck is empty', () =>{
+    it('draws a cosmic card when oceanic landform is full', () =>{
       deck.continentalRefugia = [1,2,3,4,5];
       deck.coastalRefugia = [1,2,3,4,5];
       deck.oceanicRefugia = [1,2,3];
@@ -132,13 +139,13 @@ describe('earth event', () => {
       expect(deck.cosmicRefugia.length).toBe(1);
     });
 
-    it('does not draw a card when all decks are empty', () => {
+    it('does not draw a card when all landforms are full', () => {
       deck.cosmicRefugia = [1,2,3];
       deck.oceanicRefugia = [1,2,3];
       deck.coastalRefugia = [1,2,3,4,5];
       deck.continentalRefugia = [1,2,3,4,5];
       refugium = deck.earth(card);
-      expect(refugium).toBe(null)
+      expect(refugium).toBeNull();
     });
 
     it('will not draw a duplicate', () => {
@@ -176,7 +183,7 @@ describe('earth event', () => {
     it('does not draw a card when all landforms are inactive', () => {
       card = {"landform": {"cosmic": false, "oceanic": false, "coastal": false, "continental": false}};
       refugium = deck.earth(card);
-      expect(refugium).toBe(null)
+      expect(refugium).toBeNull();
     });
   });
 });
@@ -219,5 +226,26 @@ describe('smite event', () => {
     deck.cosmicRefugia = [refugium];
     deck.smite();
     expect(deck.cosmicRefugia.length).toBe(0);
+  });
+});
+
+describe('_landformID', () => {
+  it('creates a list', () => {
+    let list = deck._landformID([{'id': 1}, {'id': 2}]);
+    expect(list).toEqual([0,1,2]);
+  });
+});
+
+describe('_cardsDrawn', () => {
+it('returns false when a deck has not been fully drawn', () => {
+    let success = deck._cardsDrawn([{'id': 1}, {'id': 2}])
+    console.log(success)
+    expect(success).toBe(false);
+  });
+
+  it('returns true when a deck has been fully drawn', () => {
+    deck.discardPile = [0,2,1,5,3,7]
+    let success = deck._cardsDrawn([{'id': 0}, {'id': 1}, {'id': 2}, {'id': 3}])
+    expect(success).toBe(true);
   });
 });
