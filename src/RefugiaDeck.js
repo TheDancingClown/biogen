@@ -3,17 +3,17 @@ import { CosmicRefugia, OceanicRefugia, CoastalRefugia, ContinentalRefugia } fro
 
 class RefugiaDeck extends Deck {
 
-  constructor() {
+  constructor(cosmicLandform, oceanicLandform, coastalLandform, continentalLandform, discardPile) {
     super();
-    this.discardPile = [];
-    this.cosmicRefugia = [];
-    this.oceanicRefugia = [];
-    this.coastalRefugia = [];
-    this.continentalRefugia = [];
+    this.cosmicRefugia = cosmicLandform;
+    this.oceanicRefugia = oceanicLandform;
+    this.coastalRefugia = coastalLandform;
+    this.continentalRefugia = continentalLandform;
+    this.discardPile = discardPile;
   };
 
   heaven(card) {
-    let refugium
+    let refugium = {'id': 0}
     if(card.landform.cosmic == true && this.cosmicRefugia.length < 3) {
       refugium = super._selectCard(CosmicRefugia);
     } else if (card.landform.oceanic == true && this.oceanicRefugia.length < 3) {
@@ -22,7 +22,10 @@ class RefugiaDeck extends Deck {
       refugium = super._selectCard(CoastalRefugia);
     } else if (card.landform.continental == true && this.continentalRefugia.length < 5) {
       refugium = super._selectCard(ContinentalRefugia);
+    } else {
+      refugium = null;
     };
+    this._discardCard(refugium)
     this._addToLandform(refugium)
     return refugium;
   };
@@ -37,7 +40,10 @@ class RefugiaDeck extends Deck {
       refugium = super._selectCard(OceanicRefugia);
     } else if (card.landform.cosmic == true && this.cosmicRefugia.length < 3) {
       refugium = super._selectCard(CosmicRefugia);
+    } else {
+      return null
     };
+    this._discardCard(refugium)
     this._addToLandform(refugium);
     return refugium;
   };

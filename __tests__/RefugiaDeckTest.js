@@ -3,7 +3,7 @@ import RefugiaDeck from '../src/RefugiaDeck';
 let deck, card, refugium
 
 beforeEach(() => {
-  deck = new RefugiaDeck();
+  deck = new RefugiaDeck([],[],[],[],[0]);
 });
 
 describe('heaven event', () => {
@@ -11,6 +11,7 @@ describe('heaven event', () => {
     beforeEach(() => {
       card = {"landform": {"cosmic": true, "oceanic": true, "coastal": true, "continental": true}};
     });
+
     it('draws a cosmic landform as first priority', () => {
       refugium = deck.heaven(card);
       expect(refugium.id).toBeGreaterThan(0);
@@ -51,7 +52,13 @@ describe('heaven event', () => {
       deck.coastalRefugia = [1,2,3,4,5];
       deck.continentalRefugia = [1,2,3,4,5];
       refugium = deck.heaven(card);
-      expect(refugium).toBe(undefined)
+      expect(refugium).toBe(null)
+    });
+
+    it('will not draw a duplicate', () => {
+      deck.discardPile = [0,1,2]
+      refugium = deck.heaven(card);
+      expect(refugium.id).toBe(3);
     });
   });
   describe('inactive landforms', () => {
@@ -83,7 +90,7 @@ describe('heaven event', () => {
     it('does not draw a card when all landforms are inactive', () => {
       card = {"landform": {"cosmic": false, "oceanic": false, "coastal": false, "continental": false}};
       refugium = deck.heaven(card);
-      expect(refugium).toBe(undefined)
+      expect(refugium).toBe(null)
     });
   });
 });
@@ -131,7 +138,13 @@ describe('earth event', () => {
       deck.coastalRefugia = [1,2,3,4,5];
       deck.continentalRefugia = [1,2,3,4,5];
       refugium = deck.earth(card);
-      expect(refugium).toBe(undefined)
+      expect(refugium).toBe(null)
+    });
+
+    it('will not draw a duplicate', () => {
+      deck.discardPile = [0,12,13,14,15]
+      refugium = deck.earth(card);
+      expect(refugium.id).toBe(16);
     });
   });
 
@@ -163,7 +176,7 @@ describe('earth event', () => {
     it('does not draw a card when all landforms are inactive', () => {
       card = {"landform": {"cosmic": false, "oceanic": false, "coastal": false, "continental": false}};
       refugium = deck.earth(card);
-      expect(refugium).toBe(undefined)
+      expect(refugium).toBe(null)
     });
   });
 });

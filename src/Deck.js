@@ -1,16 +1,20 @@
 class Deck {
 
   constructor() {
-    this.discardPile = [];
+    this.discardPile = [0];
   };
 
   _selectCard(deck) {
-    return deck[Math.floor(Math.random() * deck.length)];
+    let card = {"id": 0};
+    while(this.discardPile.includes(card.id)) {
+      card = deck[Math.floor(Math.random() * deck.length)];
+    }
+    return card
   };
 
   _discardCard(card) {
     if(card) {
-      this.discardPile.push(card);
+      this.discardPile.push(card.id);
     };
   };
 };

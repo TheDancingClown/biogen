@@ -12,8 +12,8 @@ export default function App() {
   const [showEvent, setShowEvent] = useState(false);
   const [currentEvent, setCurrentEvent] = useState(Template);
   const [round, increment] = useState(0);
-  const [discardPile, discardCard] = useState([0]);
-  const [refugiaDiscards, discardRefugium] = useState([0]);
+  const [eventDiscardPile, discardEvent] = useState([0]);
+  const [refugiumDiscardPile, discardRefugia] = useState([0]);
   const [timeClock, progressTime] = useState(4.6);
   const [backgroundImage, setBackgroundImage] = useState(require('./assets/hadean.jpg'));
   const [temperatureSequence, addTemperatureSequence] = useState([]);
@@ -21,83 +21,43 @@ export default function App() {
   const [oceanicRefugia, newOceanicLandform] = useState([]);
   const [coastalRefugia, newCoastalLandform] = useState([]);
   const [continentalRefugia, newContinentalLandform] = useState([]);
-  const eventDeck = new EventDeck();
-  const refugiaDeck = new RefugiaDeck();
+  const eventDeck = new EventDeck(eventDiscardPile);
+  const refugiaDeck = new RefugiaDeck(cosmicRefugia, oceanicRefugia, coastalRefugia, continentalRefugia, refugiumDiscardPile);
 
   const drawEvent = () => {
     if (timeClock > 0.6) {
-      var card = currentEvent
-      while (discardPile.includes(card.id)) {
-        card = eventDeck.drawCard(round)
-      }
+      let card = eventDeck.drawCard(round)
       setCurrentEvent(card);
       setShowEvent(true);
     }
   }
 
-  const addToDiscardPile = (id) => {
-    discardCard(discardPile.concat(id));
-  };
+  
 
   const performEvent = (card) => {
     increment(round + 1);
     changeBackground(round);
     setShowEvent(false);
     checkEvents(card)
-    addToDiscardPile(card.id);
+    discardEvent(eventDiscardPile.concat(card.id))
     addToTemperatureSequence(card.globalTemperature);
     progressTime(Math.round(((timeClock - 0.2)+Number.EPSILON) * 100) / 100)
   }
 
   const checkEvents = (card) => {
     card.event.map((event) => {
-      if (event == 3) {
+      if (event == 2) {
+        refugiaDeck.smite();
+      } else if (event == 3) {
         refugiaDeck.earth(card);
       } else if (event == 4) {
         refugiaDeck.heaven(card);
       }
     })
+    updateLandforms();
+    discardRefugia(refugiaDeck.discardPile);
   }
 
-  const earth = (card) => {
-    var refugium = {'id': 0}
-    if (card.landform.continental == true && continentalRefugia.length < 5) {
-      refugium = selectCard(ContinentalRefugia)
-      newContinentalLandform(continentalRefugia.concat(refugium))
-    } else if (card.landform.coastal == true && coastalRefugia.length < 5) {
-      refugium = selectCard(CoastalRefugia)
-      newCoastalLandform(coastalRefugia.concat(refugium))
-    } else if (card.landform.oceanic == true && oceanicRefugia.length < 3) {
-      refugium = selectCard(OceanicRefugia)
-      newOceanicLandform(oceanicRefugia.concat(refugium))
-    } else if(card.landform.cosmic == true && cosmicRefugia.length < 3) {
-      refugium = selectCard(CosmicRefugia)
-      newCosmicLandform(cosmicRefugia.concat(refugium))
-    }
-    discardRefugium(refugiaDiscards.concat(refugium.id));
-  }
-
-  const heaven = (card) => { 
-    var refugium = {'id': 0}
-    if(card.landform.cosmic == true && cosmicRefugia.length < 3) {
-      refugium = selectCard(CosmicRefugia)
-      newCosmicLandform(cosmicRefugia.concat(refugium))
-    } else if (card.landform.oceanic == true && oceanicRefugia.length < 3) {
-      refugium = selectCard(OceanicRefugia)
-      newOceanicLandform(oceanicRefugia.concat(refugium))
-    } else if (card.landform.coastal == true && coastalRefugia.length < 5) {
-      refugium = selectCard(CoastalRefugia)
-      newCoastalLandform(coastalRefugia.concat(refugium))
-    } else if (card.landform.continental == true && continentalRefugia.length < 5) {
-      refugium = selectCard(ContinentalRefugia)
-      newContinentalLandform(continentalRefugia.concat(refugium))
-    }
-    discardRefugium(refugiaDiscards.concat(refugium.id));
-  }
-
-  const selectCard = (deck) => {
-    return deck[Math.floor(Math.random() * deck.length)]
-  }
 
   const changeBackground = (round) => {
     if (round < 3) {
@@ -115,6 +75,13 @@ export default function App() {
       sequence.shift();
     }
     addTemperatureSequence(sequence);
+  }
+
+  const updateLandforms = () => {
+    newCosmicLandform(refugiaDeck.cosmicRefugia);
+    newOceanicLandform(refugiaDeck.oceanicRefugia);
+    newCoastalLandform(refugiaDeck.coastalRefugia);
+    newContinentalLandform(refugiaDeck.continentalRefugia);
   }
 
   return (
@@ -136,7 +103,7 @@ export default function App() {
               style={styles.drawEventButton}
               onPress ={() => drawEvent()} >
               <Text style={styles.buttonText}>Draw Event</Text>
-              <Text style={styles.buttonText}>{refugiaDiscards}</Text>
+              <Text style={styles.buttonText}>{eventDiscardPile}</Text>
             </TouchableOpacity>
           </View>
 

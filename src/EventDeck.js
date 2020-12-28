@@ -3,9 +3,9 @@ import { HadeanEon, ArcheanEon, ProterozoicEon } from './CardList';
 
 class EventDeck extends Deck {
 
-  constructor() {
+  constructor(discardPile) {
     super();
-    this.discardPile = [];
+    this.discardPile = discardPile
   };
 
   drawCard(round) {
@@ -16,6 +16,8 @@ class EventDeck extends Deck {
       card = super._selectCard(ArcheanEon)
     } else if (round < 20) {
       card = super._selectCard(ProterozoicEon)
+    } else {
+      card = null
     }
     return card
   }
