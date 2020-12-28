@@ -6,6 +6,7 @@ import GameStatus from './components/GameStatus';
 import RefugiaCard from './components/RefugiaCard';
 import { Template, CosmicRefugia, OceanicRefugia, CoastalRefugia, ContinentalRefugia, RefugiumTemplate } from './src/CardList';
 import EventDeck from './src/EventDeck';
+import RefugiaDeck from './src/RefugiaDeck';
 
 export default function App() {
   const [showEvent, setShowEvent] = useState(false);
@@ -21,6 +22,7 @@ export default function App() {
   const [coastalRefugia, newCoastalLandform] = useState([]);
   const [continentalRefugia, newContinentalLandform] = useState([]);
   const eventDeck = new EventDeck();
+  const refugiaDeck = new RefugiaDeck();
 
   const drawEvent = () => {
     if (timeClock > 0.6) {
@@ -47,24 +49,12 @@ export default function App() {
     progressTime(Math.round(((timeClock - 0.2)+Number.EPSILON) * 100) / 100)
   }
 
-  const selectEvent = (round) => {
-    if (round < 3) {
-      return selectCard(HadeanEon)
-    } else if (round < 10) {
-      return selectCard(ArcheanEon)
-    } else if (round < 20) {
-      return selectCard(ProterozoicEon)
-    } else {
-      return
-    }
-  }
-
   const checkEvents = (card) => {
     card.event.map((event) => {
       if (event == 3) {
-        earth(card);
+        refugiaDeck.earth(card);
       } else if (event == 4) {
-        heaven(card);
+        refugiaDeck.heaven(card);
       }
     })
   }

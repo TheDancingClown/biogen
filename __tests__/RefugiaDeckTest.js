@@ -15,6 +15,7 @@ describe('heaven event', () => {
       refugium = deck.heaven(card);
       expect(refugium.id).toBeGreaterThan(0);
       expect(refugium.id).toBeLessThan(4);
+      expect(deck.cosmicRefugia.length).toBe(1);
     });
 
     it('draws a oceanic landform when cosmic deck empty', () => {
@@ -22,6 +23,7 @@ describe('heaven event', () => {
       refugium = deck.heaven(card);
       expect(refugium.id).toBeGreaterThan(3);
       expect(refugium.id).toBeLessThan(7);
+      expect(deck.oceanicRefugia.length).toBe(1);
     });
 
     it('draws a coastal landform when oceanic deck empty', () => {
@@ -30,6 +32,7 @@ describe('heaven event', () => {
       refugium = deck.heaven(card);
       expect(refugium.id).toBeGreaterThan(6);
       expect(refugium.id).toBeLessThan(12);
+      expect(deck.coastalRefugia.length).toBe(1);
     });
 
     it('draws a continental landform when coastal deck empty', () => {
@@ -39,6 +42,7 @@ describe('heaven event', () => {
       refugium = deck.heaven(card);
       expect(refugium.id).toBeGreaterThan(11);
       expect(refugium.id).toBeLessThan(17);
+      expect(deck.continentalRefugia.length).toBe(1);
     });
 
     it('does not draw a card when all decks are empty', () => {
@@ -57,6 +61,7 @@ describe('heaven event', () => {
       refugium = deck.heaven(card);
       expect(refugium.id).toBeGreaterThan(3);
       expect(refugium.id).toBeLessThan(7);
+      expect(deck.oceanicRefugia.length).toBe(1);
     });
 
     it('draws a coastal landform as third priority', () => {
@@ -64,6 +69,7 @@ describe('heaven event', () => {
       refugium = deck.heaven(card);
       expect(refugium.id).toBeGreaterThan(6);
       expect(refugium.id).toBeLessThan(12);
+      expect(deck.coastalRefugia.length).toBe(1);
     });
 
     it('draws a continental landform as fourth priority', () => {
@@ -71,6 +77,7 @@ describe('heaven event', () => {
       refugium = deck.heaven(card);
       expect(refugium.id).toBeGreaterThan(11);
       expect(refugium.id).toBeLessThan(17);
+      expect(deck.continentalRefugia.length).toBe(1);
     });
 
     it('does not draw a card when all landforms are inactive', () => {
@@ -91,12 +98,14 @@ describe('earth event', () => {
       refugium = deck.earth(card);
       expect(refugium.id).toBeGreaterThan(11);
       expect(refugium.id).toBeLessThan(17);
+      expect(deck.continentalRefugia.length).toBe(1);
     });
     it('draws a coastal card when continental deck is empty', () =>{
       deck.continentalRefugia = [1,2,3,4,5];
       refugium = deck.earth(card);
       expect(refugium.id).toBeGreaterThan(6);
       expect(refugium.id).toBeLessThan(12);
+      expect(deck.coastalRefugia.length).toBe(1);
     });
     it('draws an oceanic card when coastal deck is empty', () =>{
       deck.continentalRefugia = [1,2,3,4,5];
@@ -104,6 +113,7 @@ describe('earth event', () => {
       refugium = deck.earth(card);
       expect(refugium.id).toBeGreaterThan(3);
       expect(refugium.id).toBeLessThan(7);
+      expect(deck.oceanicRefugia.length).toBe(1);
     });
     it('draws a cosmic card when oceanic deck is empty', () =>{
       deck.continentalRefugia = [1,2,3,4,5];
@@ -112,6 +122,7 @@ describe('earth event', () => {
       refugium = deck.earth(card);
       expect(refugium.id).toBeGreaterThan(0);
       expect(refugium.id).toBeLessThan(4);
+      expect(deck.cosmicRefugia.length).toBe(1);
     });
 
     it('does not draw a card when all decks are empty', () => {
@@ -131,6 +142,7 @@ describe('earth event', () => {
       refugium = deck.earth(card);
       expect(refugium.id).toBeGreaterThan(6);
       expect(refugium.id).toBeLessThan(12);
+      expect(deck.coastalRefugia.length).toBe(1);
     });
 
     it('draws a oceanic landform as third priority', () => {
@@ -138,6 +150,7 @@ describe('earth event', () => {
       refugium = deck.earth(card);
       expect(refugium.id).toBeGreaterThan(3);
       expect(refugium.id).toBeLessThan(7);
+      expect(deck.oceanicRefugia.length).toBe(1);
     });
 
     it('draws a cosmic landform as fourth priority', () => {
@@ -145,11 +158,53 @@ describe('earth event', () => {
       refugium = deck.earth(card);
       expect(refugium.id).toBeGreaterThan(0);
       expect(refugium.id).toBeLessThan(4);
+      expect(deck.cosmicRefugia.length).toBe(1);
     });
     it('does not draw a card when all landforms are inactive', () => {
       card = {"landform": {"cosmic": false, "oceanic": false, "coastal": false, "continental": false}};
       refugium = deck.earth(card);
       expect(refugium).toBe(undefined)
     });
-  })
+  });
+});
+
+describe('smite event', () => {
+  it('with no enzymes and no organised manna, it destroys disorganised manna', () => {
+    refugium = {"manna": [1, 2, 3]};
+    deck.cosmicRefugia = [refugium];
+    deck.smite();
+    expect(refugium.manna).toEqual([2, 3])
+  });
+
+  it('destroys disorganised manna of each refugium', () => {
+    refugium = {"manna": [1, 2, 3]};
+    let refugium2 = {"manna": [4, 5, 6]};
+    deck.cosmicRefugia = [refugium, refugium2];
+    deck.smite();
+    expect(refugium.manna).toEqual([2, 3]);
+    expect(refugium2.manna).toEqual([5, 6]);
+  });
+
+  it('destroys disorganised manna of each refugium in each landform', () => {
+    refugium = {"manna": [1, 2, 3]};
+    let refugium2 = {"manna": [4, 5, 6]};
+    let refugium3 = {"manna": [7, 8, 9]};
+    let refugium4 = {"manna": [10, 11, 12]};
+    deck.cosmicRefugia = [refugium];
+    deck.oceanicRefugia = [refugium2];
+    deck.coastalRefugia = [refugium3];
+    deck.continentalRefugia = [refugium4]
+    deck.smite();
+    expect(refugium.manna).toEqual([2, 3]);
+    expect(refugium2.manna).toEqual([5, 6]);
+    expect(refugium3.manna).toEqual([8, 9]);
+    expect(refugium4.manna).toEqual([11, 12]);
+  });
+
+  it('destroys the refugia when all manna is destroyed', () => {
+    refugium = {"manna": [1], "organisedManna": []};
+    deck.cosmicRefugia = [refugium];
+    deck.smite();
+    expect(deck.cosmicRefugia.length).toBe(0);
+  });
 });

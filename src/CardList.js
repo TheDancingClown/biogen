@@ -406,7 +406,8 @@ const CosmicRefugia = [
     "title": "Mars Paleo-Ocean",
     "lifeDice": [warming, one, two, three, four, cooling, one, two],
     "enzymes": [circle, circle, circle, circle, circle, circle],
-    "manna": [blue, green, yellow, red]
+    "manna": [blue, green, yellow, red],
+    "organisedManna": []
   },
   {
     "id": 2,
@@ -414,7 +415,8 @@ const CosmicRefugia = [
     "title": "Deep Hot Biosphere",
     "lifeDice": [warming, one, two, cooling, one, two],
     "enzymes": [circle, circle, circle, circle, circle, circle],
-    "manna": [green, blue, red, red]
+    "manna": [green, blue, red, red],
+    "organisedManna": []
   },
   {
     "id": 3,
@@ -422,7 +424,8 @@ const CosmicRefugia = [
     "title": "Interplanetary Dust",
     "lifeDice": [warming, one, two, three, cooling, one, two, three, four],
     "enzymes": [circle, circle, circle, circle, circle, circle, circle],
-    "manna": [yellow, yellow, green]
+    "manna": [yellow, yellow, green],
+    "organisedManna": []
   }
 ]
 
@@ -433,7 +436,8 @@ const OceanicRefugia = [
     "title": "Hydrothermal Vent",
     "lifeDice": [warming, one, cooling, one],
     "enzymes": [circle, circle],
-    "manna": [yellow, red, blue, green, green]
+    "manna": [yellow, red, blue, green, green],
+    "organisedManna": []
   },
   {
     "id": 5,
@@ -441,7 +445,8 @@ const OceanicRefugia = [
     "title": "Green Rust Fumarole",
     "lifeDice": [warming, one, two, three, cooling, one, two],
     "enzymes": [circle, circle, circle, circle, circle, circle],
-    "manna": [green, blue, yellow]
+    "manna": [green, blue, yellow],
+    "organisedManna": []
   },
   {
     "id": 6,
@@ -449,7 +454,8 @@ const OceanicRefugia = [
     "title": "Clay Mound",
     "lifeDice": [warming, one, two, three, cooling, one, two],
     "enzymes": [circle, circle, circle, circle, circle, circle],
-    "manna": [red, yellow, blue, blue]
+    "manna": [red, yellow, blue, blue],
+    "organisedManna": []
   }
 ]
 
@@ -460,7 +466,8 @@ const CoastalRefugia = [
     "title": "Radioactive Beach",
     "lifeDice": [warming, one, two, three, cooling, one],
     "enzymes": [circle, circle, circle, circle],
-    "manna": [blue, green, yellow, yellow]
+    "manna": [blue, green, yellow, yellow],
+    "organisedManna": []
   },
   {
     "id": 8,
@@ -468,7 +475,8 @@ const CoastalRefugia = [
     "title": "Alkaline Seep",
     "lifeDice": [warming, one, two, cooling, one, two],
     "enzymes": [circle, circle, circle, circle, circle, circle],
-    "manna": [blue, green, red, green]
+    "manna": [blue, green, red, green],
+    "organisedManna": []
   },
   {
     "id": 9,
@@ -476,7 +484,8 @@ const CoastalRefugia = [
     "title": "Pumice Raft",
     "lifeDice": [warming, one, two, cooling, one],
     "enzymes": [circle, circle, circle],
-    "manna": [red, green, yellow, yellow]
+    "manna": [red, green, yellow, yellow],
+    "organisedManna": []
   },
   {
     "id": 10,
@@ -484,7 +493,8 @@ const CoastalRefugia = [
     "title": "UV Irradiated Ocean",
     "lifeDice": [warming, one, two, three, four, cooling, one, two],
     "enzymes": [circle, circle, circle, circle, circle, circle],
-    "manna": [green, blue, blue]
+    "manna": [green, blue, blue],
+    "organisedManna": []
   },
   {
     "id": 11,
@@ -492,7 +502,8 @@ const CoastalRefugia = [
     "title": "Zeolite Lagoon",
     "lifeDice": [warming, one, two, three, cooling, one, two],
     "enzymes": [circle, circle, circle, circle, circle, circle, circle],
-    "manna": [yellow, yellow, red, red]
+    "manna": [yellow, yellow, red, red],
+    "organisedManna": []
   }
 ]
 
@@ -503,7 +514,8 @@ const ContinentalRefugia = [
     "title": "Tholin Storm Clouds",
     "lifeDice": [warming, one, two, cooling, one, two],
     "enzymes": [circle, circle, circle, circle],
-    "manna": [yellow, yellow, green, green]
+    "manna": [yellow, yellow, green, green],
+    "organisedManna": []
   },
   {
     "id": 13,
@@ -511,7 +523,8 @@ const ContinentalRefugia = [
     "title": "Geothermal Zinc",
     "lifeDice": [warming, one, two, three, cooling, one, two],
     "enzymes": [circle, circle, circle, circle, circle, circle, circle],
-    "manna": [red, blue, green, blue]
+    "manna": [red, blue, green, blue],
+    "organisedManna": []
   },
   {
     "id": 14,
@@ -519,7 +532,8 @@ const ContinentalRefugia = [
     "title": "Hydrogen Volcano",
     "lifeDice": [warming, one, two, three, four, cooling, one, two],
     "enzymes": [circle, circle, circle, circle, circle, circle, circle],
-    "manna": [green, red, blue, red]
+    "manna": [green, red, blue, red],
+    "organisedManna": []
   },
   {
     "id": 15,
@@ -527,7 +541,8 @@ const ContinentalRefugia = [
     "title": "Eutectic Brine",
     "lifeDice": [warming, one, two, three, cooling, one, two],
     "enzymes": [circle, circle, circle, circle, circle],
-    "manna": [blue, red, yellow, red]
+    "manna": [blue, red, yellow, red],
+    "organisedManna": []
   },
   {
     "id": 16,
@@ -535,7 +550,8 @@ const ContinentalRefugia = [
     "title": "Warm Pond",
     "lifeDice": [warming, one, two, three, four, cooling, one, two],
     "enzymes": [circle, circle, circle, circle, circle, circle],
-    "manna": [blue, green, red]
+    "manna": [blue, green, red],
+    "organisedManna": []
   }
 ]
 

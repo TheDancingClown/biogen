@@ -23,6 +23,7 @@ class RefugiaDeck extends Deck {
     } else if (card.landform.continental == true && this.continentalRefugia.length < 5) {
       refugium = super._selectCard(ContinentalRefugia);
     };
+    this._addToLandform(refugium)
     return refugium;
   };
 
@@ -37,7 +38,44 @@ class RefugiaDeck extends Deck {
     } else if (card.landform.cosmic == true && this.cosmicRefugia.length < 3) {
       refugium = super._selectCard(CosmicRefugia);
     };
+    this._addToLandform(refugium);
     return refugium;
+  };
+
+  smite() {
+    this.cosmicRefugia.map((card, index) => {
+      this._destroyManna(card, index, this.cosmicRefugia);
+    });
+    this.oceanicRefugia.map((card, index) => {
+      this._destroyManna(card, index, this.oceanicRefugia);
+    });
+    this.coastalRefugia.map((card, index) => {
+      this._destroyManna(card, index, this.coastalRefugia);
+    });
+    this.continentalRefugia.map((card, index) => {
+      this._destroyManna(card, index, this.continentalRefugia);
+    });
+  }
+
+  _destroyManna(card, index, landform) {
+    card.manna.shift();
+    if(card.manna.length == 0 && card.organisedManna.length == 0) {
+      landform.splice(index,1)
+    }
+  }
+
+  _addToLandform(refugium) {
+    if(refugium){
+      if(refugium.id <= 3) {
+        this.cosmicRefugia.push(refugium);
+      } else if(refugium.id <= 6) {
+        this.oceanicRefugia.push(refugium);
+      } else if(refugium.id <= 11) {
+        this.coastalRefugia.push(refugium);
+      } else if(refugium.id <= 16) {
+        this.continentalRefugia.push(refugium);
+      };
+    };
   };
 }
 
