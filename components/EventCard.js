@@ -19,12 +19,26 @@ const EventCard = (props) => {
     const events = [...new Set(props.card.event)]
     let eventAlerts = ''
     events.map((event) => {
-      if(event == 2) {
-        eventAlerts = eventAlerts.concat("Smite(radiation symbol)\nAll Refugia without Resiliency lose an Enzyme or else a Manna.\n\n")
+      if (event == 1) {
+        eventAlerts = eventAlerts.concat("Aftershock(shock symbol).\nThe next event is drawn and the effects combined with this event.\n\n")
+      } else if (event == 2) {
+        eventAlerts = eventAlerts.concat("Smite(radiation symbol).\nAll Refugia without Resiliency lose an Enzyme or else a Manna.\n\n")
       } else if (event == 3) {
-        eventAlerts = eventAlerts.concat("Earth(eruption symbol)\nRefugium is added to the bottom-most active Landform.")
+        eventAlerts = eventAlerts.concat("Earth(eruption symbol).\nRefugium is added to the bottom-most active Landform.\n\n")
       } else if (event == 4) {
-        eventAlerts = eventAlerts.concat("Heaven(meteor symbol)\nRefugium is added to the top-most active Landform.")
+        eventAlerts = eventAlerts.concat("Heaven(meteor symbol).\nRefugium is added to the top-most active Landform.\n\n")
+      } else if (event == 5) {
+        eventAlerts = eventAlerts.concat("Drought(drought symbol).\nEvery terrestrial Macroorganism without a Drought Shield suffers one Atrophy.\n\n")
+      } else if (event == 6) {
+        eventAlerts = eventAlerts.concat("Extremophile Crisis(thermometer symbol).\nAll Organisms suffer Atrophies equal to the number of symbols shown minus Heat Shields(red chromosomes).\n\n")
+      } else if (event == 7) {
+        eventAlerts = eventAlerts.concat("Cancer(cancer symbol).\nEach Macroorganism rolls one die for each organ and two for each Biont. It suffers one Atrophy for each 5 or 6 rolled. Macroorganisms with Cancer Shield suffer Atrophy only on a 6.\n\n")
+      } else if (event == 8) {
+        eventAlerts = eventAlerts.concat("Oxygen Spike(oxygen symbol).\nAll organisms suffer Atrophies equal to the number of symbols shown minus Antioxidant Shields(green chromosomes and vitamins).\n\n")
+      } else if ([9,10,11,12,13].includes(event)) {
+        eventAlerts = eventAlerts.concat("Ultraviolet Radiation(UV symbol).\nAll organisms without an UV Shield remove mutations up to the level of UV Radiation.\n\n")
+      } else if (event == 14) {
+        eventAlerts = eventAlerts.concat("Ozone Layer(ozone symbol).\nUV events are ignored until the end of the game. Comet Impactor negates this effect for one turn, if drawn.\n\n")
       }
     })
     Alert.alert(
