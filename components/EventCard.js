@@ -1,7 +1,37 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { Alert, TouchableOpacity, StyleSheet, Text, View, Image } from 'react-native';
 
 const EventCard = (props) => {
+
+  const landformAlert = () => {
+    Alert.alert(
+      "The landform icons for the current event. Active landforms are shown in black and inactive landforms are  shown in grey.\n\nAn active landform means you can assign Bionts and Enzymes to Refugia in its row."
+    )
+  }
+
+  const climateAlert = () => {
+    Alert.alert(
+      "The climate icon(s) for the current event. The current climate is used to determine which dice animate life (organise Manna). If no icon is shown the previous climate remains."
+    )
+  }
+
+  const eventAlert = () => {
+    const events = [...new Set(props.card.event)]
+    let eventAlerts = ''
+    events.map((event) => {
+      if(event == 2) {
+        eventAlerts = eventAlerts.concat("Smite(radiation symbol)\nAll Refugia without Resiliency lose an Enzyme or else a Manna.\n\n")
+      } else if (event == 3) {
+        eventAlerts = eventAlerts.concat("Earth(eruption symbol)\nRefugium is added to the bottom-most active Landform.")
+      } else if (event == 4) {
+        eventAlerts = eventAlerts.concat("Heaven(meteor symbol)\nRefugium is added to the top-most active Landform.")
+      }
+    })
+    Alert.alert(
+      eventAlerts
+    )
+  }
+
   return (
     <View style={styles.container}>
       <Header 
@@ -10,11 +40,17 @@ const EventCard = (props) => {
       />
 
       <View style={styles.detail}>
-        <LandformIcons landforms={props.card.landform} />
+        <TouchableOpacity onPress = {landformAlert}>
+          <LandformIcons landforms={props.card.landform} />
+        </TouchableOpacity>
         <InformationText information={props.card.information} />
         <View style={styles.events}>
-          <EventIcons events={props.card.event} />
-          <EventIcons events={props.card.climate} />
+          <TouchableOpacity style={{flex: 1}} onPress = {eventAlert} >
+            <EventIcons events={props.card.event} />
+          </TouchableOpacity>
+          <TouchableOpacity style={{flex: 1}} onPress = {climateAlert}>
+            <EventIcons events={props.card.climate} />
+          </TouchableOpacity>
         </View>
       </View>
     </View>
