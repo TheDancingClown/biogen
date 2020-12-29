@@ -5,22 +5,22 @@ const RefugiaDisplay = (props) => {
 
   return (
     <View style={styles.refugia}>
-      <View style={styles.landformRow}>
+      <View style={props.currentEvent.landform.cosmic ? styles.activeLandformRow : styles.inactiveLandformRow}>
         <RefugiaCard
           refugium = {props.cosmicRefugia}
           />
       </View>
-      <View style={styles.landformRow}>
+      <View style={props.currentEvent.landform.oceanic ? styles.activeLandformRow : styles.inactiveLandformRow}>
         <RefugiaCard
           refugium = {props.oceanicRefugia}
           />
       </View>
-      <View style={styles.landformRow}>
+      <View style={props.currentEvent.landform.coastal ? styles.activeLandformRow : styles.inactiveLandformRow}>
         <RefugiaCard
           refugium = {props.coastalRefugia}
           />
       </View>
-      <View style={styles.landformRow}>
+      <View style={props.currentEvent.landform.continental ? styles.activeLandformRow : styles.inactiveLandformRow}>
         <RefugiaCard
           refugium = {props.continentalRefugia}
           />
@@ -101,9 +101,14 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column'
   },
-  landformRow: {
+  activeLandformRow: {
     flex: 1,
-    flexDirection: 'row'
+    flexDirection: 'row',
+  },
+  inactiveLandformRow: {
+    flex: 1,
+    flexDirection: 'row',
+    opacity: 0.3
   },
   refugium: {
     backgroundColor: 'white',
@@ -115,7 +120,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     shadowColor: 'black',
     shadowOpacity: 1,
-    elevation: 10,
+    elevation: 10
+    
   },
   refugiaText: {
     backgroundColor: 'black',

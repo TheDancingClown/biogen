@@ -105,6 +105,7 @@ export default function App() {
             oceanicRefugia = {oceanicRefugia}
             coastalRefugia = {coastalRefugia}
             continentalRefugia = {continentalRefugia}
+            currentEvent = {currentEvent}
             />
 
           <View style={styles.button}>
