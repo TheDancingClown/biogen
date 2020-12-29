@@ -1,10 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { ImageBackground, StyleSheet, Text, TouchableOpacity, View, Modal, Image, SafeAreaView } from 'react-native';
+import { ImageBackground, StyleSheet, Text, TouchableOpacity, View, Modal } from 'react-native';
 import EventCard from './components/EventCard';
 import GameStatus from './components/GameStatus';
-import RefugiaCard from './components/RefugiaCard';
-import { Template, CosmicRefugia, OceanicRefugia, CoastalRefugia, ContinentalRefugia, RefugiumTemplate } from './src/CardList';
+import RefugiaDisplay from './components/RefugiaDisplay';
+import Climate from './components/Climate';
+import HelpAlert from './components/HelpAlert';
+import { Template } from './src/CardList';
 import EventDeck from './src/EventDeck';
 import RefugiaDeck from './src/RefugiaDeck';
 
@@ -16,23 +18,20 @@ export default function App() {
   const [refugiumDiscardPile, discardRefugia] = useState([0]);
   const [timeClock, progressTime] = useState(4.6);
   const [backgroundImage, setBackgroundImage] = useState(require('./assets/hadean.jpg'));
-  const [temperatureSequence, addTemperatureSequence] = useState([]);
+  const [climateSequence, addClimate] = useState([]);
   const [cosmicRefugia, newCosmicLandform] = useState([]);
   const [oceanicRefugia, newOceanicLandform] = useState([]);
   const [coastalRefugia, newCoastalLandform] = useState([]);
   const [continentalRefugia, newContinentalLandform] = useState([]);
+  const [medea, triggerMedea] = useState(false);
   const eventDeck = new EventDeck(eventDiscardPile);
   const refugiaDeck = new RefugiaDeck(cosmicRefugia, oceanicRefugia, coastalRefugia, continentalRefugia, refugiumDiscardPile);
 
   const drawEvent = () => {
-    if (timeClock > 0.6) {
-      let card = eventDeck.drawCard(round)
-      setCurrentEvent(card);
-      setShowEvent(true);
-    }
+    let card = eventDeck.drawCard(round);
+    setCurrentEvent(card);
+    setShowEvent(true);
   }
-
-  
 
   const performEvent = (card) => {
     increment(round + 1);
@@ -40,7 +39,7 @@ export default function App() {
     setShowEvent(false);
     checkEvents(card)
     discardEvent(eventDiscardPile.concat(card.id))
-    addToTemperatureSequence(card.globalTemperature);
+    addToClimateSequence(card.climate);
     progressTime(Math.round(((timeClock - 0.2)+Number.EPSILON) * 100) / 100)
   }
 
@@ -69,13 +68,22 @@ export default function App() {
     }
   }
 
-  const addToTemperatureSequence = (temp) => {
-    var sequence = temperatureSequence.concat(temp)
+  const addToClimateSequence = (climate) => {
+    var sequence = climateSequence.concat(climate)
     while(sequence.length>4) {
       sequence.shift();
     }
-    addTemperatureSequence(sequence);
+    checkMedea(sequence);
+    addClimate(sequence);
   }
+
+  const checkMedea = (sequence) => {
+    if(sequence.length == 4 && sequence.every(val => val === sequence[0])) {
+      triggerMedea(true);
+    } else {
+      triggerMedea(false);
+    };
+  };
 
   const updateLandforms = () => {
     newCosmicLandform(refugiaDeck.cosmicRefugia);
@@ -92,42 +100,40 @@ export default function App() {
           source = {backgroundImage}
           style={styles.backgroundImage}>
 
-          <GameStatus 
+          <RefugiaDisplay 
+            cosmicRefugia = {cosmicRefugia}
+            oceanicRefugia = {oceanicRefugia}
+            coastalRefugia = {coastalRefugia}
+            continentalRefugia = {continentalRefugia}
+            />
+
+          <View style={styles.button}>
+            <View >
+              <Climate climateSequence = {climateSequence}/>
+            </View>
+            <View style={{flex: 3, flexDirection: 'coloumn'}}>
+            <GameStatus 
             timeClock = {timeClock}
             currentEvent = {currentEvent}
-            temperatureSequence = {temperatureSequence}
             />
-          
-          <View style={styles.button}>
+            </View>
+            
+            {timeClock > 0.6 ?
             <TouchableOpacity 
               style={styles.drawEventButton}
               onPress ={() => drawEvent()} >
               <Text style={styles.buttonText}>Draw Event</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> : null}
+            {medea == true ? <TouchableOpacity 
+              style={styles.drawEventButton}
+              // onPress ={() => performEvent(currentEvent)} 
+              >
+                <Text style={styles.buttonText}>Medea</Text>
+              </TouchableOpacity>
+            : null}
           </View>
 
-          <View style={styles.refugia}>
-            <View style={styles.landformRow}>
-              <RefugiaCard
-                refugium = {cosmicRefugia}
-                />
-            </View>
-            <View style={styles.landformRow}>
-              <RefugiaCard
-                refugium = {oceanicRefugia}
-                />
-            </View>
-            <View style={styles.landformRow}>
-              <RefugiaCard
-                refugium = {coastalRefugia}
-                />
-            </View>
-            <View style={styles.landformRow}>
-              <RefugiaCard
-                refugium = {continentalRefugia}
-                />
-            </View>
-          </View>
+          
           
           <Modal
             transparent={true}
@@ -155,7 +161,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     padding: 10,
-    backgroundColor: 'black'
+    backgroundColor: 'black',
   },
   backgroundImage: {
     flex: 1,
@@ -163,8 +169,9 @@ const styles = StyleSheet.create({
   },
   button: {
     flex: 1,
-    alignItems: 'flex-end',
-    justifyContent: 'flex-start',
+    position: 'absolute',
+    top: 0,
+    right: 0
   },
   drawEventButton: {
     backgroundColor: '#301263',
@@ -190,15 +197,6 @@ const styles = StyleSheet.create({
     margin: 5,
     padding: 2,
     borderRadius: 5
-  },
-  refugia: {
-    flex: 200,
-    flexDirection: 'column',
-    alignSelf: 'flex-start'
-  },
-  landformRow: {
-    flexDirection: 'row',
-    height: 90
   }
   
 });

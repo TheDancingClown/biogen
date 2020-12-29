@@ -39,7 +39,7 @@ const Template =
         "continental": false
       },
     "event": [],
-    "globalTemperature": [],
+    "climate": [],
     "order": []
   }
 
@@ -55,7 +55,7 @@ const HadeanEon = [
         "continental": false
       },
     "event": [heaven, heaven],
-    "globalTemperature": [cooling],
+    "climate": [cooling],
     "order": ["red", "yellow", "blue"]
   },
   {
@@ -69,7 +69,7 @@ const HadeanEon = [
         "continental": false
       },
     "event": [smite, heaven, heaven],
-    "globalTemperature": [warming],
+    "climate": [warming],
     "order": ["green", "red", "yellow"]
   },
   {
@@ -83,7 +83,7 @@ const HadeanEon = [
         "continental": false
       },
     "event": [heaven, heaven, extremophileCrisis],
-    "globalTemperature": [cooling],
+    "climate": [cooling],
     "order": ["yellow", "red", "green"]
   },
   {
@@ -97,7 +97,7 @@ const HadeanEon = [
         "continental": false
       },
     "event": [heaven, heaven, extremophileCrisis],
-    "globalTemperature": [cooling],
+    "climate": [cooling],
     "order": ["blue", "green", "red"]
   },
   {
@@ -111,7 +111,7 @@ const HadeanEon = [
         "continental": false
       },
     "event": [aftershock, smite, smite, smite, extremophileCrisis, extremophileCrisis],
-    "globalTemperature": [],
+    "climate": [],
     "immune": "cosmic"
   },
   {
@@ -125,7 +125,7 @@ const HadeanEon = [
         "continental": false
       },
     "event": [smite, heaven, extremophileCrisis, uV0],
-    "globalTemperature": [warming],
+    "climate": [warming],
     "order": ["red", "green", "yellow"]
   }
 ]
@@ -142,7 +142,7 @@ const ArcheanEon = [
       "continental": false
     },
     "event": [aftershock, extremophileCrisis, extremophileCrisis, uV1],
-    "globalTemperature": [warming],
+    "climate": [warming],
   },
   {
     "id": 44,
@@ -155,7 +155,7 @@ const ArcheanEon = [
       "continental": true
     },
     "event": [heaven, extremophileCrisis, uV2],
-    "globalTemperature": [cooling],
+    "climate": [cooling],
     "order": ["yellow", "blue", "red"]
   },
   {
@@ -169,7 +169,7 @@ const ArcheanEon = [
       "continental": true
     },
     "event": [earth, earth, uV3],
-    "globalTemperature": [],
+    "climate": [],
     "order": ["green", "yellow", "blue"]
   },
   {
@@ -183,7 +183,7 @@ const ArcheanEon = [
       "continental": false
     },
     "event": [earth, heaven, uV4],
-    "globalTemperature": [cooling],
+    "climate": [cooling],
     "order": ["green", "blue", "red"]
   },
   {
@@ -197,7 +197,7 @@ const ArcheanEon = [
       "continental": true
     },
     "event": [earth, earth, oxygenSpike],
-    "globalTemperature": [cooling],
+    "climate": [cooling],
     "order": ["yellow", "red", "green"]
   },
   {
@@ -211,7 +211,7 @@ const ArcheanEon = [
       "continental": false
     },
     "event": [],
-    "globalTemperature": [],
+    "climate": [],
     "order": ["blue", "green", "yellow"],
     "special": "continental landforms inactive until next aftershock"
   },
@@ -226,7 +226,7 @@ const ArcheanEon = [
       "continental": true
     },
     "event": [smite, earth, oxygenSpike],
-    "globalTemperature": [warming],
+    "climate": [warming],
     "order": ["red", "blue", "green"]
   }
 ]
@@ -243,7 +243,7 @@ const ProterozoicEon = [
       "continental": false
     },
     "event": [drought, oxygenSpike, oxygenSpike],
-    "globalTemperature": [cooling],
+    "climate": [cooling],
     "order": ["green", "yellow", "blue"]
   },
   {
@@ -257,7 +257,7 @@ const ProterozoicEon = [
       "continental": false
     },
     "event": [aftershock, smite, smite, extremophileCrisis, extremophileCrisis, uV3],
-    "globalTemperature": [warming],
+    "climate": [warming],
     "special": "ignore ozone layer"
   },
   {
@@ -271,7 +271,7 @@ const ProterozoicEon = [
       "continental": true
     },
     "event": [earth, heaven, uV4],
-    "globalTemperature": [cooling],
+    "climate": [cooling],
     "order": ["blue", "red", "green"]
   },
   {
@@ -285,7 +285,7 @@ const ProterozoicEon = [
       "continental": false
     },
     "event": [smite, drought, uV1, cancer, earth],
-    "globalTemperature": [],
+    "climate": [],
     "order": ["red", "green", "blue"]
   },
   {
@@ -299,7 +299,7 @@ const ProterozoicEon = [
       "continental": false
     },
     "event": [smite, smite, smite, extremophileCrisis, oxygenSpike],
-    "globalTemperature": [],
+    "climate": [],
     "order": ["green", "blue", "yellow"]
   },
   {
@@ -313,7 +313,7 @@ const ProterozoicEon = [
       "continental": false
     },
     "event": [smite, extremophileCrisis, extremophileCrisis, cancer, uV2],
-    "globalTemperature": [],
+    "climate": [],
     "order": ["yellow", "red", "green"]
   },
   {
@@ -327,7 +327,7 @@ const ProterozoicEon = [
       "continental": true
     },
     "event": [smite, earth, extremophileCrisis, uV3],
-    "globalTemperature": [warming, warming],
+    "climate": [warming, warming],
     "order": ["blue", "yellow", "red"]
   },
   {
@@ -341,7 +341,7 @@ const ProterozoicEon = [
       "continental": true
     },
     "event": [smite, extremophileCrisis, cancer, uV0],
-    "globalTemperature": [cooling],
+    "climate": [cooling],
     "order": ["red", "green", "yellow"]
   },
   {
@@ -355,7 +355,7 @@ const ProterozoicEon = [
       "continental": false
     },
     "event": [aftershock, drought, heaven, oxygenSpike, oxygenSpike],
-    "globalTemperature": []
+    "climate": []
   },
   {
     "id": 59,
@@ -368,7 +368,7 @@ const ProterozoicEon = [
       "continental": true
     },
     "event": [oxygenSpike, ozoneLayer],
-    "globalTemperature": [],
+    "climate": [],
     "order": ["yellow", "blue", "red"],
     "special": "ozone layer formation"
   },
@@ -383,7 +383,7 @@ const ProterozoicEon = [
       "continental": true
     },
     "event": [smite, drought, cancer, oxygenSpike],
-    "globalTemperature": [warming],
+    "climate": [warming],
     "order": ["blue", "yellow", "green"]
   }
 ]
@@ -395,7 +395,9 @@ const RefugiumTemplate = [
     "title": "",
     "lifeDice": [],
     "enzymes": [],
-    "manna": []
+    "manna": [],
+    "resiliency": false,
+    "organisedManna": []
   }
 ]
 

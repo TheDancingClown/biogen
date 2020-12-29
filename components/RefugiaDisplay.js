@@ -1,6 +1,34 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 
+const RefugiaDisplay = (props) => {
+
+  return (
+    <View style={styles.refugia}>
+      <View style={styles.landformRow}>
+        <RefugiaCard
+          refugium = {props.cosmicRefugia}
+          />
+      </View>
+      <View style={styles.landformRow}>
+        <RefugiaCard
+          refugium = {props.oceanicRefugia}
+          />
+      </View>
+      <View style={styles.landformRow}>
+        <RefugiaCard
+          refugium = {props.coastalRefugia}
+          />
+      </View>
+      <View style={styles.landformRow}>
+        <RefugiaCard
+          refugium = {props.continentalRefugia}
+          />
+      </View>
+    </View>
+  )
+};
+
 const RefugiaCard = (props) => {
   const circle = require('../assets/circle.jpg');
   var refugiaRow = []
@@ -69,17 +97,25 @@ const Enzymes = (props) => {
 }
 
 const styles = StyleSheet.create({
+  refugia: {
+    flex: 1,
+    flexDirection: 'column'
+  },
+  landformRow: {
+    flex: 1,
+    flexDirection: 'row'
+  },
   refugium: {
     backgroundColor: 'white',
     borderRadius: 10,
     width: 125,
+    height: 90,
     margin: 3,
     borderColor: 'black',
     borderWidth: 1,
     shadowColor: 'black',
     shadowOpacity: 1,
     elevation: 10,
-    
   },
   refugiaText: {
     backgroundColor: 'black',
@@ -112,4 +148,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default RefugiaCard;
+export default RefugiaDisplay;

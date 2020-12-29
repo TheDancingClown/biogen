@@ -14,7 +14,7 @@ const EventCard = (props) => {
         <InformationText information={props.card.information} />
         <View style={styles.events}>
           <EventIcons events={props.card.event} />
-          <EventIcons events={props.card.globalTemperature} />
+          <EventIcons events={props.card.climate} />
         </View>
       </View>
     </View>
