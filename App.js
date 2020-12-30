@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { ImageBackground, StyleSheet, Text, TouchableOpacity, View, Modal } from 'react-native';
+import { ImageBackground, StyleSheet, Text, TouchableOpacity, View, Modal, Image, Button } from 'react-native';
 import EventCard from './components/EventCard';
 import GameStatus from './components/GameStatus';
 import RefugiaDisplay from './components/RefugiaDisplay';
@@ -23,6 +23,11 @@ export default function App() {
   const [oceanicRefugia, newOceanicLandform] = useState([]);
   const [coastalRefugia, newCoastalLandform] = useState([]);
   const [continentalRefugia, newContinentalLandform] = useState([]);
+  // const [redPlayerCatalysts, setRedPlayer1Catalysts] = useState([1,0,0,0])
+  // const [greenPlayerCatalysts, setGreenPlayer1Catalysts] = useState([0,1,0,0])
+  // const [bluePlayerCatalysts, setBluePlayer1Catalysts] = useState([0,0,1,0])
+  // const [yellowPlayerCatalysts, setYellowPlayer1Catalysts] = useState([0,0,0,1])
+  // const [currentPlayer, setCurrentPlayer] = useState['red']
   const [medea, triggerMedea] = useState(false);
   const eventDeck = new EventDeck(eventDiscardPile);
   const refugiaDeck = new RefugiaDeck(cosmicRefugia, oceanicRefugia, coastalRefugia, continentalRefugia, refugiumDiscardPile);
@@ -108,7 +113,7 @@ export default function App() {
             currentEvent = {currentEvent}
             />
 
-          <View style={styles.button}>
+          <View style={styles.gameStatus}>
             <View >
               <Climate climateSequence = {climateSequence}/>
             </View>
@@ -120,21 +125,28 @@ export default function App() {
             </View>
             
             {timeClock > 0.6 ?
-            <TouchableOpacity 
+          
+            <TouchableOpacity
               style={styles.drawEventButton}
-              onPress ={() => drawEvent()} >
-              <Text style={styles.buttonText}>Draw Event</Text>
-            </TouchableOpacity> : null}
-            {medea == true ? <TouchableOpacity 
-              style={styles.drawEventButton}
+              activeOpacity = '0.8'
+              onPress ={() => drawEvent()}>
+                <Image 
+                source = {require('./assets/moon.jpg')}
+                style = {styles.deckImage} />
+              <Text style={styles.eventButtonText}>Event</Text>
+            </TouchableOpacity>: null}
+
+            {medea == false ? <TouchableOpacity 
+              style={styles.medeaButton}
+              title='Medea'
+              color='red'
               // onPress ={() => performEvent(currentEvent)} 
               >
                 <Text style={styles.buttonText}>Medea</Text>
               </TouchableOpacity>
+              
             : null}
           </View>
-
-          
           
           <Modal
             transparent={true}
@@ -152,6 +164,7 @@ export default function App() {
               </TouchableOpacity>
             </View>
           </Modal>
+
         </ImageBackground>
       </View>
   );
@@ -168,24 +181,55 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: "cover",
   },
-  button: {
+  gameStatus: {
     flex: 1,
     position: 'absolute',
     top: 0,
-    right: 0
+    right: 0,
+    alignItems: 'center',
+    width: 200
   },
   drawEventButton: {
-    backgroundColor: '#301263',
+    borderWidth: 3,
     width: 150,
-    height: 30,
+    height: 250,
     borderRadius: 20,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    backgroundColor: 'rgba(30, 22, 100, 0.8)',
+    shadowColor: 'white',
+    shadowOpacity: 0.8,
+    borderColor: 'white',
+    borderWidth: 2
+  },
+  eventButtonText: {
+    color: 'white',
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginTop: 20
+  },
+  deckImage: {
+    width: 145,
+    height: 245,
+    resizeMode: 'cover',
+    position: 'absolute',
+    borderRadius: 20
+  },
+  medeaButton: {
+    borderWidth: 1,
+    borderColor: 'white',
+    width: 150,
+    padding: 5,
+    marginTop: 20,
+    borderRadius: 20,
+    backgroundColor: 'rgba(120, 14, 30, 0.8)',
   },
   buttonText: {
     color: 'white',
     textAlign: 'center',
     fontSize: 20,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   eventCard: {
     backgroundColor: "#000000aa", 
