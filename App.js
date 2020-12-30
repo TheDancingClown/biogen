@@ -121,7 +121,7 @@ export default function App() {
               style={styles.medeaButton}
               title='Medea'
               color='red'
-              // onPress ={() => performEvent(currentEvent)} 
+              // onPress ={() => endGame} 
               >
                 <Text style={styles.buttonText}>Medea</Text>
               </TouchableOpacity>

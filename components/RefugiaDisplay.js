@@ -1,7 +1,40 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, Modal } from 'react-native';
+import RefugiumCard from './RefugiumCard';
+import { RefugiumTemplate } from '../src/CardList'
 
 const RefugiaDisplay = (props) => {
+
+  const [showRefugium, setShowRefugium] = useState(false);
+  const [currentRefugium, setCurrentRefugium] = useState(RefugiumTemplate)
+
+  const inspectRefugium = (refugium) => {
+    setShowRefugium(true);
+    setCurrentRefugium(refugium);
+  }
+
+  const RefugiaCard = (props) => {
+    const circle = require('../assets/circle.jpg');
+    var refugiaRow = []
+    props.refugium.map((refugium, index) => {
+      refugiaRow.push(
+        <TouchableOpacity onPress ={() => inspectRefugium(refugium)} >
+          <View key={index} style={styles.refugium} >
+            <Manna manna={refugium.organisedManna}/>
+            <Text style={[styles.refugiaText,{ color: `${refugium.colour}`}]}>{refugium.title}</Text>
+            <LifeDice dice={refugium.lifeDice} />
+            <Enzymes enzymes={refugium.enzymes}/> 
+            <Manna manna={refugium.manna}/> 
+          </View>
+        </TouchableOpacity> 
+      )
+    })
+    return (
+      <View style={{flexDirection: 'row'}}>
+        {refugiaRow}
+      </View>
+    )
+  };
 
   return (
     <View style={styles.refugia}>
@@ -25,30 +58,27 @@ const RefugiaDisplay = (props) => {
           refugium = {props.continentalRefugia}
           />
       </View>
+    
+      <Modal
+        transparent={true}
+        visible={showRefugium}
+        supportedOrientations={['landscape']}
+        >
+        <View style={styles.refugiumCard}>
+          <RefugiumCard refugium = {currentRefugium}/>
+          <TouchableOpacity style={styles.closeEvent}
+            onPress ={() => setShowRefugium(false)}
+            >
+              <Text style={styles.buttonText}>X</Text>
+          </TouchableOpacity>
+        </View>
+      </Modal>
+
     </View>
   )
 };
 
-const RefugiaCard = (props) => {
-  const circle = require('../assets/circle.jpg');
-  var refugiaRow = []
-  props.refugium.map((refugium, index) => {
-    refugiaRow.push(
-    <View key={index} style={styles.refugium} >
-      <Manna manna={[]}/>
-      <Text style={[styles.refugiaText,{ color: `${refugium.colour}`}]}>{refugium.title}</Text>
-      <LifeDice dice={refugium.lifeDice} />
-      <Enzymes enzymes={refugium.enzymes}/> 
-      <Manna manna={refugium.manna}/> 
-    </View>
-    )
-  })
-  return (
-    <View style={{flexDirection: 'row'}}>
-      {refugiaRow}
-    </View>
-  )
-};
+
 
 const Manna = (props) => {
   var mannaCubes = [];
@@ -119,7 +149,6 @@ const styles = StyleSheet.create({
     shadowColor: 'lightgrey',
     shadowOpacity: 0.8,
     elevation: 10
-    
   },
   refugiaText: {
     backgroundColor: 'black',
@@ -149,6 +178,24 @@ const styles = StyleSheet.create({
     justifyContent: 'center', 
     flexDirection: 'row', 
     height: 17
+  },
+  refugiumCard: {
+    backgroundColor: "#000000aa", 
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  closeEvent: {
+    backgroundColor: 'darkred',
+    margin: 5,
+    padding: 2,
+    borderRadius: 5
+  },
+  buttonText: {
+    color: 'white',
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: 'bold',
   }
 });
 
