@@ -1,5 +1,6 @@
 import React from 'react';
 import { Alert, TouchableOpacity, StyleSheet, Text, View, Image } from 'react-native';
+import { Manna, LifeDice, Enzymes } from './LargeRefugiumComponents';
 
 const RefugiumCard = (props) => {
 
@@ -27,76 +28,14 @@ const RefugiumCard = (props) => {
   return (
     <View style={styles.container}>
       <View style={styles.detail}>
-        <Manna manna={[]}/>
+        <Manna manna={props.refugium.organisedManna} />
         <Text style={[styles.refugiaText,{ color: `${props.refugium.colour}`}]}>{props.refugium.title}</Text>
-        <LifeDice dice={props.refugium.lifeDice} />
+        <LifeDice dice={props.refugium.lifeDice}/>
         <Enzymes enzymes={props.refugium.enzymes}/> 
         <Manna manna={props.refugium.manna}/> 
       </View>
     </View>
   );
-}
-
-const Header = (props) => {
-  
-  return (
-    <View 
-      style={[styles.header,{ backgroundColor: `${props.colour}`}]}>
-      <Text style={styles.text}>{props.title.toUpperCase()}</Text>
-    </View>
-  ) 
-}
-
-const Manna = (props) => {
-  var mannaCubes = [];
-  if(props.manna) {
-    props.manna.map((cubeColour,index) => {
-      mannaCubes.push(<View
-        key={index} style={[styles.mannaCube, {backgroundColor: cubeColour}]}>
-          <Text style={{color: cubeColour, fontSize: 1}}>X</Text>
-        </View>
-      )
-    });
-  };
-  return (
-    <View style={styles.iconRow}>
-      {mannaCubes}
-    </View>
-  )
-};
-
-const LifeDice = (props) => {
-  var diceIcons = [];
-  if(props.dice) {
-    props.dice.map((die,index) => {
-      diceIcons.push(<Image
-        key={index} style={styles.lifeDice} source={die}
-        />
-      )
-    });
-  };
-  return (
-    <View style={styles.iconRow}>
-      {diceIcons}
-    </View>
-  )
-};
-
-const Enzymes = (props) => {
-  var enzymeList = [];
-  if(props.enzymes) {
-    props.enzymes.map((enzymeSlot, index) => {
-      enzymeList.push(<Image
-        key={index} style={styles.enzymeSlot} source={enzymeSlot}
-        />
-      )
-    });
-  };
-  return (
-    <View style={styles.iconRow}>
-      {enzymeList}
-    </View>
-  )
 }
 
 const styles = StyleSheet.create({
@@ -114,28 +53,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
   },
-  lifeDice: {
-    height: 30,
-    width: 30,
-    margin: 5
-  },
-  enzymeSlot: {
-    height: 35,
-    width: 35,
-    margin: 10
-  },
-  mannaCube: {
-    width: 30,
-    height: 30,
-    margin: 10,
-    borderColor: 'black',
-    borderWidth: 1
-  },
-  iconRow: {
-    justifyContent: 'center', 
-    flexDirection: 'row', 
-    height: 50
-  },
   refugiaText: {
     alignSelf: 'stretch',
     backgroundColor: 'black',
@@ -143,6 +60,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 10,
     fontSize: 30
+  },
+  mannaCube: {
+    width: 30,
+    height: 30,
+    margin: 10,
+    borderColor: 'black',
+    borderWidth: 1
   }
 });
 
