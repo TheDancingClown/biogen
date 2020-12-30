@@ -40,6 +40,15 @@ describe('end of game', () => {
     card = deck.drawCard(20)
     expect(card).toBe(null)
   });
+
+  describe('event detail', () => {
+    it('returns the text for an event', () => {
+      expect(deck.eventInformation([1])).toBe("Aftershock(shock symbol).\nThe next event is drawn and the effects combined with this event.\n\n")
+    });
+    it('returns the text for multiple events', () => {
+      expect(deck.eventInformation([1, 12])).toBe("Aftershock(shock symbol).\nThe next event is drawn and the effects combined with this event.\n\nUltraviolet Radiation(UV symbol).\nAll organisms without an UV Shield remove mutations up to the level of UV Radiation.\n\n")
+    });
+  });
 });
 
 

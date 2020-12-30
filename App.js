@@ -117,6 +117,16 @@ export default function App() {
             <View >
               <Climate climateSequence = {climateSequence}/>
             </View>
+            {medea == true ? <TouchableOpacity 
+              style={styles.medeaButton}
+              title='Medea'
+              color='red'
+              // onPress ={() => performEvent(currentEvent)} 
+              >
+                <Text style={styles.buttonText}>Medea</Text>
+              </TouchableOpacity>
+              
+            : null}
             <View style={{flex: 3, flexDirection: 'coloumn'}}>
             <GameStatus 
             timeClock = {timeClock}
@@ -136,16 +146,7 @@ export default function App() {
               <Text style={styles.eventButtonText}>Event</Text>
             </TouchableOpacity>: null}
 
-            {medea == false ? <TouchableOpacity 
-              style={styles.medeaButton}
-              title='Medea'
-              color='red'
-              // onPress ={() => performEvent(currentEvent)} 
-              >
-                <Text style={styles.buttonText}>Medea</Text>
-              </TouchableOpacity>
-              
-            : null}
+            
           </View>
           
           <Modal
@@ -197,10 +198,8 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: 'rgba(30, 22, 100, 0.8)',
-    shadowColor: 'white',
-    shadowOpacity: 0.8,
-    borderColor: 'white',
-    borderWidth: 2
+    shadowColor: 'lightgrey',
+    shadowOpacity: 0.8
   },
   eventButtonText: {
     color: 'white',

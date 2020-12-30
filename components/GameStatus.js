@@ -5,7 +5,7 @@ const GameStatus = (props) => {
 
   const showAlert = () =>{
     Alert.alert(
-      "The game begins 4.6 billion years ago and progresses from the Hadean Eon to the Phanerozoic Eon, approximately 0.6 billion years ago, through a series of events each encapsulating 200 milllion years.\n\nClick 'Event' to draw a new card and trigger the event phase."
+      "The game begins in the Hadean Eon 4.6 million years ago and, through a series of events each encapsulating 200 milllion years, recreates the formation of Earth until the Phanerozoic Eon, approximately 0.6 billion years ago.\n\nClick 'Event' to draw a new card and trigger the event phase."
     )
   }
 

@@ -116,10 +116,8 @@ const styles = StyleSheet.create({
     width: 125,
     height: 90,
     margin: 3,
-    borderColor: 'black',
-    borderWidth: 1,
-    shadowColor: 'black',
-    shadowOpacity: 1,
+    shadowColor: 'lightgrey',
+    shadowOpacity: 0.8,
     elevation: 10
     
   },
