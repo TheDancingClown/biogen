@@ -12,7 +12,7 @@ const Climate = (props) => {
 
   const showAlert = () =>{
     Alert.alert(
-       "The sun and snow icons indicate climate change with the leftmost icon showing the current climate.\n\n Four suns indicate global warming and triggers a runaway greenhouse. Four snows trigger a snowball earth. In either case the game can be ended early in armageddon by clicking 'Medea'."
+       "The sun and snow icons indicate climate change with the leftmost icon showing the current climate.\n\n Four suns indicate global warming and triggers a runaway greenhouse. Four snowflakes trigger a snowball earth. In either case the game can be ended early in armageddon by clicking 'Medea'."
     )
  }
   

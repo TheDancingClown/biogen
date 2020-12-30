@@ -8,7 +8,7 @@ const EventCard = (props) => {
 
   const landformAlert = () => {
     Alert.alert(
-      "The landform icons for the current event. Active landforms are shown in black and inactive landforms are  shown in grey.\n\nAn active landform means you can assign Bionts and Enzymes to Refugia in its row."
+      "The landform icons for the current event. Active landforms are shown in black and inactive landforms are shown in grey.\n\nAn active landform means you can assign Bionts and Enzymes to Refugia in its row."
     )
   }
 
