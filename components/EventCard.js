@@ -103,12 +103,13 @@ const LandformIcons = (props) => {
 const EventIcons = (props) => {
   var eventList = []
     
-  props.events.map((event,index) => {
+  if(props.events) {props.events.map((event,index) => {
       eventList.push(<Image
         key={index} style={styles.activeIcon} source={event}
         />
       )
-  })
+    })
+  }
   return (
     <View style={styles.eventIcons}>{eventList}</View>
   )

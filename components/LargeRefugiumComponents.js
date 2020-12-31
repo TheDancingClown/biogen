@@ -60,8 +60,8 @@ const styles = StyleSheet.create({
     margin: 5
   },
   enzymeSlot: {
-    height: 35,
-    width: 35,
+    height: 40,
+    width: 40,
     margin: 10
   },
   mannaCube: {
@@ -69,10 +69,13 @@ const styles = StyleSheet.create({
     height: 30,
     margin: 10,
     borderColor: 'black',
-    borderWidth: 1
+    borderWidth: 1,
+    shadowColor: 'black',
+    shadowOpacity: 0.8,
   },
   iconRow: {
-    justifyContent: 'center', 
+    justifyContent: 'center',
+    alignItems: 'center',
     flexDirection: 'row', 
     height: 50
   }

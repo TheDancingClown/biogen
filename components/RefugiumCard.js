@@ -26,12 +26,12 @@ const RefugiumCard = (props) => {
   };
 
   return (
-    <View style={styles.container}>
+    <View key={props.key} style={styles.container}>
       <View style={styles.detail}>
         <TouchableOpacity onPress = {organisedMannaAlert}>
           <Manna manna={props.refugium.organisedManna} />
         </TouchableOpacity>
-        <Text style={[styles.refugiaText,{ color: `${props.refugium.colour}`}]}>{props.refugium.title}</Text>
+        <Text key={props.key} style={[styles.refugiaText, props.refugium.colour ? { 'color': `${props.refugium.colour}`} : 'white']}>{props.refugium.title}</Text>
         <TouchableOpacity onPress = {lifeDiceAlert}>
           <LifeDice dice={props.refugium.lifeDice}/>
         </TouchableOpacity>
@@ -75,6 +75,21 @@ const styles = StyleSheet.create({
     margin: 10,
     borderColor: 'black',
     borderWidth: 1
+  },
+  diceButton: {
+    width: 150,
+    padding: 5,
+    marginTop: 15,
+    borderRadius: 20,
+    backgroundColor: 'rgba(120, 14, 30, 0.9)',
+    shadowColor: 'lightgrey',
+    shadowOpacity: 0.6,
+  },
+  buttonText: {
+    color: 'white',
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: 'bold',
   }
 });
 

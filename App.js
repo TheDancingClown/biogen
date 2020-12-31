@@ -1,11 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { ImageBackground, StyleSheet, Text, TouchableOpacity, View, Modal, Image, Button } from 'react-native';
+import { ImageBackground, StyleSheet, Text, TouchableOpacity, View, Modal, Image } from 'react-native';
 import EventCard from './components/EventCard';
 import GameStatus from './components/GameStatus';
 import RefugiaDisplay from './components/RefugiaDisplay';
 import Climate from './components/Climate';
-import HelpAlert from './components/HelpAlert';
 import { Template } from './src/CardList';
 import EventDeck from './src/EventDeck';
 import RefugiaDeck from './src/RefugiaDeck';
@@ -23,11 +22,10 @@ export default function App() {
   const [oceanicRefugia, newOceanicLandform] = useState([]);
   const [coastalRefugia, newCoastalLandform] = useState([]);
   const [continentalRefugia, newContinentalLandform] = useState([]);
-  // const [redPlayerCatalysts, setRedPlayer1Catalysts] = useState([1,0,0,0])
-  // const [greenPlayerCatalysts, setGreenPlayer1Catalysts] = useState([0,1,0,0])
-  // const [bluePlayerCatalysts, setBluePlayer1Catalysts] = useState([0,0,1,0])
-  // const [yellowPlayerCatalysts, setYellowPlayer1Catalysts] = useState([0,0,0,1])
-  // const [currentPlayer, setCurrentPlayer] = useState['red']
+  // const [redPlayer, updateRedPlayer] = useState([1,0,0,0])
+  // const [greenPlayer, updateGreenPlayer] = useState([0,1,0,0])
+  // const [bluePlayer, updateBluePlayer] = useState([0,0,1,0])
+  // const [yellowPlayer, updateYellowPlayer] = useState([0,0,0,1])
   const [medea, triggerMedea] = useState(false);
   const eventDeck = new EventDeck(eventDiscardPile);
   const refugiaDeck = new RefugiaDeck(cosmicRefugia, oceanicRefugia, coastalRefugia, continentalRefugia, refugiumDiscardPile);
@@ -117,16 +115,7 @@ export default function App() {
             <View >
               <Climate climateSequence = {climateSequence}/>
             </View>
-            {medea == true ? <TouchableOpacity 
-              style={styles.medeaButton}
-              title='Medea'
-              color='red'
-              // onPress ={() => endGame} 
-              >
-                <Text style={styles.buttonText}>Medea</Text>
-              </TouchableOpacity>
-              
-            : null}
+            
             <View style={{flex: 3, flexDirection: 'coloumn'}}>
             <GameStatus 
             timeClock = {timeClock}
@@ -146,7 +135,14 @@ export default function App() {
               <Text style={styles.eventButtonText}>Event</Text>
             </TouchableOpacity>: null}
 
-            
+            {medea == true ? <TouchableOpacity 
+              style={styles.medeaButton}
+              // onPress ={() => endGame} 
+              >
+                <Text style={styles.buttonText}>Medea</Text>
+              </TouchableOpacity>
+              
+            : null}
           </View>
           
           <Modal
@@ -199,7 +195,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'rgba(30, 22, 100, 0.8)',
     shadowColor: 'lightgrey',
-    shadowOpacity: 0.8
+    shadowOpacity: 0.8,
+    marginTop: 5
   },
   eventButtonText: {
     color: 'white',
@@ -216,13 +213,13 @@ const styles = StyleSheet.create({
     borderRadius: 20
   },
   medeaButton: {
-    borderWidth: 1,
-    borderColor: 'white',
     width: 150,
     padding: 5,
-    marginTop: 20,
+    marginTop: 15,
     borderRadius: 20,
-    backgroundColor: 'rgba(120, 14, 30, 0.8)',
+    backgroundColor: 'rgba(120, 14, 30, 0.9)',
+    shadowColor: 'lightgrey',
+    shadowOpacity: 0.6,
   },
   buttonText: {
     color: 'white',
@@ -234,13 +231,16 @@ const styles = StyleSheet.create({
     backgroundColor: "#000000aa", 
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   closeEvent: {
     backgroundColor: 'darkred',
     margin: 5,
     padding: 2,
-    borderRadius: 5
+    borderRadius: 5,
+    position: 'absolute',
+    top: 90,
+    right: 220
   }
   
 });
