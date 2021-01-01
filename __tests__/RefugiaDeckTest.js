@@ -229,7 +229,6 @@ describe('_landformID', () => {
 describe('_cardsDrawn', () => {
 it('returns false when a deck has not been fully drawn', () => {
     let success = deck._cardsDrawn([{'id': 1}, {'id': 2}])
-    console.log(success)
     expect(success).toBe(false);
   });
 

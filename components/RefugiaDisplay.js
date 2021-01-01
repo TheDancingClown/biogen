@@ -4,16 +4,22 @@ import RefugiumCard from './RefugiumCard';
 import DiceResults from './DiceResults';
 import { Manna, LifeDice, Enzymes } from './RefugiumComponents';
 import { RefugiumTemplate } from '../src/CardList'
+import Dice from '../src/Dice';
 
 const RefugiaDisplay = (props) => {
 
   const [showRefugium, setShowRefugium] = useState(false);
   const [currentRefugium, setCurrentRefugium] = useState(RefugiumTemplate)
-  const [autocatalyticDice, setAutocatalyticDice] = useState({1: 1, 2: 2, 3: 3, 4: 0, 5: 0, 6: 1})
+  const [autocatalyticDice, setAutocatalyticDice] = useState({'one': 0, 'two': 0, 'three': 0, 'four': 0, 'five': 0, 'six': 0})
 
   const inspectRefugium = (refugium) => {
     setShowRefugium(true);
     setCurrentRefugium(refugium);
+  }
+
+  const autocatalyticRoll = (numberOfDice) => {
+    let dice = new Dice();
+    setAutocatalyticDice(dice.roll(numberOfDice))
   }
 
   const RefugiaCard = (props) => {
@@ -76,10 +82,10 @@ const RefugiaDisplay = (props) => {
           <View style={styles.diceRolls}>
             <TouchableOpacity 
               style={styles.diceButton}
-              disabled={currentRefugium.organisedManna > 0 ? false : true}
+              disabled={false}
               // activeOpacity={disabled ? 1 : 0.7} 
               // onPress={!disabled && onPress}
-              // onPress ={() => dice.roll(1)} 
+              onPress ={() => autocatalyticRoll(currentRefugium.organisedManna.length)} 
               >
               <Text style={styles.buttonText}>Autocatalytic Roll</Text>
             </TouchableOpacity>

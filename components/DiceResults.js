@@ -5,21 +5,21 @@ const DiceResults = (props) => {
   let diceResults = []
   let dieImage
   for (const die in props.result) {
-    if(die == 1) {
+    if(die == 'one') {
       dieImage = require('../assets/one.jpg')
-    } else if (die == 2) {
+    } else if (die == 'two') {
       dieImage = require('../assets/two.jpg')
-    } else if (die == 3) {
+    } else if (die == 'three') {
       dieImage = require('../assets/three.jpg')
-    } else if (die == 4) {
+    } else if (die == 'four') {
       dieImage = require('../assets/four.jpg')
-    } else if (die == 5) {
+    } else if (die == 'five') {
       dieImage = require('../assets/five.jpg')
-    } else if (die == 6) {
+    } else if (die == 'six') {
       dieImage = require('../assets/six.jpg')
     }
   diceResults.push(
-  <View style={styles.row}>
+  <View style={styles.row} key={die}>
     <Image source={dieImage} style={styles.die} />
     <Text style={{color: 'white', fontSize: 25 }} key={die}>: {props.result[die]}</Text>
   </View>);
