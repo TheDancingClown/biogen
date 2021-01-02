@@ -77,6 +77,11 @@ class RefugiaDeck extends Deck {
     };
   };
 
+  destroyBiont(card, biont) {
+    let index = card.bionts.findIndex(e => e === biont);
+    card.bionts.splice(index, 1)
+  }
+
   _destroyManna(card, index, landform) {
     if(card.resiliency == false) {
       if(card.manna.length != 0) {

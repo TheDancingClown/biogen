@@ -263,9 +263,17 @@ describe('addBiont', () => {
   });
 
   it('adds a biont to a refugium', () => {
-    refugium = {"bionts": ['red']};
+    refugium = {"bionts": ["red"]};
     deck.addBiont(refugium, 'blue');
     expect(refugium.bionts).toEqual(['red', 'blue']);
+  });
+});
+
+describe('destroyBiont', () => {
+  it('destroys a biont', () => {
+  refugium = {"bionts": ["red", "blue"]};
+  deck.destroyBiont(refugium, 'red');
+  expect(refugium.bionts).toEqual(['blue'])
   });
 });
 
