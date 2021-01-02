@@ -14,8 +14,7 @@ class Dice {
 
   _countAndFormatResults(roll) {
     var ones = 0, twos = 0, threes = 0, fours = 0, fives = 0, sixes = 0;
-    var number;
-    for(number of roll) {
+    for(let number of roll) {
       if(number == 1) {
         ones ++
       } else if (number === 2) {

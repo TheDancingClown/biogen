@@ -61,6 +61,12 @@ class RefugiaDeck extends Deck {
     this.continentalRefugia.map((card, index) => {
       this._destroyManna(card, index, this.continentalRefugia);
     });
+  };
+
+  organise(card, cube) {
+    let index = card.manna.findIndex(e => e === cube);
+    card.manna.splice(index, 1)
+    card.organisedManna.push(cube);
   }
 
   _destroyManna(card, index, landform) {

@@ -19,6 +19,10 @@ it('rolls only valid number', () => {
   expect(dice._listRoll(6)).toEqual(expect.arrayContaining([1,1,1,1,1,1]))
 });
 
+it('rolls no dice', () => {
+  expect(dice._listRoll()).toEqual([])
+});
+
 it('returns zeros for an empty array', () => {
   expect(dice._countAndFormatResults([])).toEqual({'one':0, 'two':0, 'three':0, 'four':0, 'five':0, 'six':0})
 });
