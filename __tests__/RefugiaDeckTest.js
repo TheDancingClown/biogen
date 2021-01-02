@@ -255,3 +255,17 @@ describe('organise', () => {
   });
 });
 
+describe('addBiont', () => {
+  it('creates a biont array', () => {
+    refugium = {};
+    deck.addBiont(refugium, 'blue');
+    expect(refugium.bionts).toEqual(['blue']);
+  });
+
+  it('adds a biont to a refugium', () => {
+    refugium = {"bionts": ['red']};
+    deck.addBiont(refugium, 'blue');
+    expect(refugium.bionts).toEqual(['red', 'blue']);
+  });
+});
+

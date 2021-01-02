@@ -69,6 +69,14 @@ class RefugiaDeck extends Deck {
     card.organisedManna.push(cube);
   }
 
+  addBiont(card, biont) {
+    if(!card.bionts) {
+      card["bionts"] = [biont];
+    } else {
+      card.bionts.push(biont);
+    };
+  };
+
   _destroyManna(card, index, landform) {
     if(card.resiliency == false) {
       if(card.manna.length != 0) {
