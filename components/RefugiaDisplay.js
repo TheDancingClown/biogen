@@ -5,12 +5,14 @@ import DiceResults from './DiceResults';
 import { Manna, LifeDice, Enzymes, Bionts } from './RefugiumComponents';
 import { RefugiumTemplate } from '../src/CardList'
 import Dice from '../src/Dice';
+import RefugiaDeck from '..src/RefugiaDeck'
 
 const RefugiaDisplay = (props) => {
 
   const [showRefugium, setShowRefugium] = useState(false);
   const [currentRefugium, setCurrentRefugium] = useState(RefugiumTemplate)
   const [autocatalyticDice, setAutocatalyticDice] = useState({'one': 0, 'two': 0, 'three': 0, 'four': 0, 'five': 0, 'six': 0})
+  const [phase, setPhase] = useState('assignment')
 
   const inspectRefugium = (refugium) => {
     setShowRefugium(true);
@@ -22,9 +24,14 @@ const RefugiaDisplay = (props) => {
     setAutocatalyticDice(dice.roll(numberOfDice))
   }
 
+  const assignBiont = () => {
+    let deck = new RefugiaDeck();
+    setCurrentRefugium(deck.addBiont(currentRefugium, 'red'));
+  }
+
   const RefugiaCard = (props) => {
     var refugiaRow = []
-    props.refugium.map((refugium, index) => {
+    props.refugium.map((refugium) => {
       refugiaRow.push(
         <TouchableOpacity key={refugium.id} onPress ={() => inspectRefugium(refugium)} >
           <View style={styles.refugium} >
@@ -82,18 +89,34 @@ const RefugiaDisplay = (props) => {
             >
               <Text style={styles.buttonText}>X</Text>
           </TouchableOpacity>
-          <View style={styles.diceRolls}>
-            <TouchableOpacity 
-              style={styles.diceButton}
-              disabled={false}
-              // activeOpacity={disabled ? 1 : 0.7} 
-              // onPress={!disabled && onPress}
-              onPress ={() => autocatalyticRoll(currentRefugium.organisedManna.length)} 
-              >
-              <Text style={styles.buttonText}>Autocatalytic Roll</Text>
-            </TouchableOpacity>
-            <DiceResults result = {autocatalyticDice} />
-          </View>
+          {phase=='assignment' &&
+            <View style={styles.diceRolls}>
+              <TouchableOpacity 
+                style={styles.diceButton}
+                disabled={false}
+                // activeOpacity={disabled ? 1 : 0.7} 
+                // onPress={!disabled && onPress}
+                onPress ={() => assignBiont()} 
+                >
+                <Text style={styles.buttonText}>Assign Biont</Text>
+              </TouchableOpacity>
+            </View>
+          }
+          {phase==='autocatalytic roll' &&
+            <View style={styles.diceRolls}>
+              <TouchableOpacity 
+                style={styles.diceButton}
+                disabled={false}
+                // activeOpacity={disabled ? 1 : 0.7} 
+                // onPress={!disabled && onPress}
+                onPress ={() => autocatalyticRoll(currentRefugium.organisedManna.length)} 
+                >
+                <Text style={styles.buttonText}>Autocatalytic Roll</Text>
+              </TouchableOpacity>
+              <DiceResults result = {autocatalyticDice} />
+            </View>
+          }
+          
         </View>
       </Modal>
 

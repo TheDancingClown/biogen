@@ -239,41 +239,5 @@ it('returns false when a deck has not been fully drawn', () => {
   });
 });
 
-describe('organise', () => {
-  it('moves manna from disorganised to organised', () => {
-    refugium = {"manna": ['yellow'], "organisedManna": []};
-    deck.organise(refugium, 'yellow');
-    expect(refugium.organisedManna).toEqual(['yellow']);
-    expect(refugium.manna).toEqual([]);
-  });
 
-  it('moves manna from disorganised to organised', () => {
-    refugium = {"manna": ['red', 'yellow'], "organisedManna": []};
-    deck.organise(refugium, 'yellow');
-    expect(refugium.organisedManna).toEqual(['yellow']);
-    expect(refugium.manna).toEqual(['red']);
-  });
-});
-
-describe('addBiont', () => {
-  it('creates a biont array', () => {
-    refugium = {};
-    deck.addBiont(refugium, 'blue');
-    expect(refugium.bionts).toEqual(['blue']);
-  });
-
-  it('adds a biont to a refugium', () => {
-    refugium = {"bionts": ["red"]};
-    deck.addBiont(refugium, 'blue');
-    expect(refugium.bionts).toEqual(['red', 'blue']);
-  });
-});
-
-describe('destroyBiont', () => {
-  it('destroys a biont', () => {
-  refugium = {"bionts": ["red", "blue"]};
-  deck.destroyBiont(refugium, 'red');
-  expect(refugium.bionts).toEqual(['blue'])
-  });
-});
 
