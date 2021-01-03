@@ -19,6 +19,24 @@ const Manna = (props) => {
   )
 };
 
+const Bionts = (props) => {
+  var biontDomes = [];
+  if(props.bionts) {
+    props.bionts.map((domeColour,index) => {
+      biontDomes.push(<View
+        key={index} style={[styles.biont, {backgroundColor: domeColour}]}>
+          <Text style={{color: domeColour, fontSize: 1}}>X</Text>
+        </View>
+      )
+    });
+  };
+  return (
+    <View style={styles.iconRow}>
+      {biontDomes}
+    </View>
+  )
+};
+
 const LifeDice = (props) => {
   var diceIcons = [];
   if(props.dice) {
@@ -72,6 +90,14 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     borderWidth: 1
   },
+  biont: {
+    width: 10,
+    height: 10,
+    margin: 4,
+    borderColor: 'black',
+    borderWidth: 1,
+    borderRadius: 5
+  },
   iconRow: {
     justifyContent: 'center', 
     flexDirection: 'row', 
@@ -82,5 +108,6 @@ const styles = StyleSheet.create({
 export {
   Manna,
   LifeDice,
-  Enzymes
+  Enzymes,
+  Bionts
 }

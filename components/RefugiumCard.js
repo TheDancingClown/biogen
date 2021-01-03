@@ -1,6 +1,6 @@
 import React from 'react';
 import { Alert, TouchableOpacity, StyleSheet, Text, View } from 'react-native';
-import { Manna, LifeDice, Enzymes } from './LargeRefugiumComponents';
+import { Manna, LifeDice, Enzymes, Bionts } from './LargeRefugiumComponents';
 
 const RefugiumCard = (props) => {
 
@@ -29,7 +29,10 @@ const RefugiumCard = (props) => {
     <View key={props.key} style={styles.container}>
       <View style={styles.detail}>
         <TouchableOpacity onPress = {organisedMannaAlert}>
+          <View style = {{flexDirection: 'row'}}>
+          <Bionts bionts={props.refugium.bionts} />
           <Manna manna={props.refugium.organisedManna} />
+          </ View>
         </TouchableOpacity>
         <Text key={props.key} style={[styles.refugiaText, props.refugium.colour ? { 'color': `${props.refugium.colour}`} : 'white']}>{props.refugium.title}</Text>
         <TouchableOpacity onPress = {lifeDiceAlert}>

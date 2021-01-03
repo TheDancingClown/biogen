@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Modal } from 'react-native';
 import RefugiumCard from './RefugiumCard';
 import DiceResults from './DiceResults';
-import { Manna, LifeDice, Enzymes } from './RefugiumComponents';
+import { Manna, LifeDice, Enzymes, Bionts } from './RefugiumComponents';
 import { RefugiumTemplate } from '../src/CardList'
 import Dice from '../src/Dice';
 
@@ -28,7 +28,10 @@ const RefugiaDisplay = (props) => {
       refugiaRow.push(
         <TouchableOpacity key={refugium.id} onPress ={() => inspectRefugium(refugium)} >
           <View style={styles.refugium} >
-            <Manna manna={refugium.organisedManna}/>
+            <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+              <Bionts bionts={refugium.bionts}/>
+              <Manna manna={refugium.organisedManna}/>
+            </View>
             <Text key={refugium.id} style={[styles.refugiaText, refugium.colour ? { 'color': `${refugium.colour}`} : 'white']}>{refugium.title}</Text>
             <LifeDice dice={refugium.lifeDice} />
             <Enzymes enzymes={refugium.enzymes}/> 
