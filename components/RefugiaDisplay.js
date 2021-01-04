@@ -12,6 +12,17 @@ const RefugiaDisplay = (props) => {
   const [showRefugium, setShowRefugium] = useState(false);
   const [currentRefugium, setCurrentRefugium] = useState(RefugiumTemplate)
   const [autocatalyticDice, setAutocatalyticDice] = useState({'one': 0, 'two': 0, 'three': 0, 'four': 0, 'five': 0, 'six': 0})
+  const [availableBionts, updateAvailableBionts] = useState(1);
+  let refugium = new Refugium(
+    currentRefugium.id, 
+    currentRefugium.colour, 
+    currentRefugium.title, 
+    currentRefugium.lifeDice,
+    currentRefugium.enzymes, 
+    currentRefugium.manna,
+    currentRefugium.resiliency,
+    currentRefugium.organisedManna,
+    currentRefugium.bionts);
 
   const inspectRefugium = (refugium) => {
     setShowRefugium(true);
@@ -24,18 +35,18 @@ const RefugiaDisplay = (props) => {
   }
 
   const assignBiont = () => {
-    let refugium = new Refugium(
-      currentRefugium.id, 
-      currentRefugium.colour, 
-      currentRefugium.title, 
-      currentRefugium.lifeDice,
-      currentRefugium.enzymes, 
-      currentRefugium.manna,
-      currentRefugium.resiliency,
-      currentRefugium.organisedManna,
-      currentRefugium.bionts);
-    setCurrentRefugium(refugium.addBiont('red'));
-  }
+    if(availableBionts != 0) {
+      refugium.addBiont('red');
+      setCurrentRefugium(refugium);
+      updateAvailableBionts(availableBionts-1);
+    };
+  };
+
+  const reassignBiont = () => {
+    refugium.destroyBiont('red');
+    setCurrentRefugium(refugium);
+    updateAvailableBionts(availableBionts+1);
+  };
 
   const RefugiaCard = (props) => {
     var refugiaRow = []
@@ -44,7 +55,7 @@ const RefugiaDisplay = (props) => {
         <TouchableOpacity key={refugium.id} onPress ={() => inspectRefugium(refugium)} >
           <View style={styles.refugium} >
             <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-              <Bionts bionts={refugium.bionts}/>
+              <Bionts bionts={refugium.bionts}></Bionts>
               <Manna manna={refugium.organisedManna}/>
             </View>
             <Text key={refugium.id} style={[styles.refugiaText, refugium.colour && { 'color': `${refugium.colour}`} ]}>{refugium.title}</Text>
@@ -101,15 +112,20 @@ const RefugiaDisplay = (props) => {
           </View>
           {props.phase=='assignment' &&
             <View style={styles.diceRolls}>
+              {availableBionts > 0 && 
               <TouchableOpacity 
                 style={styles.diceButton}
                 disabled={false}
-                // activeOpacity={disabled ? 1 : 0.7} 
-                // onPress={!disabled && onPress}
-                onPress ={() => assignBiont()} 
-                >
+                onPress ={() => assignBiont()}>
                 <Text style={styles.buttonText}>Assign Biont</Text>
-              </TouchableOpacity>
+              </TouchableOpacity>}
+              {currentRefugium.bionts.length > 0 && currentRefugium.bionts.includes('red') && 
+              <TouchableOpacity 
+                style={styles.diceButton}
+                disabled={false}
+                onPress ={() => reassignBiont()}>
+                <Text style={styles.buttonText}>Reassign Biont</Text>
+              </TouchableOpacity>}
             </View>
           }
           {props.phase==='autocatalytic' &&

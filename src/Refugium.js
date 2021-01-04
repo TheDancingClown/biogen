@@ -12,22 +12,22 @@ class Refugium {
     this.bionts = bionts;
   }
 
-
   addBiont(playerColour) {
     this.bionts.push(playerColour);
   };
 
   destroyBiont(playerColour) {
+    if(this.bionts) {
     let index = this.bionts.findIndex(e => e === playerColour);
-    this.bionts.splice(index, 1)
+    this.bionts.splice(index, 1);
+    };
   };
 
   organise(mannaCube) {
     let index = this.manna.findIndex(e => e === mannaCube);
-    this.manna.splice(index, 1)
+    this.manna.splice(index, 1);
     this.organisedManna.push(mannaCube);
-  }
-
+  };
 };
 
 export default Refugium;

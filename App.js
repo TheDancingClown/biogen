@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
     top: 0,
     right: 0,
     alignItems: 'center',
-    width: 200
+    width: 155
   },
   drawEventButton: {
     borderWidth: 3,
@@ -247,7 +247,7 @@ const styles = StyleSheet.create({
     borderRadius: 20
   },
   medeaButton: {
-    width: 150,
+    width: 100,
     padding: 5,
     marginTop: 15,
     borderRadius: 20,
@@ -279,7 +279,7 @@ const styles = StyleSheet.create({
   phaseText: {
     color: 'white', 
     textAlign: 'center', 
-    padding: 20
+    padding: 15
   },
   phaseHeading: {
     color: 'white', 
