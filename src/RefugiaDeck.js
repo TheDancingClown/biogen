@@ -22,9 +22,7 @@ class RefugiaDeck extends Deck {
       refugium = super._selectCard(CoastalRefugia);
     } else if (card.landform.continental == true && !this._cardsDrawn(ContinentalRefugia)) {
       refugium = super._selectCard(ContinentalRefugia);
-    } else {
-      refugium = null;
-    };
+    } 
     this._discardCard(refugium)
     this._addToLandform(refugium)
     return refugium;

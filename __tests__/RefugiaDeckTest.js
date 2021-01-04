@@ -46,7 +46,7 @@ describe('heaven event', () => {
     it('does not draw a card when all decks are empty', () => {
       deck.discardPile = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
       refugium = deck.heaven(card);
-      expect(refugium).toBeNull();
+      expect(refugium).toBe();
     });
 
     it('will not draw a duplicate', () => {
@@ -84,7 +84,7 @@ describe('heaven event', () => {
     it('does not draw a card when all landforms are inactive', () => {
       card = {"landform": {"cosmic": false, "oceanic": false, "coastal": false, "continental": false}};
       refugium = deck.heaven(card);
-      expect(refugium).toBeNull();
+      expect(refugium).toBe();
     });
   });
 });

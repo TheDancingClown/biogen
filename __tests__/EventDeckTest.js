@@ -38,7 +38,7 @@ describe('rounds 11 to 19', () => {
 describe('end of game', () => {
     it('will not draw a card', () => {
     card = deck.drawCard(20)
-    expect(card).toBe(null)
+    expect(card).toBe()
   });
 
   describe('event detail', () => {

@@ -2,18 +2,18 @@ import Refugium from '../src/Refugium';
 
 let refugium;
 beforeEach(() => {
-  refugium = new Refugium(999,'red','test',[],[],[],false,[]);
+  refugium = new Refugium(999,'red','test',[],[],[],false,[],[]);
 });
 
-describe('assignBiont', () => {
+describe('addBiont', () => {
   it('adds a player biont to the refugium', () => {
-    refugium.assignBiont('blue');
+    refugium.addBiont('blue');
     expect(refugium.bionts).toEqual(['blue'])
   });
 
   it('assigns additional bionts', () => {
     refugium.bionts=['blue'];
-    refugium.assignBiont('red')
+    refugium.addBiont('red')
     expect(refugium.bionts).toEqual(['blue', 'red'])
   });
 });

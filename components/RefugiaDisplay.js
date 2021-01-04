@@ -3,16 +3,15 @@ import { StyleSheet, Text, View, TouchableOpacity, Modal } from 'react-native';
 import RefugiumCard from './RefugiumCard';
 import DiceResults from './DiceResults';
 import { Manna, LifeDice, Enzymes, Bionts } from './RefugiumComponents';
-import { RefugiumTemplate } from '../src/CardList'
+import { RefugiumTemplate } from '../src/CardList';
 import Dice from '../src/Dice';
-import RefugiaDeck from '..src/RefugiaDeck'
+import Refugium from '../src/Refugium';
 
 const RefugiaDisplay = (props) => {
 
   const [showRefugium, setShowRefugium] = useState(false);
   const [currentRefugium, setCurrentRefugium] = useState(RefugiumTemplate)
   const [autocatalyticDice, setAutocatalyticDice] = useState({'one': 0, 'two': 0, 'three': 0, 'four': 0, 'five': 0, 'six': 0})
-  const [phase, setPhase] = useState('assignment')
 
   const inspectRefugium = (refugium) => {
     setShowRefugium(true);
@@ -25,8 +24,17 @@ const RefugiaDisplay = (props) => {
   }
 
   const assignBiont = () => {
-    let deck = new RefugiaDeck();
-    setCurrentRefugium(deck.addBiont(currentRefugium, 'red'));
+    let refugium = new Refugium(
+      currentRefugium.id, 
+      currentRefugium.colour, 
+      currentRefugium.title, 
+      currentRefugium.lifeDice,
+      currentRefugium.enzymes, 
+      currentRefugium.manna,
+      currentRefugium.resiliency,
+      currentRefugium.organisedManna,
+      currentRefugium.bionts);
+    setCurrentRefugium(refugium.addBiont('red'));
   }
 
   const RefugiaCard = (props) => {
@@ -39,7 +47,7 @@ const RefugiaDisplay = (props) => {
               <Bionts bionts={refugium.bionts}/>
               <Manna manna={refugium.organisedManna}/>
             </View>
-            <Text key={refugium.id} style={[styles.refugiaText, refugium.colour ? { 'color': `${refugium.colour}`} : 'white']}>{refugium.title}</Text>
+            <Text key={refugium.id} style={[styles.refugiaText, refugium.colour && { 'color': `${refugium.colour}`} ]}>{refugium.title}</Text>
             <LifeDice dice={refugium.lifeDice} />
             <Enzymes enzymes={refugium.enzymes}/> 
             <Manna manna={refugium.manna}/> 
@@ -81,6 +89,7 @@ const RefugiaDisplay = (props) => {
         transparent={true}
         visible={showRefugium}
         supportedOrientations={['landscape']}
+        animationType='fade'
         >
         <View style={styles.refugiumCard}>
           <RefugiumCard refugium = {currentRefugium} display = {'large'}/>
@@ -89,7 +98,7 @@ const RefugiaDisplay = (props) => {
             >
               <Text style={styles.buttonText}>X</Text>
           </TouchableOpacity>
-          {phase=='assignment' &&
+          {props.phase=='assignment' &&
             <View style={styles.diceRolls}>
               <TouchableOpacity 
                 style={styles.diceButton}
@@ -102,14 +111,14 @@ const RefugiaDisplay = (props) => {
               </TouchableOpacity>
             </View>
           }
-          {phase==='autocatalytic roll' &&
+          {props.phase==='autocatalytic' &&
             <View style={styles.diceRolls}>
               <TouchableOpacity 
                 style={styles.diceButton}
                 disabled={false}
                 // activeOpacity={disabled ? 1 : 0.7} 
                 // onPress={!disabled && onPress}
-                onPress ={() => autocatalyticRoll(currentRefugium.organisedManna.length)} 
+                onPress ={() => autocatalyticRoll(currentRefugium.organisedManna.length+(currentRefugium.bionts.length)*2)} 
                 >
                 <Text style={styles.buttonText}>Autocatalytic Roll</Text>
               </TouchableOpacity>

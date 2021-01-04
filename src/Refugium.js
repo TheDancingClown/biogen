@@ -1,6 +1,6 @@
 class Refugium {
 
-  constructor(id, colour, title, lifeDice, enzymes, manna, resiliency, organisedManna) {
+  constructor(id, colour, title, lifeDice, enzymes, manna, resiliency, organisedManna, bionts) {
     this.id = id;
     this.colour = colour;
     this.title = title;
@@ -9,15 +9,12 @@ class Refugium {
     this.manna = manna;
     this.resiliency = resiliency;
     this.organisedManna = organisedManna;
+    this.bionts = bionts;
   }
 
 
-  assignBiont(playerColour) {
-    if(!this.bionts) {
-      this["bionts"] = [playerColour];
-    } else {
-      this.bionts.push(playerColour);
-    };
+  addBiont(playerColour) {
+    this.bionts.push(playerColour);
   };
 
   destroyBiont(playerColour) {

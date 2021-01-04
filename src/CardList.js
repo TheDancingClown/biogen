@@ -404,7 +404,8 @@ const RefugiumTemplate = [
     "enzymes": [],
     "manna": [],
     "resiliency": false,
-    "organisedManna": []
+    "organisedManna": [],
+    "bionts": []
   }
 ]
 
@@ -417,7 +418,8 @@ const CosmicRefugia = [
     "enzymes": [enzyme4, enzyme5, circle, circle, enzyme6, circle],
     "manna": [blue, green, yellow, red],
     "resiliency": false,
-    "organisedManna": [blue]
+    "organisedManna": [],
+    "bionts": []
   },
   {
     "id": 2,
@@ -427,7 +429,8 @@ const CosmicRefugia = [
     "enzymes": [enzyme5, circle, circle, circle, enzyme6, circle],
     "manna": [green, blue, red, red],
     "resiliency": true,
-    "organisedManna": []
+    "organisedManna": [],
+    "bionts": []
   },
   {
     "id": 3,
@@ -437,7 +440,8 @@ const CosmicRefugia = [
     "enzymes": [enzyme3, enzyme4, circle, enzyme5, circle, enzyme6, circle],
     "manna": [yellow, yellow, green],
     "resiliency": true,
-    "organisedManna": []
+    "organisedManna": [],
+    "bionts": []
   }
 ]
 
@@ -450,7 +454,8 @@ const OceanicRefugia = [
     "enzymes": [enzyme6, circle],
     "manna": [yellow, red, blue, green, green],
     "resiliency": true,
-    "organisedManna": []
+    "organisedManna": [],
+    "bionts": []
   },
   {
     "id": 5,
@@ -460,7 +465,8 @@ const OceanicRefugia = [
     "enzymes": [enzyme4, enzyme5, enzyme6, circle, circle, circle],
     "manna": [green, blue, yellow],
     "resiliency": false,
-    "organisedManna": []
+    "organisedManna": [],
+    "bionts": []
   },
   {
     "id": 6,
@@ -470,7 +476,8 @@ const OceanicRefugia = [
     "enzymes": [enzyme4, circle, enzyme5, circle, enzyme6, circle],
     "manna": [red, yellow, blue, blue],
     "resiliency": false,
-    "organisedManna": []
+    "organisedManna": [],
+    "bionts": []
   }
 ]
 
@@ -483,7 +490,8 @@ const CoastalRefugia = [
     "enzymes": [enzyme5, circle, enzyme6, circle],
     "manna": [blue, green, yellow, yellow],
     "resiliency": false,
-    "organisedManna": []
+    "organisedManna": [],
+    "bionts": []
   },
   {
     "id": 8,
@@ -493,7 +501,8 @@ const CoastalRefugia = [
     "enzymes": [enzyme4, enzyme5, circle, enzyme6, circle, circle],
     "manna": [blue, green, red, green],
     "resiliency": false,
-    "organisedManna": []
+    "organisedManna": [],
+    "bionts": []
   },
   {
     "id": 9,
@@ -503,7 +512,8 @@ const CoastalRefugia = [
     "enzymes": [enzyme5, enzyme6, circle],
     "manna": [red, green, yellow, yellow],
     "resiliency": false,
-    "organisedManna": []
+    "organisedManna": [],
+    "bionts": []
   },
   {
     "id": 10,
@@ -513,7 +523,8 @@ const CoastalRefugia = [
     "enzymes": [enzyme4, circle, enzyme5, circle, enzyme6, circle],
     "manna": [green, blue, blue],
     "resiliency": false,
-    "organisedManna": []
+    "organisedManna": [],
+    "bionts": []
   },
   {
     "id": 11,
@@ -523,7 +534,8 @@ const CoastalRefugia = [
     "enzymes": [enzyme3, enzyme4, circle, enzyme5, circle, enzyme6, circle],
     "manna": [yellow, yellow, red, red],
     "resiliency": false,
-    "organisedManna": []
+    "organisedManna": [],
+    "bionts": []
   }
 ]
 
@@ -536,7 +548,8 @@ const ContinentalRefugia = [
     "enzymes": [enzyme5, circle, enzyme6, circle],
     "manna": [yellow, yellow, green, green],
     "resiliency": false,
-    "organisedManna": []
+    "organisedManna": [],
+    "bionts": []
   },
   {
     "id": 13,
@@ -546,7 +559,8 @@ const ContinentalRefugia = [
     "enzymes": [enzyme3, enzyme4, circle, enzyme5, circle, enzyme6, circle],
     "manna": [red, blue, green, blue],
     "resiliency": false,
-    "organisedManna": []
+    "organisedManna": [],
+    "bionts": []
   },
   {
     "id": 14,
@@ -556,7 +570,8 @@ const ContinentalRefugia = [
     "enzymes": [enzyme2, enzyme3, enzyme4, enzyme5, circle, enzyme6, circle],
     "manna": [green, red, blue, red],
     "resiliency": false,
-    "organisedManna": []
+    "organisedManna": [],
+    "bionts": []
   },
   {
     "id": 15,
@@ -576,7 +591,8 @@ const ContinentalRefugia = [
     "enzymes": [enzyme4, circle, enzyme5, circle, enzyme6, circle],
     "manna": [blue, green, red],
     "resiliency": false,
-    "organisedManna": []
+    "organisedManna": [],
+    "bionts": []
   }
 ]
 

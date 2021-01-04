@@ -34,7 +34,11 @@ const RefugiumCard = (props) => {
           <Manna manna={props.refugium.organisedManna} />
           </ View>
         </TouchableOpacity>
-        <Text key={props.key} style={[styles.refugiaText, props.refugium.colour ? { 'color': `${props.refugium.colour}`} : 'white']}>{props.refugium.title}</Text>
+        <Text key={props.key} 
+        style={[styles.refugiaText, props.refugium.colour && 
+        { 'color': `${props.refugium.colour}`} ]}>
+          {props.refugium.title}
+        </Text>
         <TouchableOpacity onPress = {lifeDiceAlert}>
           <LifeDice dice={props.refugium.lifeDice}/>
         </TouchableOpacity>

@@ -8,6 +8,7 @@ import Climate from './components/Climate';
 import { Template } from './src/CardList';
 import EventDeck from './src/EventDeck';
 import RefugiaDeck from './src/RefugiaDeck';
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 export default function App() {
   const [showEvent, setShowEvent] = useState(false);
@@ -27,6 +28,7 @@ export default function App() {
   // const [bluePlayer, updateBluePlayer] = useState([0,0,1,0])
   // const [yellowPlayer, updateYellowPlayer] = useState([0,0,0,1])
   const [medea, triggerMedea] = useState(false);
+  const [phase, setPhase] = useState('event')
   const eventDeck = new EventDeck(eventDiscardPile);
   const refugiaDeck = new RefugiaDeck(cosmicRefugia, oceanicRefugia, coastalRefugia, continentalRefugia, refugiumDiscardPile);
 
@@ -44,6 +46,7 @@ export default function App() {
     discardEvent(eventDiscardPile.concat(card.id))
     addToClimateSequence(card.climate);
     progressTime(Math.round(((timeClock - 0.2)+Number.EPSILON) * 100) / 100)
+    setPhase('assignment')
   }
 
   const checkEvents = (card) => {
@@ -96,6 +99,7 @@ export default function App() {
   }
 
   return (
+    <SafeAreaView edges = {['right']} style={{flex: 1, backgroundColor: 'black'}}>
       <View style={styles.container}>
         <StatusBar style = "auto" hidden = {true} />
       
@@ -109,6 +113,7 @@ export default function App() {
             coastalRefugia = {coastalRefugia}
             continentalRefugia = {continentalRefugia}
             currentEvent = {currentEvent}
+            phase = {phase}
             />
 
           <View style={styles.gameStatus}>
@@ -122,33 +127,58 @@ export default function App() {
             currentEvent = {currentEvent}
             />
             </View>
+            {phase==='event' && 
+              <View>
+              {timeClock > 0.6 && 
             
-            {timeClock > 0.6 ?
-          
-            <TouchableOpacity
-              style={styles.drawEventButton}
-              activeOpacity = '0.8'
-              onPress ={() => drawEvent()}>
-                <Image 
-                source = {require('./assets/moon.jpg')}
-                style = {styles.deckImage} />
-              <Text style={styles.eventButtonText}>Event</Text>
-            </TouchableOpacity>: null}
+              <TouchableOpacity
+                style={styles.drawEventButton}
+                activeOpacity = '0.8'
+                onPress ={() => drawEvent()}>
+                  <Image 
+                  source = {require('./assets/moon.jpg')}
+                  style = {styles.deckImage} />
+                <Text style={styles.eventButtonText}>Event</Text>
+              </TouchableOpacity>}
 
-            {medea == true ? <TouchableOpacity 
-              style={styles.medeaButton}
-              // onPress ={() => endGame} 
-              >
-                <Text style={styles.buttonText}>Medea</Text>
-              </TouchableOpacity>
-              
-            : null}
+              {medea == true && 
+                <TouchableOpacity 
+                style={styles.medeaButton}
+                // onPress ={() => endGame} 
+                >
+                  <Text style={styles.buttonText}>Medea</Text>
+                </TouchableOpacity>}
+            </View>
+            } 
+            {phase==='assignment' &&
+              <View style={{alignItems: 'center'}}>
+                <Text style={{color: 'white', textAlign: 'center', padding: 20}}>Click on active refugia for a closer view and to assign or reclaim Bionts, and assign enzymes. Bionts in inactive landforms cannot be reassigned. Click finish to proceed to the autocatalytic phase</Text>
+                <TouchableOpacity 
+                style={styles.medeaButton}
+                onPress ={() => setPhase('autocatalytic')} 
+                >
+                  <Text style={styles.buttonText}>Finish</Text>
+                </TouchableOpacity>
+              </View>
+            }
+            {phase==='autocatalytic' &&
+              <View style={{alignItems: 'center'}}>
+                <Text style={{color: 'white', textAlign: 'center', padding: 20}}>Click on each refugia that has a Biont assigned to make an autocatalytic roll. If you roll a double you may choose to create a microorganism. Click finish to proceed to the purchasing phase</Text>
+                <TouchableOpacity 
+                style={styles.medeaButton}
+                onPress ={() => setPhase('event')} 
+                >
+                  <Text style={styles.buttonText}>Finish</Text>
+                </TouchableOpacity>
+              </View>
+            }
           </View>
           
           <Modal
             transparent={true}
             visible={showEvent}
             supportedOrientations={['landscape']}
+            animationType='fade'
             >
             <View style={styles.eventCard}>
               <EventCard 
@@ -164,6 +194,7 @@ export default function App() {
 
         </ImageBackground>
       </View>
+      </SafeAreaView>
   );
 }
 
