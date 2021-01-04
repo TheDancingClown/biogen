@@ -7,13 +7,13 @@ const EventCard = (props) => {
   const deck = new EventDeck();
 
   const landformAlert = () => {
-    Alert.alert(
+    Alert.alert("Landform Icons",
       "The landform icons for the current event. Active landforms are shown in black and inactive landforms are shown in grey.\n\nAn active landform means you can assign Bionts and Enzymes to Refugia in its row."
     )
   }
 
   const climateAlert = () => {
-    Alert.alert(
+    Alert.alert("Climate Icons",
       "The climate icon(s) for the current event. The current climate is used to determine which dice animate life (organise Manna). If no icon is shown the previous climate remains."
     )
   }
@@ -22,7 +22,7 @@ const EventCard = (props) => {
     const events = [...new Set(props.card.event)];
     const eventAlerts = deck.eventInformation(events);
   
-    Alert.alert(
+    Alert.alert("Event Icons",
       eventAlerts
     )
   }
@@ -122,10 +122,9 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     width: 500,
     height: 280,
-   
     shadowColor: 'lightgrey',
     shadowOpacity: 0.8,
-    elevation: 10
+    elevation: 10,
   },
   header: {
     height: 60,

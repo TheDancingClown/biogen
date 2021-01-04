@@ -9,6 +9,7 @@ import { Template } from './src/CardList';
 import EventDeck from './src/EventDeck';
 import RefugiaDeck from './src/RefugiaDeck';
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 export default function App() {
   const [showEvent, setShowEvent] = useState(false);
@@ -121,38 +122,38 @@ export default function App() {
               <Climate climateSequence = {climateSequence}/>
             </View>
             
-            <View style={{flex: 3, flexDirection: 'coloumn'}}>
-            <GameStatus 
-            timeClock = {timeClock}
-            currentEvent = {currentEvent}
-            />
+            <View style={{flex: 3, flexDirection: 'column'}}>
+              <GameStatus 
+              timeClock = {timeClock}
+              currentEvent = {currentEvent}
+              />
             </View>
             {phase==='event' && 
               <View>
-              {timeClock > 0.6 && 
-            
-              <TouchableOpacity
-                style={styles.drawEventButton}
-                activeOpacity = '0.8'
-                onPress ={() => drawEvent()}>
-                  <Image 
-                  source = {require('./assets/moon.jpg')}
-                  style = {styles.deckImage} />
-                <Text style={styles.eventButtonText}>Event</Text>
-              </TouchableOpacity>}
-
-              {medea == true && 
-                <TouchableOpacity 
-                style={styles.medeaButton}
-                // onPress ={() => endGame} 
-                >
-                  <Text style={styles.buttonText}>Medea</Text>
+                {timeClock > 0.6 && 
+                <TouchableOpacity
+                  style={styles.drawEventButton}
+                  activeOpacity = '0.8'
+                  onPress ={() => drawEvent()}>
+                    <Image 
+                    source = {require('./assets/moon.jpg')}
+                    style = {styles.deckImage} />
+                  <Text style={styles.eventButtonText}>Event</Text>
                 </TouchableOpacity>}
-            </View>
+
+                {medea == true && 
+                  <TouchableOpacity 
+                  style={styles.medeaButton}
+                  // onPress ={() => endGame} 
+                  >
+                    <Text style={styles.buttonText}>Medea</Text>
+                  </TouchableOpacity>}
+              </View>
             } 
             {phase==='assignment' &&
               <View style={{alignItems: 'center'}}>
-                <Text style={{color: 'white', textAlign: 'center', padding: 20}}>Click on active refugia for a closer view and to assign or reclaim Bionts, and assign enzymes. Bionts in inactive landforms cannot be reassigned. Click finish to proceed to the autocatalytic phase</Text>
+                <Text style={styles.phaseHeading}>Assignment Phase</Text>
+                <Text style={styles.phaseText}>Click on active refugia for a closer view and to assign or reclaim Bionts, and assign enzymes. Bionts in inactive landforms cannot be reassigned. Click finish to proceed to the autocatalytic phase</Text>
                 <TouchableOpacity 
                 style={styles.medeaButton}
                 onPress ={() => setPhase('autocatalytic')} 
@@ -163,33 +164,32 @@ export default function App() {
             }
             {phase==='autocatalytic' &&
               <View style={{alignItems: 'center'}}>
-                <Text style={{color: 'white', textAlign: 'center', padding: 20}}>Click on each refugia that has a Biont assigned to make an autocatalytic roll. If you roll a double you may choose to create a microorganism. Click finish to proceed to the purchasing phase</Text>
+                <Text style={styles.phaseHeading}>Autocatalytic Phase</Text>
+                <Text style={styles.phaseText}>Click on each refugia that has a Biont assigned to make an autocatalytic roll. If you roll a double you may choose to create a microorganism. Click finish to proceed to the purchasing phase</Text>
                 <TouchableOpacity 
                 style={styles.medeaButton}
-                onPress ={() => setPhase('event')} 
-                >
+                onPress ={() => setPhase('event')}>
                   <Text style={styles.buttonText}>Finish</Text>
                 </TouchableOpacity>
               </View>
             }
-          </View>
+            </View>
           
           <Modal
             transparent={true}
             visible={showEvent}
             supportedOrientations={['landscape']}
-            animationType='fade'
-            >
-            <View style={styles.eventCard}>
-              <EventCard 
-                card = {currentEvent}
-                />
-              <TouchableOpacity style={styles.closeEvent}
-                onPress ={() => performEvent(currentEvent)}
-                >
-                  <Text style={styles.buttonText}>X</Text>
-              </TouchableOpacity>
-            </View>
+            animationType='fade'>
+              <View style={styles.eventCard}>
+                <View style={{width: 500, height: 280, alignItems: 'flex-end', position: 'absolute'}}>
+                  <EventCard card = {currentEvent}/>
+                  <TouchableOpacity style={styles.closeEvent}
+                    onPress ={() => performEvent(currentEvent)}>
+                    <Text style={styles.buttonText}>X</Text>
+                  </TouchableOpacity>
+                
+                </View>
+              </View>
           </Modal>
 
         </ImageBackground>
@@ -227,7 +227,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(30, 22, 100, 0.8)',
     shadowColor: 'lightgrey',
     shadowOpacity: 0.8,
-    marginTop: 5
+    elevation: 10,
+    marginTop: 5,
+    borderColor: 'lightgrey',
+    borderWidth: 1
   },
   eventButtonText: {
     color: 'white',
@@ -262,16 +265,26 @@ const styles = StyleSheet.create({
     backgroundColor: "#000000aa", 
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   closeEvent: {
     backgroundColor: 'darkred',
-    margin: 5,
     padding: 2,
     borderRadius: 5,
     position: 'absolute',
-    top: 90,
-    right: 220
+    top: 25,
+    right: 15,
+    elevation: 11,
+  },
+  phaseText: {
+    color: 'white', 
+    textAlign: 'center', 
+    padding: 20
+  },
+  phaseHeading: {
+    color: 'white', 
+    textAlign: 'center', 
+    padding: 10, 
+    fontSize: 20
   }
-  
 });

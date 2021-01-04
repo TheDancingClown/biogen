@@ -92,12 +92,13 @@ const RefugiaDisplay = (props) => {
         animationType='fade'
         >
         <View style={styles.refugiumCard}>
-          <RefugiumCard refugium = {currentRefugium} display = {'large'}/>
-          <TouchableOpacity style={styles.closeEvent}
-            onPress ={() => setShowRefugium(false)}
-            >
-              <Text style={styles.buttonText}>X</Text>
-          </TouchableOpacity>
+          <View>
+            <RefugiumCard refugium = {currentRefugium} display = {'large'}/>
+            <TouchableOpacity style={styles.closeEvent}
+              onPress ={() => setShowRefugium(false)}>
+                <Text style={styles.buttonText}>X</Text>
+            </TouchableOpacity>
+          </View>
           {props.phase=='assignment' &&
             <View style={styles.diceRolls}>
               <TouchableOpacity 
@@ -178,8 +179,9 @@ const styles = StyleSheet.create({
     padding: 2,
     borderRadius: 5,
     position: 'absolute',
-    top: 80,
-    right: 220
+    top: 15,
+    right: 15,
+    elevation: 11
   },
   diceButton: {
     width: 150,

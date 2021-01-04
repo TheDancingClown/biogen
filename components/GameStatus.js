@@ -4,7 +4,7 @@ import { Alert, TouchableOpacity, StyleSheet, Text, View, Image } from 'react-na
 const GameStatus = (props) => {
 
   const showAlert = () =>{
-    Alert.alert(
+    Alert.alert("Current Event and Time",
       "The game begins in the Hadean Eon 4.6 million years ago and, through a series of events each encapsulating 200 milllion years, recreates the formation of Earth until the Phanerozoic Eon, approximately 0.6 billion years ago.\n\nClick 'Event' to draw a new card and trigger the event phase."
     )
   }

@@ -81,7 +81,8 @@ const styles = StyleSheet.create({
   enzymeSlot: {
     height: 15,
     width: 15,
-    margin: 1
+    margin: 1,
+    borderRadius: 7.5
   },
   mannaCube: {
     width: 10,

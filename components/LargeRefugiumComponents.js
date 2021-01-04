@@ -80,7 +80,8 @@ const styles = StyleSheet.create({
   enzymeSlot: {
     height: 40,
     width: 40,
-    margin: 10
+    margin: 10,
+    borderRadius: 20
   },
   mannaCube: {
     width: 30,
@@ -90,6 +91,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     shadowColor: 'black',
     shadowOpacity: 0.8,
+    elevation: 15
   },
   biont: {
     width: 30,
