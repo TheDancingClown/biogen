@@ -9,7 +9,6 @@ import { Template } from './src/CardList';
 import EventDeck from './src/EventDeck';
 import RefugiaDeck from './src/RefugiaDeck';
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 export default function App() {
   const [showEvent, setShowEvent] = useState(false);
@@ -215,7 +214,7 @@ const styles = StyleSheet.create({
     top: 0,
     right: 0,
     alignItems: 'center',
-    width: 155
+    width: 200
   },
   drawEventButton: {
     borderWidth: 3,

@@ -119,7 +119,7 @@ const RefugiaDisplay = (props) => {
                 onPress ={() => assignBiont()}>
                 <Text style={styles.buttonText}>Assign Biont</Text>
               </TouchableOpacity>}
-              {currentRefugium.bionts.length > 0 && currentRefugium.bionts.includes('red') && 
+              {currentRefugium.bionts && currentRefugium.bionts.includes('red') && 
               <TouchableOpacity 
                 style={styles.diceButton}
                 disabled={false}
