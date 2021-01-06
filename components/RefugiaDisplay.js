@@ -55,7 +55,7 @@ const RefugiaDisplay = (props) => {
         <TouchableOpacity 
           key={refugium.id} 
           onPress ={() => inspectRefugium(refugium)}
-          disabled={props.phase==="assignment" && !props.active} >
+          disabled={props.phase==="assignment" && !props.active || props.phase==="autocatalytic" && !refugium.bionts.length > 0} >
           <View style={styles.refugium} >
             <View style={{flexDirection: 'row', justifyContent: 'center'}}>
               <Bionts bionts={refugium.bionts}></Bionts>
@@ -121,7 +121,7 @@ const RefugiaDisplay = (props) => {
             </TouchableOpacity>
           </View>
           {props.phase==='assignment' && 
-            <View style={styles.diceRolls}>
+            <View>
               {availableBionts > 0 && 
               <TouchableOpacity 
                 style={styles.diceButton}
@@ -229,7 +229,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     alignSelf: 'flex-end',
     alignItems: 'center'
-  }
+  },
 });
 
 export default RefugiaDisplay;

@@ -581,7 +581,8 @@ const ContinentalRefugia = [
     "enzymes": [enzyme4, circle, enzyme5, circle, enzyme6],
     "manna": [blue, red, yellow, red],
     "resiliency": false,
-    "organisedManna": []
+    "organisedManna": [],
+    "bionts": []
   },
   {
     "id": 16,
