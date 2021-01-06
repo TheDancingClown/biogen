@@ -177,14 +177,13 @@ export default function App() {
             visible={showEvent}
             supportedOrientations={['landscape']}
             animationType='fade'>
-              <View style={styles.eventCard}>
-                <View style={{width: 500, height: 280, alignItems: 'flex-end', position: 'absolute'}}>
+              <View style={styles.eventCardContainer}>
+                <View style={styles.eventCard}>
                   <EventCard card = {currentEvent}/>
                   <TouchableOpacity style={styles.closeEvent}
                     onPress ={() => performEvent(currentEvent)}>
                     <Text style={styles.buttonText}>X</Text>
                   </TouchableOpacity>
-                
                 </View>
               </View>
           </Modal>
@@ -258,11 +257,17 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
-  eventCard: {
+  eventCardContainer: {
     backgroundColor: "#000000aa", 
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  eventCard: {
+    width: 500, 
+    height: 280, 
+    alignItems: 'flex-end', 
+    position: 'absolute'
   },
   closeEvent: {
     backgroundColor: 'darkred',

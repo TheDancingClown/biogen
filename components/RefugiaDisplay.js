@@ -52,7 +52,10 @@ const RefugiaDisplay = (props) => {
     var refugiaRow = []
     props.refugium.map((refugium) => {
       refugiaRow.push(
-        <TouchableOpacity key={refugium.id} onPress ={() => inspectRefugium(refugium)} >
+        <TouchableOpacity 
+          key={refugium.id} 
+          onPress ={() => inspectRefugium(refugium)}
+          disabled={props.phase==="assignment" && !props.active} >
           <View style={styles.refugium} >
             <View style={{flexDirection: 'row', justifyContent: 'center'}}>
               <Bionts bionts={refugium.bionts}></Bionts>
@@ -78,21 +81,29 @@ const RefugiaDisplay = (props) => {
       <View style={props.currentEvent.landform.cosmic ? styles.activeLandformRow : styles.inactiveLandformRow}>
         <RefugiaCard
           refugium = {props.cosmicRefugia}
+          phase = {props.phase}
+          active = {props.currentEvent.landform.cosmic}
           />
       </View>
       <View style={props.currentEvent.landform.oceanic ? styles.activeLandformRow : styles.inactiveLandformRow}>
         <RefugiaCard
           refugium = {props.oceanicRefugia}
+          phase = {props.phase}
+          active = {props.currentEvent.landform.oceanic}
           />
       </View>
       <View style={props.currentEvent.landform.coastal ? styles.activeLandformRow : styles.inactiveLandformRow}>
         <RefugiaCard
           refugium = {props.coastalRefugia}
+          phase = {props.phase}
+          active = {props.currentEvent.landform.coastal}
           />
       </View>
       <View style={props.currentEvent.landform.continental ? styles.activeLandformRow : styles.inactiveLandformRow}>
         <RefugiaCard
           refugium = {props.continentalRefugia}
+          phase = {props.phase}
+          active = {props.currentEvent.landform.continental}
           />
       </View>
     
@@ -100,8 +111,7 @@ const RefugiaDisplay = (props) => {
         transparent={true}
         visible={showRefugium}
         supportedOrientations={['landscape']}
-        animationType='fade'
-        >
+        animationType='fade'>
         <View style={styles.refugiumCard}>
           <View>
             <RefugiumCard refugium = {currentRefugium} display = {'large'}/>
@@ -110,7 +120,7 @@ const RefugiaDisplay = (props) => {
                 <Text style={styles.buttonText}>X</Text>
             </TouchableOpacity>
           </View>
-          {props.phase=='assignment' &&
+          {props.phase==='assignment' && 
             <View style={styles.diceRolls}>
               {availableBionts > 0 && 
               <TouchableOpacity 

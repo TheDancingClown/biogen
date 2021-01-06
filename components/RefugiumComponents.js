@@ -23,8 +23,10 @@ const Bionts = (props) => {
   var biontDomes = [];
   if(props.bionts) {
     props.bionts.map((domeColour,index) => {
-      biontDomes.push(<View
-        key={index} style={[styles.biont, {backgroundColor: domeColour}]}>
+      biontDomes.push(
+        <View
+          key={index} 
+          style={[styles.biont, {backgroundColor: domeColour}]}>
           <Text style={{color: domeColour, fontSize: 1}}>X</Text>
         </View>
       )
