@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { ImageBackground, StyleSheet, Text, TouchableOpacity, View, Modal, Image } from 'react-native';
 import EventCard from './components/EventCard';
 import GameStatus from './components/GameStatus';
+import Phase from './components/Phase';
 import RefugiaDisplay from './components/RefugiaDisplay';
 import Climate from './components/Climate';
 import { Template } from './src/CardList';
@@ -98,6 +99,14 @@ export default function App() {
     newContinentalLandform(refugiaDeck.continentalRefugia);
   }
 
+  const updatePhase = (phase) => {
+    if(phase==='assignment') {
+      setPhase('autocatalytic');
+    } else if (phase==='autocatalytic') {
+      setPhase('event');
+    };
+  }
+
   return (
     <SafeAreaView edges = {['right']} style={{flex: 1, backgroundColor: 'black'}}>
       <View style={styles.container}>
@@ -142,32 +151,21 @@ export default function App() {
 
                 {medea == true && 
                   <TouchableOpacity 
-                  style={styles.medeaButton}
+                  style={styles.button}
                   // onPress ={() => endGame} 
                   >
                     <Text style={styles.buttonText}>Medea</Text>
                   </TouchableOpacity>}
               </View>
             } 
-            {phase==='assignment' &&
+            {phase!=='event' &&
               <View style={{alignItems: 'center'}}>
-                <Text style={styles.phaseHeading}>Assignment Phase</Text>
-                <Text style={styles.phaseText}>Click on active refugia for a closer view and to assign or reclaim Bionts, and assign enzymes. Bionts in inactive landforms cannot be reassigned. Click finish to proceed to the autocatalytic phase</Text>
+                <Phase phase = {phase}/>
                 <TouchableOpacity 
-                style={styles.medeaButton}
-                onPress ={() => setPhase('autocatalytic')} 
-                >
-                  <Text style={styles.buttonText}>Finish</Text>
-                </TouchableOpacity>
-              </View>
-            }
-            {phase==='autocatalytic' &&
-              <View style={{alignItems: 'center'}}>
-                <Text style={styles.phaseHeading}>Autocatalytic Phase</Text>
-                <Text style={styles.phaseText}>Click on each refugia that has a Biont assigned to make an autocatalytic roll. If you roll a double you may choose to create a microorganism. Click finish to proceed to the purchasing phase</Text>
-                <TouchableOpacity 
-                style={styles.medeaButton}
-                onPress ={() => setPhase('event')}>
+                style={styles.button}
+                onPress ={() => {
+                  let nextPhase = phase==='assignment' ? 'autocatalytic' : 'event'
+                  setPhase(nextPhase)}}>
                   <Text style={styles.buttonText}>Finish</Text>
                 </TouchableOpacity>
               </View>
@@ -245,7 +243,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     borderRadius: 20
   },
-  medeaButton: {
+  button: {
     width: 100,
     padding: 5,
     marginTop: 15,
@@ -274,16 +272,5 @@ const styles = StyleSheet.create({
     top: 25,
     right: 15,
     elevation: 11,
-  },
-  phaseText: {
-    color: 'white', 
-    textAlign: 'center', 
-    padding: 15
-  },
-  phaseHeading: {
-    color: 'white', 
-    textAlign: 'center', 
-    padding: 10, 
-    fontSize: 20
   }
 });
