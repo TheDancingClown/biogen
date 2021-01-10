@@ -27,20 +27,39 @@ const RefugiaDisplay = (props) => {
     currentRefugium.rolled = true
     checkForDouble(result)
     checkForLife(result)
+    checkForDeath(result)
   };
 
   const checkForLife = (diceRoll) => {
     let climate = props.climate[props.climate.length-1]
     let lifeDice = climate === 15 ? currentRefugium.lifeDice.cooling : currentRefugium.lifeDice.warming
     Object.entries(diceRoll).forEach(([key, value]) => {
-      if (value > 0 && lifeDice.length >= key && currentRefugium.manna.length > 0) {
-        organiseManna(currentRefugium.manna[0])
-      }
-    })
+      if (value > 0 && lifeDice.length >= key) {
+        for(let i = 0; i < value; i++) {
+          if(currentRefugium.manna.length > 0) {
+            organiseManna(currentRefugium.manna[0])
+          };
+        };
+      };
+    });
   };
 
   const checkForDeath = (diceRoll) => {
-    
+    Object.entries(diceRoll).forEach(([key, value]) => {
+      if (currentRefugium.organisedManna.length > 0 && value > 0) {
+        currentRefugium.enzymes.map((enzyme) => {
+          if(enzyme - 27 == key) {
+            disorganiseManna(currentRefugium.organisedManna[0])
+          };
+        });
+      };
+    });
+  };
+
+  const disorganiseManna = (mannaCube) => {
+    let index = currentRefugium.organisedManna.findIndex(e => e === mannaCube);
+    currentRefugium.organisedManna.splice(index, 1);
+    currentRefugium.manna.push(mannaCube);
   }
 
   const organiseManna = (mannaCube) => {
