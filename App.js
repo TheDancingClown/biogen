@@ -123,6 +123,7 @@ export default function App() {
             continentalRefugia = {continentalRefugia}
             currentEvent = {currentEvent}
             phase = {phase}
+            climate = {climateSequence}
             />
 
           <View style={styles.gameStatus}>

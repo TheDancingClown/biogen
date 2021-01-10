@@ -5,17 +5,17 @@ const DiceResults = (props) => {
   let diceResults = []
   let dieImage
   for (const die in props.result) {
-    if(die == 'one') {
+    if(die == 1) {
       dieImage = require('../assets/one.jpg')
-    } else if (die == 'two') {
+    } else if (die == 2) {
       dieImage = require('../assets/two.jpg')
-    } else if (die == 'three') {
+    } else if (die == 3) {
       dieImage = require('../assets/three.jpg')
-    } else if (die == 'four') {
+    } else if (die == 4) {
       dieImage = require('../assets/four.jpg')
-    } else if (die == 'five') {
+    } else if (die == 5) {
       dieImage = require('../assets/five.jpg')
-    } else if (die == 'six') {
+    } else if (die == 6) {
       dieImage = require('../assets/six.jpg')
     }
   diceResults.push(

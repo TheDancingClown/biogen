@@ -29,7 +29,7 @@ class Dice {
         sixes ++
       };
     };
-    return {'one': ones, 'two': twos, 'three': threes, 'four': fours, 'five': fives, 'six': sixes}
+    return {1: ones, 2: twos, 3: threes, 4: fours, 5: fives, 6: sixes}
   };
 }
 
