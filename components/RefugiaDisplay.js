@@ -10,9 +10,9 @@ const RefugiaDisplay = (props) => {
 
   const [showRefugium, setShowRefugium] = useState(false);
   const [currentRefugium, setCurrentRefugium] = useState(RefugiumTemplate);
-  const [autocatalyticDice, setAutocatalyticDice] = useState({'one': 0, 'two': 0, 'three': 0, 'four': 0, 'five': 0, 'six': 0});
-  const [availableBionts, updateAvailableBionts] = useState(1);
-  const [playerColour, changePlayer] = useState('#2d92bd');
+  const [autocatalyticDice, setAutocatalyticDice] = useState({1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0}); //check if needs to be set
+  const [availableBionts, updateAvailableBionts] = useState(1); //losing biont if refugium is destroyed
+  const [playerColour, changePlayer] = useState('#2d92bd'); //use prop from app.js for player colour
   const [doubleRolled, setDoubleRolled] = useState(false);
 
   const inspectRefugium = (refugium) => {
@@ -22,34 +22,46 @@ const RefugiaDisplay = (props) => {
 
   const autocatalyticRoll = (numberOfDice) => {
     const dice = new Dice();
-    const result = dice.roll(numberOfDice)
-    setAutocatalyticDice(result)
-    currentRefugium.rolled = true
-    checkForDouble(result)
-    checkForLife(result)
-    checkForDeath(result)
+    const result = dice.roll(numberOfDice);
+    setAutocatalyticDice(result);
+    currentRefugium.rolled = true;
+    checkForDouble(result);
+    checkForLife(result);
+    checkForDeath(result);
   };
 
   const checkForLife = (diceRoll) => {
-    let climate = props.climate[props.climate.length-1]
-    let lifeDice = climate === 15 ? currentRefugium.lifeDice.cooling : currentRefugium.lifeDice.warming
+    let climate = props.climate[props.climate.length-1];
+    let lifeDice = climate === 15 ? currentRefugium.lifeDice.cooling : currentRefugium.lifeDice.warming;
     Object.entries(diceRoll).forEach(([key, value]) => {
       if (value > 0 && lifeDice.length >= key) {
         for(let i = 0; i < value; i++) {
           if(currentRefugium.manna.length > 0) {
-            organiseManna(currentRefugium.manna[0])
+            organiseManna(currentRefugium.manna[0]);
           };
         };
       };
     });
   };
 
+  const organiseManna = (mannaCube) => {
+    //index not used but keep in case want to add choice later
+    let index = currentRefugium.manna.findIndex(e => e === mannaCube);
+    currentRefugium.manna.splice(index, 1);
+    currentRefugium.organisedManna.push(mannaCube);
+  };
+
   const checkForDeath = (diceRoll) => {
     Object.entries(diceRoll).forEach(([key, value]) => {
-      if (currentRefugium.organisedManna.length > 0 && value > 0) {
+      if (value > 0) {
         currentRefugium.enzymes.map((enzyme) => {
-          if(enzyme - 27 == key) {
-            disorganiseManna(currentRefugium.organisedManna[0])
+          if(enzyme - 23 == key) {
+            //find a better way than 23 - not reliable
+            for(let i = 0; i < value; i++) {
+              if(currentRefugium.organisedManna.length > 0) {
+                disorganiseManna(currentRefugium.organisedManna[0]);
+              };
+            };
           };
         });
       };
@@ -57,25 +69,20 @@ const RefugiaDisplay = (props) => {
   };
 
   const disorganiseManna = (mannaCube) => {
+    //index not used but keep in case want to add choice later
     let index = currentRefugium.organisedManna.findIndex(e => e === mannaCube);
     currentRefugium.organisedManna.splice(index, 1);
     currentRefugium.manna.push(mannaCube);
-  }
-
-  const organiseManna = (mannaCube) => {
-    let index = currentRefugium.manna.findIndex(e => e === mannaCube);
-    currentRefugium.manna.splice(index, 1);
-    currentRefugium.organisedManna.push(mannaCube);
   };
 
   const checkForDouble = (diceRoll) => {
-    setDoubleRolled(false)
+    setDoubleRolled(false);
     Object.entries(diceRoll).forEach(([key, value]) => {
       if(value>=2){
-        setDoubleRolled(true)
-      }
-    })
-  }
+        setDoubleRolled(true);
+      };
+    });
+  };
 
   const assignBiont = (refugium) => {
     if(availableBionts != 0) {
@@ -101,12 +108,6 @@ const RefugiaDisplay = (props) => {
       refugium.bionts.splice(index, 1);
       };
   };
-
-  const organise = (roll) => {
-    if (props.climate.reverse[0] == 'warming') {
-
-    }
-  }
 
   const RefugiaCard = (props) => {
     var refugiaRow = []
@@ -140,6 +141,7 @@ const RefugiaDisplay = (props) => {
   };
 
   return (
+    //refactor using loop? use object for all landforms instead of seperate
     <View style={styles.refugia}>
       <View style={props.currentEvent.landform.cosmic ? styles.activeLandformRow : styles.inactiveLandformRow}>
         <RefugiaCard
@@ -218,6 +220,7 @@ const RefugiaDisplay = (props) => {
           }
           {props.phase==='autocatalytic' && currentRefugium.rolled == true && doubleRolled &&
              <View>
+              {/* need to add function for flipping card on doubles. Remove from display and add to counter. Add to new navigation page */}
               <TouchableOpacity 
                 style={styles.diceButton}
                 disabled={false}>
