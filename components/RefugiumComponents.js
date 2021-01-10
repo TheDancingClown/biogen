@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, TouchableOpacity, StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 
 const Manna = (props) => {
   var mannaCubes = [];
@@ -40,9 +40,12 @@ const Bionts = (props) => {
 };
 
 const LifeDice = (props) => {
-  var diceIcons = [];
+  let diceIcons = [];
   if(props.dice) {
-    props.dice.map((die,index) => {
+  let warmingDice = [require('../assets/warming.png')].concat(props.dice.warming)
+  let coolingDice = [require('../assets/cooling.png')].concat(props.dice.cooling)
+  let dice = warmingDice.concat(coolingDice)
+    dice.map((die,index) => {
       diceIcons.push(<Image
         key={index} style={styles.lifeDice} source={die}
         />

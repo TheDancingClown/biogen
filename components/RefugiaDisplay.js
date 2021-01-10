@@ -5,24 +5,15 @@ import DiceResults from './DiceResults';
 import { Manna, LifeDice, Enzymes, Bionts } from './RefugiumComponents';
 import { RefugiumTemplate } from '../src/CardList';
 import Dice from '../src/Dice';
-import Refugium from '../src/Refugium';
 
 const RefugiaDisplay = (props) => {
 
   const [showRefugium, setShowRefugium] = useState(false);
-  const [currentRefugium, setCurrentRefugium] = useState(RefugiumTemplate)
-  const [autocatalyticDice, setAutocatalyticDice] = useState({'one': 0, 'two': 0, 'three': 0, 'four': 0, 'five': 0, 'six': 0})
-  const [availableBionts, updateAvailableBionts] = useState(1);
-  let refugium = new Refugium(
-    currentRefugium.id, 
-    currentRefugium.colour, 
-    currentRefugium.title, 
-    currentRefugium.lifeDice,
-    currentRefugium.enzymes, 
-    currentRefugium.manna,
-    currentRefugium.resiliency,
-    currentRefugium.organisedManna,
-    currentRefugium.bionts);
+  const [currentRefugium, setCurrentRefugium] = useState(RefugiumTemplate);
+  const [autocatalyticDice, setAutocatalyticDice] = useState({1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0}); //check if needs to be set
+  const [availableBionts, updateAvailableBionts] = useState(1); //losing biont if refugium is destroyed
+  const [playerColour, changePlayer] = useState('#2d92bd'); //use prop from app.js for player colour
+  const [doubleRolled, setDoubleRolled] = useState(false);
 
   const inspectRefugium = (refugium) => {
     setShowRefugium(true);
@@ -30,27 +21,100 @@ const RefugiaDisplay = (props) => {
   }
 
   const autocatalyticRoll = (numberOfDice) => {
-    let dice = new Dice();
-    setAutocatalyticDice(dice.roll(numberOfDice))
-  }
+    const dice = new Dice();
+    const result = dice.roll(numberOfDice);
+    setAutocatalyticDice(result);
+    currentRefugium.rolled = true;
+    checkForDouble(result);
+    checkForLife(result);
+    checkForDeath(result);
+  };
 
-  const assignBiont = () => {
+  const checkForLife = (diceRoll) => {
+    let climate = props.climate[props.climate.length-1];
+    let lifeDice = climate === 15 ? currentRefugium.lifeDice.cooling : currentRefugium.lifeDice.warming;
+    Object.entries(diceRoll).forEach(([key, value]) => {
+      if (value > 0 && lifeDice.length >= key) {
+        for(let i = 0; i < value; i++) {
+          if(currentRefugium.manna.length > 0) {
+            organiseManna(currentRefugium.manna[0]);
+          };
+        };
+      };
+    });
+  };
+
+  const organiseManna = (mannaCube) => {
+    //index not used but keep in case want to add choice later
+    let index = currentRefugium.manna.findIndex(e => e === mannaCube);
+    currentRefugium.manna.splice(index, 1);
+    currentRefugium.organisedManna.push(mannaCube);
+  };
+
+  const checkForDeath = (diceRoll) => {
+    Object.entries(diceRoll).forEach(([key, value]) => {
+      if (value > 0) {
+        currentRefugium.enzymes.map((enzyme) => {
+          if(enzyme - 23 == key) {
+            //find a better way than 23 - not reliable
+            for(let i = 0; i < value; i++) {
+              if(currentRefugium.organisedManna.length > 0) {
+                disorganiseManna(currentRefugium.organisedManna[0]);
+              };
+            };
+          };
+        });
+      };
+    });
+  };
+
+  const disorganiseManna = (mannaCube) => {
+    //index not used but keep in case want to add choice later
+    let index = currentRefugium.organisedManna.findIndex(e => e === mannaCube);
+    currentRefugium.organisedManna.splice(index, 1);
+    currentRefugium.manna.push(mannaCube);
+  };
+
+  const checkForDouble = (diceRoll) => {
+    setDoubleRolled(false);
+    Object.entries(diceRoll).forEach(([key, value]) => {
+      if(value>=2){
+        setDoubleRolled(true);
+      };
+    });
+  };
+
+  const assignBiont = (refugium) => {
     if(availableBionts != 0) {
-      refugium.addBiont('red');
+      addBiont(refugium, playerColour);
       setCurrentRefugium(refugium);
       updateAvailableBionts(availableBionts-1);
     };
   };
 
-  const reassignBiont = () => {
-    refugium.destroyBiont('red');
+  const addBiont = (refugium, colour) => {
+    refugium.bionts.push(colour);
+  };
+
+  const reassignBiont = (refugium) => {
+    destroyBiont(refugium, playerColour);
     setCurrentRefugium(refugium);
     updateAvailableBionts(availableBionts+1);
+  };
+
+  const destroyBiont = (refugium, colour) => {
+    if(refugium.bionts) {
+      let index = refugium.bionts.findIndex(e => e === colour);
+      refugium.bionts.splice(index, 1);
+      };
   };
 
   const RefugiaCard = (props) => {
     var refugiaRow = []
     props.refugium.map((refugium) => {
+      if (props.phase == "assignment") {
+        refugium.rolled = false
+      }
       refugiaRow.push(
         <TouchableOpacity 
           key={refugium.id} 
@@ -77,6 +141,7 @@ const RefugiaDisplay = (props) => {
   };
 
   return (
+    //refactor using loop? use object for all landforms instead of seperate
     <View style={styles.refugia}>
       <View style={props.currentEvent.landform.cosmic ? styles.activeLandformRow : styles.inactiveLandformRow}>
         <RefugiaCard
@@ -126,36 +191,45 @@ const RefugiaDisplay = (props) => {
               <TouchableOpacity 
                 style={styles.diceButton}
                 disabled={false}
-                onPress ={() => assignBiont()}>
+                onPress ={() => assignBiont(currentRefugium)}>
                 <Text style={styles.buttonText}>Assign Biont</Text>
               </TouchableOpacity>}
-              {currentRefugium.bionts && currentRefugium.bionts.includes('red') && 
+              {currentRefugium.bionts && currentRefugium.bionts.includes(playerColour) && 
               <TouchableOpacity 
                 style={styles.diceButton}
                 disabled={false}
-                onPress ={() => reassignBiont()}>
+                onPress ={() => reassignBiont(currentRefugium)}>
                 <Text style={styles.buttonText}>Reassign Biont</Text>
               </TouchableOpacity>}
             </View>
           }
-          {props.phase==='autocatalytic' &&
-            <View style={styles.diceRolls}>
+          {props.phase==='autocatalytic' && !currentRefugium.rolled &&
+            <View>
               <TouchableOpacity 
                 style={styles.diceButton}
-                disabled={false}
-                // activeOpacity={disabled ? 1 : 0.7} 
-                // onPress={!disabled && onPress}
-                onPress ={() => autocatalyticRoll(currentRefugium.organisedManna.length+(currentRefugium.bionts.length)*2)} 
-                >
+                disabled={currentRefugium.rolled}
+                onPress ={() => autocatalyticRoll(currentRefugium.organisedManna.length+(currentRefugium.bionts.length)*2)}>
                 <Text style={styles.buttonText}>Autocatalytic Roll</Text>
               </TouchableOpacity>
+            </View>
+          }
+          {props.phase==='autocatalytic' && currentRefugium.rolled == true &&
+            <View style={styles.diceRolls}>
               <DiceResults result = {autocatalyticDice} />
             </View>
           }
-          
+          {props.phase==='autocatalytic' && currentRefugium.rolled == true && doubleRolled &&
+             <View>
+              {/* need to add function for flipping card on doubles. Remove from display and add to counter. Add to new navigation page */}
+              <TouchableOpacity 
+                style={styles.diceButton}
+                disabled={false}>
+                <Text style={styles.buttonText}>Create Microorganism</Text>
+              </TouchableOpacity>
+           </View>
+          }
         </View>
       </Modal>
-
     </View>
   )
 };
@@ -228,8 +302,9 @@ const styles = StyleSheet.create({
   diceRolls: {
     position: 'absolute',
     alignSelf: 'flex-end',
-    alignItems: 'center'
-  },
+    alignItems: 'center',
+    right: 30
+  }
 });
 
 export default RefugiaDisplay;

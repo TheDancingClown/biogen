@@ -19,7 +19,7 @@ export default function App() {
   const [refugiumDiscardPile, discardRefugia] = useState([0]);
   const [timeClock, progressTime] = useState(4.6);
   const [backgroundImage, setBackgroundImage] = useState(require('./assets/hadean.jpg'));
-  const [climateSequence, addClimate] = useState([]);
+  const [climateSequence, climateShift] = useState([]);
   const [cosmicRefugia, newCosmicLandform] = useState([]);
   const [oceanicRefugia, newOceanicLandform] = useState([]);
   const [coastalRefugia, newCoastalLandform] = useState([]);
@@ -27,10 +27,10 @@ export default function App() {
   // const [redPlayer, updateRedPlayer] = useState([1,0,0,0])
   // const [greenPlayer, updateGreenPlayer] = useState([0,1,0,0])
   // const [bluePlayer, updateBluePlayer] = useState([0,0,1,0])
-  // const [yellowPlayer, updateYellowPlayer] = useState([0,0,0,1])
+  // const [yellowPlayer, updateYellowPlayer] = useState([0,0,0,1])  currently hardcoded. Add object for player to include colour and available counters
   const [medea, triggerMedea] = useState(false);
   const [phase, setPhase] = useState('event')
-  const eventDeck = new EventDeck(eventDiscardPile);
+  const eventDeck = new EventDeck(eventDiscardPile); //move logic to component?
   const refugiaDeck = new RefugiaDeck(cosmicRefugia, oceanicRefugia, coastalRefugia, continentalRefugia, refugiumDiscardPile);
 
   const drawEvent = () => {
@@ -81,7 +81,7 @@ export default function App() {
       sequence.shift();
     }
     checkMedea(sequence);
-    addClimate(sequence);
+    climateShift(sequence);
   }
 
   const checkMedea = (sequence) => {
@@ -99,7 +99,7 @@ export default function App() {
     newContinentalLandform(refugiaDeck.continentalRefugia);
   }
 
-  const updatePhase = (phase) => {
+  const updatePhase = (phase) => { //check if can be deleted?
     if(phase==='assignment') {
       setPhase('autocatalytic');
     } else if (phase==='autocatalytic') {
@@ -123,6 +123,7 @@ export default function App() {
             continentalRefugia = {continentalRefugia}
             currentEvent = {currentEvent}
             phase = {phase}
+            climate = {climateSequence}
             />
 
           <View style={styles.gameStatus}>
@@ -152,7 +153,7 @@ export default function App() {
                 {medea == true && 
                   <TouchableOpacity 
                   style={styles.button}
-                  // onPress ={() => endGame} 
+                  // onPress ={() => endGame} - add a function for this
                   >
                     <Text style={styles.buttonText}>Medea</Text>
                   </TouchableOpacity>}
@@ -167,6 +168,7 @@ export default function App() {
                   let nextPhase = phase==='assignment' ? 'autocatalytic' : 'event'
                   setPhase(nextPhase)}}>
                   <Text style={styles.buttonText}>Finish</Text>
+                  {/* disable button on autocata phase until all rolls done */}
                 </TouchableOpacity>
               </View>
             }
