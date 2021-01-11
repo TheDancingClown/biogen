@@ -12,7 +12,6 @@ const RefugiaDisplay = (props) => {
   const [currentRefugium, setCurrentRefugium] = useState(RefugiumTemplate);
   const [autocatalyticDice, setAutocatalyticDice] = useState({1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0}); //check if needs to be set
   const [availableBionts, updateAvailableBionts] = useState(1); //losing biont if refugium is destroyed
-  const [playerColour, changePlayer] = useState('#2d92bd'); //use prop from app.js for player colour
   const [doubleRolled, setDoubleRolled] = useState(false);
 
   const inspectRefugium = (refugium) => {
@@ -85,6 +84,7 @@ const RefugiaDisplay = (props) => {
   };
 
   const assignBiont = (refugium) => {
+    let playerColour = props.player.colour
     if(availableBionts != 0) {
       addBiont(refugium, playerColour);
       setCurrentRefugium(refugium);
@@ -97,6 +97,7 @@ const RefugiaDisplay = (props) => {
   };
 
   const reassignBiont = (refugium) => {
+    let playerColour = props.player.colour
     destroyBiont(refugium, playerColour);
     setCurrentRefugium(refugium);
     updateAvailableBionts(availableBionts+1);
@@ -108,6 +109,12 @@ const RefugiaDisplay = (props) => {
       refugium.bionts.splice(index, 1);
       };
   };
+
+  const createMicroorganism = (refugium) => {
+    // refugium.manna = []
+    // refugium.bionts = []
+    // refugium.organisedManna = []
+  }
 
   const RefugiaCard = (props) => {
     var refugiaRow = []
@@ -194,7 +201,7 @@ const RefugiaDisplay = (props) => {
                 onPress ={() => assignBiont(currentRefugium)}>
                 <Text style={styles.buttonText}>Assign Biont</Text>
               </TouchableOpacity>}
-              {currentRefugium.bionts && currentRefugium.bionts.includes(playerColour) && 
+              {currentRefugium.bionts && currentRefugium.bionts.includes(props.player.colour) && 
               <TouchableOpacity 
                 style={styles.diceButton}
                 disabled={false}
@@ -223,7 +230,8 @@ const RefugiaDisplay = (props) => {
               {/* need to add function for flipping card on doubles. Remove from display and add to counter. Add to new navigation page */}
               <TouchableOpacity 
                 style={styles.diceButton}
-                disabled={false}>
+                disabled={false}
+                onPress={() => createMicroorganism(currentRefugium)}>
                 <Text style={styles.buttonText}>Create Microorganism</Text>
               </TouchableOpacity>
            </View>

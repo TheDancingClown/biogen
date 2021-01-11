@@ -24,7 +24,7 @@ export default function App() {
   const [oceanicRefugia, newOceanicLandform] = useState([]);
   const [coastalRefugia, newCoastalLandform] = useState([]);
   const [continentalRefugia, newContinentalLandform] = useState([]);
-  // const [redPlayer, updateRedPlayer] = useState([1,0,0,0])
+  const [redPlayer, updateRedPlayer] = useState({'colour': '#f05443', 'bionts': 1, 'catalysts': [1,0,0,0]})
   // const [greenPlayer, updateGreenPlayer] = useState([0,1,0,0])
   // const [bluePlayer, updateBluePlayer] = useState([0,0,1,0])
   // const [yellowPlayer, updateYellowPlayer] = useState([0,0,0,1])  currently hardcoded. Add object for player to include colour and available counters
@@ -99,12 +99,14 @@ export default function App() {
     newContinentalLandform(refugiaDeck.continentalRefugia);
   }
 
-  const updatePhase = (phase) => { //check if can be deleted?
-    if(phase==='assignment') {
-      setPhase('autocatalytic');
-    } else if (phase==='autocatalytic') {
-      setPhase('event');
-    };
+  const countBionts = (landform, colour) => {
+    let count = 0;
+    for (refugium in landform) {
+      if (refugium.bionts.includes(colour)) {
+        count ++
+      }
+    }
+    return count
   }
 
   return (
@@ -124,6 +126,7 @@ export default function App() {
             currentEvent = {currentEvent}
             phase = {phase}
             climate = {climateSequence}
+            player = {redPlayer}
             />
 
           <View style={styles.gameStatus}>
