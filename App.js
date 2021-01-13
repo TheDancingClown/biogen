@@ -99,15 +99,17 @@ export default function App() {
     newContinentalLandform(refugiaDeck.continentalRefugia);
   }
 
-  const countBionts = (landform, colour) => {
-    let count = 0;
-    for (refugium in landform) {
-      if (refugium.bionts.includes(colour)) {
-        count ++
-      }
-    }
-    return count
-  }
+  // const countBionts = (deck, colour) => {
+  //   let count = 0;
+  //   for (landform in deck) {
+  //     for (refugium in landform) {
+  //       if (refugium.bionts) {
+  //         count ++
+  //       }
+  //     }
+  //   }
+  //   updateAvailableBionts(1 - count)
+  // }
 
   return (
     <SafeAreaView edges = {['right']} style={{flex: 1, backgroundColor: 'black'}}>
@@ -126,8 +128,7 @@ export default function App() {
             currentEvent = {currentEvent}
             phase = {phase}
             climate = {climateSequence}
-            player = {redPlayer}
-            />
+            player = {redPlayer}/>
 
           <View style={styles.gameStatus}>
             <View >

@@ -17,6 +17,11 @@ const RefugiaDisplay = (props) => {
   const inspectRefugium = (refugium) => {
     setShowRefugium(true);
     setCurrentRefugium(refugium);
+    countBionts(props.cosmicRefugia)
+    countBionts(props.oceanicRefugia)
+    countBionts(props.coastalRefugia)
+    countBionts(props.continentalRefugia)
+    //find a better way for this
   }
 
   const autocatalyticRoll = (numberOfDice) => {
@@ -109,6 +114,24 @@ const RefugiaDisplay = (props) => {
       refugium.bionts.splice(index, 1);
       };
   };
+
+  // const countAllBionts = (props) => {
+  //   updateAvailableBionts(1-
+  //   countBionts(props.cosmicRefugia) +
+  //   countBionts(props.oceanicRefugia) +
+  //   countBionts(props.coastalRefugia) +
+  //   countBionts(props.continentalRefugia))
+  // }
+
+  const countBionts = (landform) => {
+    let count = 0;
+    landform.map((refugium) => {
+      if(refugium.bionts != 0) {
+        count += refugium.bionts.length
+      }
+    })
+    updateAvailableBionts(1-count)
+  }
 
   const createMicroorganism = (refugium) => {
     // refugium.manna = []
